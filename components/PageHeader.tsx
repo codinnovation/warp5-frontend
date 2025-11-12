@@ -29,6 +29,7 @@ function PageHeader() {
           </div>
 
           <div className='flex justify-center items-center space-x-2'>
+            
             <div className='flex justify-center items-center w-52 h-14 cursor-pointer hover:bg-gray-100 rounded-full transition-all duration-300 hover:scale-105'>
               <h1 className='text-lg text-[#333333] font-medium'>Help</h1>
             </div>

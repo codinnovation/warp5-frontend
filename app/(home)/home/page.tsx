@@ -9,8 +9,8 @@ import PartnerSection from '../components/PartnerSection';
 import HowItWorksSection from '../components/HowItWorksSection';
 import FAQSection from '../components/FAQSection';
 import FooterSection from '../../../components/FooterSection';
-import CarGrid from '../components/CarGrid';
-import SeeMoreSection from '../components/SeeMoreSection';
+import CarGrid from '../../../components/CarGrid';
+import SeeMoreSection from '../../../components/SeeMoreSection';
 import Car1Image from '../../../public/images/car1.png'
 import Car2Image from '../../../public/images/car2.png'
 import Car3Image from '../../../public/images/car3.png'
@@ -60,13 +60,21 @@ function Page() {
 
           <EquipmentSearch />
 
-          <CarGrid title="Higly Rated By Customers" cars={cars} />
+          <div className='mt-20 pb-10'>
+            <CarGrid title="Higly Rated By Customers" cars={cars} />
+          </div>
 
-          <CarGrid title="Most Viewed Equipment" cars={mostViewedCars} />
+          <div className='mt-20 pb-10'>
+            <CarGrid title="Most Viewed Equipment" cars={mostViewedCars} />
+          </div>
 
-          <CarGrid title="You Might Also Like" cars={leastViewedCars} />
+          <div className='mt-20 pb-10'>
+            <CarGrid title="You Might Also Like" cars={leastViewedCars} />
+          </div>
 
-          <SeeMoreSection />
+          <div className='mt-10 pb-10 flex justify-center'>
+            <SeeMoreSection />
+          </div>
 
           <CTASection />
 
@@ -78,7 +86,9 @@ function Page() {
 
           <FAQSection />
 
-          <FooterSection />
+          <div className='mt-40 bg-[#43A047] py-16'>
+            <FooterSection />
+          </div>
         </div>
       </div >
     </>

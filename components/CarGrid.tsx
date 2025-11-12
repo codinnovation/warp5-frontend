@@ -16,7 +16,6 @@ interface CarGridProps {
 
 const CarGrid: React.FC<CarGridProps> = ({ title, cars }) => {
   return (
-    <div className='mt-20 pb-10'>
       <div className='w-[90vw] mx-auto'>
         <div className='flex justify-start items-center'>
           <h1 className='text-[#333333] text-2xl font-medium'>{title}</h1>
@@ -58,7 +57,6 @@ const CarGrid: React.FC<CarGridProps> = ({ title, cars }) => {
           </button>
         </div>
       </div>
-    </div>
   );
 };
 
