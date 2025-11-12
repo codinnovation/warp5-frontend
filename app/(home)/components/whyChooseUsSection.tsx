@@ -2,7 +2,32 @@ import React from 'react'
 import Image from 'next/image'
 import AboutUsImage from '../../../public/images/about-us.png';
 
-function WhyChooseUsSection({ whyChooseUsReasons }: { whyChooseUsReasons: Array<{ id: number; title: string; description: string }> }) {
+function WhyChooseUsSection() {
+
+  const whyChooseUsReasons: Array<{ id: number; title: string; description: string }> = [
+    {
+      id: 1,
+      title: 'Reliable Equipment, Always Ready',
+      description: 'Our fleet is professionally maintained and inspected before every rental to ensure peak performance and safety.'
+    },
+    {
+      id: 2,
+      title: 'Fast & Easy Reservation',
+      description: 'Search, compare, and reserve in minutes, no paperwork, no hassle.'
+    },
+    {
+      id: 3,
+      title: 'Transparent Pricing',
+      description: 'No hidden fees. What you see is what you pay, with clear daily, or weekly.'
+    },
+    {
+      id: 4,
+      title: 'Flexible Rental Terms',
+      description: 'Whether you need equipment for a day or a month, we offer plans that fit your project timeline.'
+    }
+  ];
+
+
   return (
     <>
       <div className='pt-36 rounded-4xl backdrop-blur-xl p-10' style={{ background: 'linear-gradient(135deg, #dffbfe 1%, #fff0f1 100%)' }}>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from 'next/font/google';
-import 'remixicon/fonts/remixicon.css'
+import 'remixicon/fonts/remixicon.css';
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import "./globals.css";
 
 const poppins = Poppins({
