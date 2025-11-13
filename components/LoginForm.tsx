@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LoginForm({ closeModal }: { closeModal: () => void }) {
+function LoginForm({ closeModal, onForgotPassword }: { closeModal: () => void; onForgotPassword: () => void }) {
   return (
     <>
       <div className='fixed inset-0 bg-black/70 bg-opacity-50 flex items-center justify-center z-50'>
@@ -44,7 +44,7 @@ function LoginForm({ closeModal }: { closeModal: () => void }) {
                 <input type='checkbox' className='rounded border-gray-300 text-[#43A047] focus:ring-[#43A047]' />
                 <span className='ml-2 text-sm text-[#333333] font-regular'>Remember me</span>
               </label>
-              <a href='#' className='text-sm text-[#333333] font-regular'>
+              <a href='#' className='text-sm text-[#333333] font-regular' onClick={onForgotPassword}>
                 Forgot password?
               </a>
             </div>
