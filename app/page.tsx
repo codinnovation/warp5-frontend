@@ -1,13 +1,5 @@
-'use client'
+import { redirect } from 'next/navigation';
 
-import React from 'react'
-
-function Page() {
-  return (
-    <>
-      <div></div>
-    </>
-  )
+export default function Page() {
+  return redirect('/home')
 }
-
-export default Page
