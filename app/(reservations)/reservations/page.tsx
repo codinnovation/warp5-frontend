@@ -5,7 +5,7 @@ import PageHeader from '../../../components/PageHeader'
 import ReservationSearch from '../components/ReservationSearch'
 import SeeMoreSection from '@/components/SeeMoreSection'
 import FooterSection from '@/components/FooterSection'
-import CarGrid from '../../../components/CarGrid';
+import CarGrid from '../../(renter)/components/CarGrid';
 import Car1Image from '../../../public/images/car1.png';
 import Car2Image from '../../../public/images/car2.png';
 import Car3Image from '../../../public/images/car3.png';

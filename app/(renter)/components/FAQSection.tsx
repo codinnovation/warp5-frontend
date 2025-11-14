@@ -49,8 +49,7 @@ function FAQSection() {
   ];
   return (
     <>
-      <div className='mt-40'>
-        <div className='w-[70vw] mx-auto'>
+        <div className='w-[65vw] mx-auto'>
           <div className='flex justify-center items-center'>
             <h1 className='text-[#333333] text-4xl font-semibold'>FAQ</h1>
           </div>
@@ -69,7 +68,6 @@ function FAQSection() {
             ))}
           </div>
         </div>
-      </div>
     </>
   )
 }

@@ -27,8 +27,7 @@ function HowItWorksSection() {
 
   return (
     <>
-      <div className='mt-40'>
-        <div className='w-[60vw] mx-auto'>
+        <div className='w-[65vw] mx-auto'>
           <div className='flex justify-center items-center'>
             <h1 className='text-[#333333] text-4xl font-semibold'>How It Works</h1>
           </div>
@@ -50,7 +49,6 @@ function HowItWorksSection() {
             ))}
           </div>
         </div>
-      </div>
     </>
   )
 }

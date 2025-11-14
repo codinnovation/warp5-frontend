@@ -6,7 +6,7 @@ import WarpLogoWhite from '../public/logo/warp-logo-white.svg'
 function FooterSection() {
   return (
     <>
-        <div className='w-[40vw] mx-auto'>
+        <footer className='w-[40vw] mx-auto'>
           <div className='grid grid-cols-[1fr_auto] gap-8'>
 
             <div className='flex flex-col items-start justify-center'>
@@ -49,7 +49,7 @@ function FooterSection() {
               </p>
             </div>
           </div>
-        </div>
+        </footer>
     </>
   )
 }

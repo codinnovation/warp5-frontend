@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import WarpLogo from '../public/logo/warp-logo.svg';
+import WarpLogo from '../../../public/logo/warp-logo.svg';
 import LoginForm from './LoginForm';
 
 function PageHeader() {
@@ -66,7 +66,7 @@ function PageHeader() {
             </div>
 
             <div className='flex justify-center items-center h-14 w-52 bg-[#43A047] rounded-full cursor-pointer hover:bg-[#2E7D32] transition-all duration-300 hover:scale-105'>
-              <h1 className='text-lg text-[#FFFFFF] font-medium'>My Reservations</h1>
+              <h1 className='text-lg text-[#FFFFFF] font-medium'>Dashboard</h1>
             </div>
           </div>
 
