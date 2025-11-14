@@ -100,7 +100,7 @@ function ReservationSearch() {
 
      return (
           <>
-               <div className='bg-white/30 backdrop-blur-sm rounded-4xl px-12 py-5 max-w-7xl w-full border border-[#333333] cursor-pointer mx-auto' onClick={() => {
+               <div className='relative bg-white/30 z-50 backdrop-blur-sm rounded-4xl px-12 py-5 max-w-7xl w-full border border-[#333333] cursor-pointer mx-auto' onClick={() => {
                     setShowLocationDropdown(false);
                     setShowEquipmentDropdown(false);
                     setShowPriceDropdown(false);
@@ -109,7 +109,7 @@ function ReservationSearch() {
 
                     <div className='grid grid-cols-5'>
 
-                         <div className='flex flex-col items-start justify-center space-y-2 border-r-[1px] border-[#DDDDDDB2]'>
+                         <div className='relative flex flex-col items-start justify-center space-y-2 border-r-[1px] border-[#DDDDDDB2]'>
                               <h1 className='text-[#333333] text-lg font-medium tracking-wide'>Location</h1>
                               <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={handleLocationClick}>
                                    <h1 className='text-[#666666] font-regular tracking-wide text-sm'>{city || 'Select Your City'}</h1>
@@ -117,7 +117,7 @@ function ReservationSearch() {
                               </div>
 
                               {showLocationDropdown && (
-                                   <div className='absolute top-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-8 w-auto z-[100]' onClick={(e) => e.stopPropagation()}>
+                                   <div className='absolute top-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-8 w-auto z-50' onClick={(e) => e.stopPropagation()}>
                                         <div className='grid grid-cols-3 gap-3'>
                                              {ghanaCities.map((city, index) => (
                                                   <button
@@ -133,7 +133,7 @@ function ReservationSearch() {
                               )}
                          </div>
 
-                         <div className='flex flex-col items-start justify-center space-y-2 border-r-[1px] border-[#DDDDDDB2] pl-8'>
+                         <div className='relative flex flex-col items-start justify-center space-y-2 border-r-[1px] border-[#DDDDDDB2] pl-8'>
                               <h1 className='text-[#333333] text-lg font-medium tracking-wide'>Equipment</h1>
                               <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={handleEquipmentClick}>
                                    <h1 className='text-[#666666] font-regular tracking-wide text-sm'>{equipment || 'Choose Type'}</h1>
@@ -157,7 +157,7 @@ function ReservationSearch() {
                               )}
                          </div>
 
-                         <div className='flex flex-col items-start justify-center space-y-2 border-r-[1px] border-[#DDDDDDB2] pl-8'>
+                         <div className='relative flex flex-col items-start justify-center space-y-2 border-r-[1px] border-[#DDDDDDB2] pl-8'>
                               <h1 className='text-[#333333] text-lg font-medium tracking-wide'>Price Range</h1>
                               <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={handlePriceClick}>
                                    <h1 className='text-[#666666] font-regular tracking-wide text-sm'>{(minPrice || maxPrice) ? `${minPrice || '0'} - ${maxPrice || '∞'}` : 'Choose Range'}</h1>
@@ -190,7 +190,7 @@ function ReservationSearch() {
                               )}
                          </div>
 
-                         <div className='flex flex-col items-start justify-center space-y-2 pl-8'>
+                         <div className='relative flex flex-col items-start justify-center space-y-2 pl-8'>
                               <h1 className='text-[#333333] text-lg font-medium tracking-wide'>Date</h1>
                               <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={handleDateClick}>
                                    <i className="ri-calendar-2-line text-[#666666] text-lg"></i>
