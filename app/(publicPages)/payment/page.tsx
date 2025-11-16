@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import PageHeader from '../../components/PageHeader';
-import FooterSection from '@/components/FooterSection';
+import PageHeader from '../../../components/PageHeader';
+import FooterSection from '../../../components/FooterSection';
 
 function Page() {
   const [activeTab, setActiveTab] = useState<'momo' | 'debit' | 'other'>('momo');

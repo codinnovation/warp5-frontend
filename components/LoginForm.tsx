@@ -48,9 +48,9 @@ function LoginForm({ closeModal, onForgotPassword }: { closeModal: () => void; o
                 <input type='checkbox' className='rounded border-gray-300 text-[#43A047] focus:ring-[#43A047]' />
                 <span className='ml-2 text-sm text-[#333333] font-regular'>Remember me</span>
               </label>
-              <a href='#' className='text-sm text-[#333333] font-regular' onClick={onForgotPassword}>
+              <div className='text-sm text-[#333333] font-regular cursor-pointer' onClick={onForgotPassword}>
                 Forgot password?
-              </a>
+              </div>
             </div>
 
             <button
@@ -64,7 +64,7 @@ function LoginForm({ closeModal, onForgotPassword }: { closeModal: () => void; o
           <div className='mt-8 flex justify-center items-center space-x-2'>
             <h1 className='text-base text-[#333333] font-medium'>Don&apos;t have an account?</h1>
             <button className='border-b border-[#43A047] text-[#43A047] text-base font-medium cursor-pointer'
-              onClick={() => router.push('/renter/signup')}>Sign Up</button>
+              onClick={() => router.push('/signup')}>Sign Up</button>
           </div>
         </div>
       </div>

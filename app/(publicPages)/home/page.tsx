@@ -49,7 +49,7 @@ function Page() {
         </section>
 
         <section className='mt-20 pb-10 flex justify-center'>
-          <SeeMoreSection />
+          <SeeMoreSection route='/products' />
         </section>
 
         <section className='mt-36'>

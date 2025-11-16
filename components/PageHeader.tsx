@@ -10,7 +10,7 @@ function PageHeader() {
   const router = useRouter();
   const pathname = usePathname();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isUser, setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -112,7 +112,7 @@ function PageHeader() {
                       </div>
 
                       <div className='mt-8'>
-                        <div className='flex justify-center items-center cursor-pointer'>
+                        <div className='flex justify-center items-center cursor-pointer' onClick={() => router.push('/profile')}>
                           <h1 className='font-medium text-[#333333] text-base'>Account Management</h1>
                         </div>
                       </div>

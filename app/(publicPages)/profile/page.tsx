@@ -1,29 +1,29 @@
 'use client';
 
 import React, { useState } from 'react';
-import PageHeader from '../../components/PageHeader';
-import FooterSection from '../../../../components/FooterSection';
+import PageHeader from '../../../components/PageHeader';
+import FooterSection from '../../../components/FooterSection';
 
 function Page() {
-    const [activeTab, setActiveTab] = useState('personalInfo');
-  
-    const [notifications, setNotifications] = useState({
-      emailNotif: true,
-      smsNotif: false,
-      pushNotif: true,
-      reservationReminders: true,
-      promoOffers: false,
-    });
-  
-    const personalInfo = [
-      { label: 'First Name', name: 'firstName', value: 'Isaac' },
-      { label: 'Last Name', name: 'lastName', value: 'Newton' },
-      { label: 'Date of Birth', name: 'dob', value: '23/06/1990' },
-      { label: 'Gender', name: 'gender', value: 'Male' },
-    ]
-  
-    const handleNotificationChange = (name: string, checked: boolean) => {
-      setNotifications(prev => ({ ...prev, [name]: checked }));
+  const [activeTab, setActiveTab] = useState('personalInfo');
+
+  const [notifications, setNotifications] = useState({
+    emailNotif: true,
+    smsNotif: false,
+    pushNotif: true,
+    reservationReminders: true,
+    promoOffers: false,
+  });
+
+  const personalInfo = [
+    { label: 'First Name', name: 'firstName', value: 'Isaac' },
+    { label: 'Last Name', name: 'lastName', value: 'Newton' },
+    { label: 'Date of Birth', name: 'dob', value: '23/06/1990' },
+    { label: 'Gender', name: 'gender', value: 'Male' },
+  ]
+
+  const handleNotificationChange = (name: string, checked: boolean) => {
+    setNotifications(prev => ({ ...prev, [name]: checked }));
   };
 
   const notificationSettings = [
@@ -48,7 +48,7 @@ function Page() {
     { id: 'notification', label: 'Notification' },
     { id: 'privacy', label: 'Privacy & Security' },
   ];
-  
+
   return (
     <>
       <div className='h-screen bg-white'>

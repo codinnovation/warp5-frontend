@@ -1,8 +1,13 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import CTAImage from '../../../public/images/cta.png';
 
 function CTASection() {
+  const router = useRouter();
+
   return (
     <>
       <div className='w-[85vw] mx-auto'>
@@ -27,7 +32,7 @@ function CTASection() {
 
                 <p className='text-[#FFFFFF] font-light text-base'>Get the gear you need. Fast, reliable, and ready for your next project.</p>
 
-                <button className='w-46 h-14 rounded-xl border border-[#FFFFFF] text-white font-medium'>Sign Up Now</button>
+                <button className='w-46 h-14 rounded-xl border border-[#FFFFFF] text-white font-medium cursor-pointer' onClick={() => router.push('/signup')}>Sign Up Now</button>
               </div>
             </div>
           </div>

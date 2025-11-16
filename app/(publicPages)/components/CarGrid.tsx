@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface Car {
@@ -15,6 +18,8 @@ interface CarGridProps {
 }
 
 const CarGrid: React.FC<CarGridProps> = ({ title, cars }) => {
+  const router = useRouter();
+
   return (
     <div className='w-[85vw] mx-auto'>
       <div className='flex justify-start items-center'>
@@ -28,7 +33,7 @@ const CarGrid: React.FC<CarGridProps> = ({ title, cars }) => {
 
         <div className='grid grid-cols-5 gap-4'>
           {cars.map((car) => (
-            <div key={car.id} className='flex flex-col'>
+            <div key={car.id} className='flex flex-col cursor-pointer' onClick={() => router.push('/details')}>
               <div className='group relative mb-4 w-full overflow-hidden rounded-4xl bg-gray-50 shadow-sm'>
                 <div className='relative w-full pb-[100%]'>
                   <Image

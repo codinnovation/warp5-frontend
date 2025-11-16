@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { DateRange } from "react-date-range"
-import FooterSection from '../../../../components/FooterSection';
-import PageHeader from '../../components/PageHeader';
-import Car1Image from '../../../../public/cars/car1.jpg';
-import Car2Image from '../../../../public/cars/car2.jpg';
-import Car3Image from '../../../../public/cars/car3.jpg';
+import FooterSection from '../../../components/FooterSection';
+import PageHeader from '../../../components/PageHeader';
+import Car1Image from '../../../public/cars/car1.jpg';
+import Car2Image from '../../../public/cars/car2.jpg';
+import Car3Image from '../../../public/cars/car3.jpg';
 
 function Page() {
+  const router = useRouter();
+
   const [selectedImage, setSelectedImage] = useState(0);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
   const [startDate, setStartDate] = useState('')
@@ -163,7 +166,7 @@ function Page() {
                         <h1 className='text-[#333333] text-2xl font-bold'>GH 1000.00</h1>
                       </div>
 
-                      <div className='border-l border-[#333333] h-14'/>
+                      <div className='border-l border-[#333333] h-14' />
 
                       <div className='flex flex-col'>
                         <h1 className='text-[#333333] text-base font-medium'>3 Days</h1>
@@ -314,7 +317,7 @@ function Page() {
               </div>
 
               <div className='mt-16 flex justify-center items-center'>
-                <button className='flex justify-center items-center w-68 h-14 bg-[#43A047] rounded-full'>
+                <button className='flex justify-center items-center w-68 h-14 bg-[#43A047] rounded-full cursor-pointer' onClick={() => router.push('/reservedetails')}>
                   <h1 className='text-white font-medium text-base'>Reserve</h1>
                 </button>
               </div>

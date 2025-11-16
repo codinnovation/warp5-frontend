@@ -2,11 +2,13 @@
 
 import React from 'react'
 import Image from 'next/image';
-import PageHeader from '../../components/PageHeader';
-import FooterSection from '../../../../components/FooterSection';
-import Car1Image from '../../../../public/cars/car1.jpg';
+import { useRouter } from 'next/navigation';
+import PageHeader from '../../../components/PageHeader';
+import FooterSection from '../../../components/FooterSection';
+import Car1Image from '../../../public/cars/car1.jpg';
 
 function Page() {
+  const router = useRouter();
   return (
     <>
       <main className='h-screen bg-white'>
@@ -127,7 +129,7 @@ function Page() {
 
             <div className='mt-24'>
               <div className='flex justify-center items-center'>
-                <button className='text-white text-lg bg-[#43A047] w-100 h-14 rounded-full font-medium cursor-pointer'>Proceed To Pay</button>
+                <button className='text-white text-lg bg-[#43A047] w-100 h-14 rounded-full font-medium cursor-pointer' onClick={() => router.push('/payment')}>Proceed To Pay</button>
               </div>
             </div>
 
