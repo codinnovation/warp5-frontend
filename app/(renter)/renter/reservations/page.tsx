@@ -18,7 +18,6 @@ function Page() {
     { id: 'R-CP22', equipment: 'Compactor', vendor: 'GroundForce Rentals', dates: 'May 10 - 15, 2025', cost: 'GHC 5,050' },
 
     { id: 'R-CP22', equipment: 'Compactor', vendor: 'GroundForce Rentals', dates: 'May 10 - 15, 2025', cost: 'GHC 5,050' },
-
     { id: 'R-CP22', equipment: 'Compactor', vendor: 'GroundForce Rentals', dates: 'May 10 - 15, 2025', cost: 'GHC 5,050' },
     { id: 'R-CP22', equipment: 'Compactor', vendor: 'GroundForce Rentals', dates: 'May 10 - 15, 2025', cost: 'GHC 5,050' },
     { id: 'R-CP22', equipment: 'Compactor', vendor: 'GroundForce Rentals', dates: 'May 10 - 15, 2025', cost: 'GHC 5,050' },
@@ -27,7 +26,7 @@ function Page() {
 
   ];
 
-  const pageSize = 6;
+  const pageSize = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.max(1, Math.ceil(reservationHistory.length / pageSize));
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);

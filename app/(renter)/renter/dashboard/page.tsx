@@ -29,7 +29,7 @@ function Page() {
 
   return (
     <>
-      <main className='flex flex-col h-full overflow-hidden'>
+      <main className='flex flex-col h-full '>
         <DashboardHeader title='Overview' />
         <section className='mt-8 lg:mt-16 flex justify-start items-center bg-[#F7E6E6] h-16 lg:h-20 rounded-lg space-x-4 lg:space-x-8 pl-4 lg:pl-8 xl:pl-15 shrink-0'>
           <i className="ri-information-line text-[#333333] text-xl lg:text-2xl"></i>

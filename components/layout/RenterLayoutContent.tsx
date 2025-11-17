@@ -29,7 +29,7 @@ export default function RenterLayoutContent({ children }: RenterLayoutContentPro
         </div>
       </div>
 
-      <div className={`fixed top-32 left-0 bottom-0 z-40 w-64 lg:w-80 xl:w-94 bg-white transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:block`}>
+      <div className={`fixed top-30 left-0 bottom-0 z-40 w-64 lg:w-80 xl:w-94 bg-white transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:block`}>
         <SidebarMenu />
       </div>
 
