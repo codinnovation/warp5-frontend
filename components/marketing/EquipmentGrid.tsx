@@ -18,7 +18,7 @@ export interface EquipmentGridProps {
   onCardClick?: (car: CarCardData) => void;
 }
 
-const EquipmentGrid: React.FC<EquipmentGridProps> = ({ title, cars }) => {
+const EquipmentGrid: React.FC<EquipmentGridProps> = ({ cars }) => {
   const router = useRouter();
 
 

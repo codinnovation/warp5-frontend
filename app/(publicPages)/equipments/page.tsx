@@ -33,19 +33,19 @@ function Page() {
       <main className='h-screen bg-white'>
         <PublicPageHeader />
 
-        <section className='mt-16 lg:mt-20 xl:mt-24'>
+        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20'>
           <ReservationSearch />
         </section>
 
-        <section className='mt-16 lg:mt-20 xl:mt-24'>
+        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20'>
           <EquipmentGrid title="" cars={cars} />
         </section>
 
-        <section className='mt-16 lg:mt-20 xl:mt-24 flex justify-center items-center'>
+        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20 flex justify-center items-center'>
           <SeeMoreSection title='Load More' />
         </section>
 
-        <section className='mt-24 lg:mt-36 xl:mt-48 bg-[#43A047] py-12 lg:py-16 xl:py-20'>
+        <section className='mt-12 sm:mt-16 lg:mt-24 xl:mt-32 bg-[#43A047] py-6 sm:py-8 lg:py-12 xl:py-16'>
           <FooterSection />
         </section>
       </main>

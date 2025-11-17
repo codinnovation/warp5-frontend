@@ -45,60 +45,60 @@ function Page() {
           <DashboardHeader title='Overview' />
         </div>
 
-        <section className='mt-8 lg:mt-12 flex flex-wrap space-x-4 lg:space-x-8 shrink-0'>
-          <h1 className='text-[#000000] font-regular text-base lg:text-lg'>Completed</h1>
-          <div className='border-r border-[#333333] h-6' />
-          <h1 className='text-[#000000] font-regular text-base lg:text-lg'>Active Reservations</h1>
-          <div className='border-r border-[#333333] h-6' />
-          <h1 className='text-[#000000] font-regular text-base lg:text-lg'>Cancelled Reservations</h1>
+        <section className='mt-6 lg:mt-9 flex flex-wrap space-x-3 lg:space-x-6 shrink-0'>
+          <h1 className='text-[#000000] font-regular text-sm lg:text-base'>Completed</h1>
+          <div className='border-r border-[#333333] h-5' />
+          <h1 className='text-[#000000] font-regular text-sm lg:text-base'>Active Reservations</h1>
+          <div className='border-r border-[#333333] h-5' />
+          <h1 className='text-[#000000] font-regular text-sm lg:text-base'>Cancelled Reservations</h1>
         </section>
 
-        <section className='mt-8 lg:mt-12 flex flex-col flex-1 overflow-hidden'>
-          <div className='bg-white/30 p-6 lg:p-8 xl:p-12 rounded-lg flex-1 overflow-hidden flex flex-col'>
-            <h1 className='text-[#333333] font-medium text-base lg:text-lg'>Reservation History</h1>
-            <div className='mt-4 flex flex-col h-full overflow-hidden'>
+        <section className='mt-6 lg:mt-9 flex flex-col flex-1 overflow-hidden'>
+          <div className='bg-white/30 p-4 lg:p-6 xl:p-8 rounded-lg flex-1 overflow-hidden flex flex-col'>
+            <h1 className='text-[#333333] font-medium text-sm lg:text-base'>Reservation History</h1>
+            <div className='mt-3 flex flex-col h-full overflow-hidden'>
               <div className='overflow-x-auto'>
                 <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center shrink-0 min-w-[600px]'>
-                  <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>ID</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Equipment</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Vendor</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Dates</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Cost</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>ID</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Equipment</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Vendor</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Dates</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Cost</h1>
                   <span />
                 </div>
               </div>
 
-              <div className='mt-4 space-y-4 flex-1 overflow-y-auto pr-4 pb-12'>
+              <div className='mt-3 space-y-3 flex-1 overflow-y-auto pr-3 pb-9'>
                 {paginatedReservations.map((reservation) => (
                   <div key={reservation.id} className='overflow-x-auto'>
-                    <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center h-12 lg:h-14 min-w-[600px]'>
-                      <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.id}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.equipment}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.vendor}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.dates}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.cost}</h1>
-                      <i className="ri-arrow-right-up-long-line text-[#1C1D21] text-base lg:text-lg"></i>
+                    <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center h-10 lg:h-12 min-w-[600px]'>
+                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.id}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.equipment}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.vendor}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.dates}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.cost}</h1>
+                      <i className="ri-arrow-right-up-long-line text-[#1C1D21] text-sm lg:text-base"></i>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-          <div className='flex items-center justify-end space-x-3 pr-4 mt-6 shrink-0'>
+          <div className='flex items-center justify-end space-x-2 pr-3 mt-4 shrink-0'>
             <button
               className='flex items-center justify-center disabled:opacity-40'
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
               aria-label='Previous page'
             >
-              <i className='ri-arrow-drop-left-line text-xl lg:text-2xl text-[#1C1D21]'></i>
+              <i className='ri-arrow-drop-left-line text-lg lg:text-xl text-[#1C1D21]'></i>
             </button>
             <div className='flex items-center space-x-2'>
               {pages.map((pageNumber) => (
                 <button
                   key={pageNumber}
-                  className={`px-3 flex items-center justify-center text-sm lg:text-base transition-colors ${pageNumber === currentPage
-                    ? 'bg-[#43A047] min-w-8 lg:min-w-10 h-6 lg:h-7 rounded-lg text-white'
+                  className={`px-2 flex items-center justify-center text-xs lg:text-sm transition-colors ${pageNumber === currentPage
+                    ? 'bg-[#43A047] min-w-6 lg:min-w-8 h-5 lg:h-6 rounded-lg text-white'
                     : 'text-[#1C1D21] hover:bg-[#1C1D21]/10'
                     }`}
                   onClick={() => goToPage(pageNumber)}
@@ -114,7 +114,7 @@ function Page() {
               disabled={currentPage === totalPages}
               aria-label='Next page'
             >
-              <i className='ri-arrow-drop-right-line text-xl lg:text-2xl text-[#1C1D21]'></i>
+              <i className='ri-arrow-drop-right-line text-lg lg:text-xl text-[#1C1D21]'></i>
             </button>
           </div>
         </section>

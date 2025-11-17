@@ -87,9 +87,9 @@ function Page() {
       <main className='bg-white'>
         <PublicPageHeader />
 
-        <section className='w-[85vw] mx-auto grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-8 lg:gap-12 xl:gap-20'>
-          <div className='flex flex-col gap-6 lg:gap-8'>
-            <div className='relative w-full aspect-[4/3] bg-gray-100 overflow-hidden'>
+        <section className='w-[85vw] mx-auto grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-6 lg:gap-8 xl:gap-10'>
+          <div className='flex flex-col gap-4 lg:gap-6'>
+            <div className='relative w-full aspect-[6/4] bg-gray-100 overflow-hidden'>
               <Image
                 src={images[selectedImage].src}
                 alt={images[selectedImage].alt}
@@ -100,7 +100,7 @@ function Page() {
               />
             </div>
 
-            <div className='grid grid-cols-3 gap-3 lg:gap-4'>
+            <div className='grid grid-cols-3 gap-2 lg:gap-3'>
               {images.map((image, index) => (
                 <button
                   key={index}
@@ -121,11 +121,11 @@ function Page() {
               ))}
             </div>
 
-            <div className='mt-8 lg:mt-12'>
+            <div className='mt-6 lg:mt-8'>
               <div className='flex flex-col'>
                 <div className='flex flex-col justify-center items-start'>
-                  <h1 className='text-[#43A047] font-bold text-xl lg:text-2xl xl:text-3xl'>Excavators</h1>
-                  <div className='mt-2 flex space-x-6 lg:space-x-8'>
+                  <h1 className='text-[#43A047] font-bold text-lg lg:text-xl xl:text-2xl'>Excavators</h1>
+                  <div className='mt-2 flex space-x-4 lg:space-x-6'>
                     <div className='flex'>
                       <i className="ri-map-pin-2-line"></i>
                       <h1 className='text-[#333333] text-sm lg:text-base font-regular'>Takoradi</h1>
@@ -146,45 +146,45 @@ function Page() {
             <div className='mt-4'>
               <div className='flex flex-col'>
                 <div className='flex items-center space-x-1'>
-                  <h1 className={`flex justify-center items-center ${activeTab === 'description' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-base lg:text-lg font-medium w-32 lg:w-40 h-12 lg:h-16`} onClick={() => setActiveTab('description')}>Description</h1>
-                  <h1 className={`flex justify-center items-center ${activeTab === 'rate' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-base lg:text-lg font-medium w-32 lg:w-40 h-12 lg:h-16`} onClick={() => setActiveTab('rate')}>Rate</h1>
-                  <h1 className={`flex justify-center items-center ${activeTab === 'availability' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-base lg:text-lg font-medium w-32 lg:w-40 h-12 lg:h-16`} onClick={() => setActiveTab('availability')}>Availability</h1>
+                  <h1 className={`flex justify-center items-center ${activeTab === 'description' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-sm lg:text-base font-medium w-24 lg:w-32 h-10 lg:h-12`} onClick={() => setActiveTab('description')}>Description</h1>
+                  <h1 className={`flex justify-center items-center ${activeTab === 'rate' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-sm lg:text-base font-medium w-24 lg:w-32 h-10 lg:h-12`} onClick={() => setActiveTab('rate')}>Rate</h1>
+                  <h1 className={`flex justify-center items-center ${activeTab === 'availability' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-sm lg:text-base font-medium w-24 lg:w-32 h-10 lg:h-12`} onClick={() => setActiveTab('availability')}>Availability</h1>
                 </div>
 
                 {activeTab === 'description' && (
-                  <div className='bg-[#F4F4F4] min-h-[10vh] max-h-96 rounded-b-3xl p-8 lg:p-12 xl:p-16 overflow-y-auto'>
+                  <div className='bg-[#F4F4F4] min-h-[10vh] max-h-96 rounded-b-3xl p-6 lg:p-8 xl:p-10 overflow-y-auto'>
                     <h1 className='text-[#333333] text-sm lg:text-base tracking-wider font-regular'>Lorem ipsum dolor sit amet, {description}
                     </h1>
                   </div>
                 )}
 
                 {activeTab === 'rate' && (
-                  <div className='bg-[#fff] min-h-[10vh] max-h-96 shadow-md rounded-b-3xl p-12 lg:p-16 xl:p-20 overflow-y-auto'>
+                  <div className='bg-[#fff] min-h-[10vh] max-h-96 shadow-md rounded-b-3xl p-8 lg:p-12 xl:p-16 overflow-y-auto'>
                     <div className='flex flex-col lg:flex-row justify-around items-center space-y-4 lg:space-y-0'>
                       <div className='flex flex-col'>
                         <h1 className='text-[#333333] text-sm lg:text-base font-medium'>Daily</h1>
-                        <h1 className='text-[#333333] text-xl lg:text-2xl font-bold'>GH 1000.00</h1>
+                        <h1 className='text-[#333333] text-lg lg:text-xl font-bold'>GH 1000.00</h1>
                       </div>
 
-                      <div className='border-l border-[#333333] h-10 lg:h-14 hidden lg:block' />
+                      <div className='border-l border-[#333333] h-8 lg:h-10 hidden lg:block' />
 
                       <div className='flex flex-col'>
                         <h1 className='text-[#333333] text-sm lg:text-base font-medium'>3 Days</h1>
-                        <h1 className='text-[#333333] text-xl lg:text-2xl font-bold'>GH 2500.00</h1>
+                        <h1 className='text-[#333333] text-lg lg:text-xl font-bold'>GH 2500.00</h1>
                       </div>
 
-                      <div className='border-l border-[#333333] h-10 lg:h-14 hidden lg:block' />
+                      <div className='border-l border-[#333333] h-8 lg:h-10 hidden lg:block' />
 
                       <div className='flex flex-col'>
                         <h1 className='text-[#333333] text-sm lg:text-base font-medium'>Weekly</h1>
-                        <h1 className='text-[#333333] text-xl lg:text-2xl font-bold'>GH 7020.00</h1>
+                        <h1 className='text-[#333333] text-lg lg:text-xl font-bold'>GH 7020.00</h1>
                       </div>
                     </div>
                   </div>
                 )}
 
                 {activeTab === 'availability' && (
-                  <div className='bg-[#F4F4F4] min-h-[10vh] max-h-96 rounded-b-3xl p-8 lg:p-12 xl:p-16 overflow-y-auto'>
+                  <div className='bg-[#F4F4F4] min-h-[10vh] max-h-96 rounded-b-3xl p-6 lg:p-8 xl:p-10 overflow-y-auto'>
                     <h1 className='text-[#333333] text-sm lg:text-base tracking-wider font-regular'>Availability content goes here.</h1>
                   </div>
                 )}
@@ -192,32 +192,32 @@ function Page() {
               </div>
             </div>
 
-            <div className='mt-12 lg:mt-16'>
+            <div className='mt-8 lg:mt-12'>
               <div className='flex flex-col space-y-4'>
                 <div className='flex justify-start items-center'>
-                  <h1 className='text-[#333333] font-medium text-xl lg:text-2xl'>Equipment Location On Map</h1>
+                  <h1 className='text-[#333333] font-medium text-lg lg:text-xl'>Equipment Location On Map</h1>
                 </div>
 
-                <div className='flex justify-center items-center bg-[#F4F4F4] min-h-32 lg:min-h-40 xl:min-h-48'>
+                <div className='flex justify-center items-center bg-[#F4F4F4] min-h-24 lg:min-h-32 xl:min-h-40'>
                   <h1>Map Here</h1>
                 </div>
               </div>
             </div>
 
-            <div className='mt-12 lg:mt-16'>
+            <div className='mt-8 lg:mt-12'>
               <div className='flex justify-start items-center'>
-                <h1 className='text-[#333333] text-xl lg:text-2xl font-medium'>related equipment</h1>
+                <h1 className='text-[#333333] text-lg lg:text-xl font-medium'>Related equipment</h1>
               </div>
 
-              <div className='relative mt-8 lg:mt-12'>
-                <button className='absolute left-[-12] top-1/3 -translate-y-0/2 z-10 flex justify-center items-center w-8 lg:w-10 h-8 lg:h-10 rounded-full bg-[#000000]/60 transition-colors shadow-lg cursor-pointer'>
-                  <i className="ri-arrow-left-s-line text-[#fff] text-xl lg:text-2xl"></i>
+              <div className='relative mt-6 lg:mt-8'>
+                <button className='absolute left-[-8] top-1/3 -translate-y-0/2 z-10 flex justify-center items-center w-6 lg:w-8 h-6 lg:h-8 rounded-full bg-[#000000]/60 transition-colors shadow-lg cursor-pointer'>
+                  <i className="ri-arrow-left-s-line text-[#fff] text-lg lg:text-xl"></i>
                 </button>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-8'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6'>
                   {cars.map((car) => (
                     <div key={car.id} className='flex flex-col'>
-                      <div className='group relative mb-4 w-full overflow-hidden rounded-4xl bg-gray-50 shadow-sm'>
+                      <div className='group relative mb-3 w-full overflow-hidden rounded-4xl bg-gray-50 shadow-sm'>
                         <div className='relative w-full pb-[100%]'>
                           <Image
                             src={car.image}
@@ -227,13 +227,13 @@ function Page() {
                           />
                         </div>
 
-                        <button className='absolute top-3 right-3 flex justify-center items-center w-8 lg:w-10 h-8 lg:h-10 rounded-full bg-white/50 hover:bg-[#FFF0F6] transition-colors shadow-md'>
-                          <i className="ri-heart-line text-[#FF0063] text-lg lg:text-xl"></i>
+                        <button className='absolute top-6 right-6 flex justify-center items-center w-6 lg:w-8 h-6 lg:h-8 rounded-full bg-white/50 hover:bg-[#FFF0F6] transition-colors shadow-md'>
+                          <i className="ri-heart-line text-[#FF0063] text-base lg:text-lg"></i>
                         </button>
                       </div>
 
                       <div className='flex flex-col justify-center items-center'>
-                        <h1 className='text-base lg:text-lg text-[#333333] font-semibold'>{car.name}</h1>
+                        <h1 className='text-sm lg:text-base text-[#333333] font-semibold'>{car.name}</h1>
                         <div className='flex items-center space-x-1'>
                           <i className="ri-map-pin-2-line text-[#787878]"></i>
                           <h1 className='text-[#787878] text-xs lg:text-sm font-regular'>{car.location}</h1>
@@ -248,7 +248,7 @@ function Page() {
                   ))}
                 </div>
 
-                <button className='absolute right-[-12] top-1/3 -translate-y-0/2 z-10 flex justify-center items-center w-8 lg:w-10 h-8 lg:h-10 rounded-full bg-[#000000]/60 transition-colors shadow-lg cursor-pointer'>
+                <button className='absolute right-[-8] top-1/3 -translate-y-0/2 z-10 flex justify-center items-center w-6 lg:w-8 h-6 lg:h-8 rounded-full bg-[#000000]/60 transition-colors shadow-lg cursor-pointer'>
                   <i className="ri-arrow-right-s-line text-white text-lg lg:text-xl"></i>
                 </button>
               </div>
@@ -256,39 +256,39 @@ function Page() {
           </div>
 
           <div className='flex flex-col'>
-            <div className='pt-12 lg:pt-16 xl:pt-20 flex justify-center items-center space-x-4'>
+            <div className='pt-8 lg:pt-12 xl:pt-16 flex justify-center items-center space-x-3'>
               <div className='flex items-center space-x-2 cursor-pointer'>
-                <i className="ri-share-2-line text-[#333333] text-lg lg:text-xl"></i>
-                <h1 className='text-[#333333] text-sm lg:text-base font-medium'>Share</h1>
+                <i className="ri-share-2-line text-[#333333] text-base lg:text-lg"></i>
+                <h1 className='text-[#333333] text-xs lg:text-sm font-medium'>Share</h1>
               </div>
 
               <div className='h-6 border-l border-[#333333]'></div>
 
               <div className='flex items-center space-x-2 cursor-pointer'>
-                <i className="ri-heart-line text-[#333333] text-lg lg:text-xl"></i>
-                <h1 className='text-[#333333] text-sm lg:text-base font-medium'>Save</h1>
+                <i className="ri-heart-line text-[#333333] text-base lg:text-lg"></i>
+                <h1 className='text-[#333333] text-xs lg:text-sm font-medium'>Save</h1>
               </div>
             </div>
 
-            <div className='mt-12 lg:mt-16 xl:mt-20 py-8 lg:py-10 xl:py-12 flex flex-col justify-center shadow-xl rounded-b-4xl'>
+            <div className='mt-8 lg:mt-12 xl:mt-16 py-6 lg:py-8 xl:py-10 flex flex-col justify-center shadow-xl rounded-b-4xl'>
               <div className='flex justify-center items-center'>
-                <h1 className='text-[#000000] text-base lg:text-lg font-medium'>Rental Period</h1>
+                <h1 className='text-[#000000] text-sm lg:text-base font-medium'>Rental Period</h1>
               </div>
 
-              <div className='relative mt-8 lg:mt-12 xl:mt-16 flex justify-center'>
+              <div className='relative mt-6 lg:mt-8 xl:mt-10 flex justify-center'>
                 <div
-                  className='flex justify-center items-center border border-[#787878] w-56 lg:w-64 xl:w-68 mx-auto h-12 lg:h-14 rounded-full space-x-2 cursor-pointer bg-white'
+                  className='flex justify-center items-center border border-[#787878] w-40 lg:w-48 xl:w-56 mx-auto h-10 lg:h-12 rounded-full space-x-2 cursor-pointer bg-white'
                   onClick={handleDateClick}
                 >
-                  <i className="ri-calendar-2-line text-[#787878] text-sm lg:text-base"></i>
-                  <h1 className='text-[#787878] text-sm lg:text-base font-regular'>
+                  <i className="ri-calendar-2-line text-[#787878] text-xs lg:text-sm"></i>
+                  <h1 className='text-[#787878] text-xs lg:text-sm font-regular'>
                     {startDate && endDate ? `${startDate} - ${endDate}` : 'Select Rental Dates'}
                   </h1>
                 </div>
 
                 {showDateDropdown && (
                   <div
-                    className='absolute top-full mt-3 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-4 z-[100] w-max'
+                    className='absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-3 z-[100] w-max'
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className='space-y-4'>
@@ -302,13 +302,13 @@ function Page() {
                       <div className='flex space-x-2 pt-2'>
                         <button
                           onClick={handleDateCancel}
-                          className='flex-1 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200'
+                          className='flex-1 px-3 py-2 border border-gray-300 rounded-md text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200'
                         >
                           Cancel
                         </button>
                         <button
                           onClick={handleDateDone}
-                          className='flex-1 px-4 py-2 bg-[#43A047] text-white rounded-md text-sm font-medium hover:bg-[#3d8b3d] transition-colors duration-200'
+                          className='flex-1 px-3 py-2 bg-[#43A047] text-white rounded-md text-xs font-medium hover:bg-[#3d8b3d] transition-colors duration-200'
                         >
                           Done
                         </button>
@@ -318,15 +318,15 @@ function Page() {
                 )}
               </div>
 
-              <div className='mt-8 lg:mt-12 xl:mt-16 flex justify-center items-center'>
-                <button className='flex justify-center items-center w-56 lg:w-64 xl:w-68 h-12 lg:h-14 bg-[#43A047] rounded-full cursor-pointer' onClick={() => router.push('/equipments/reserve')}>
-                  <h1 className='text-white font-medium text-sm lg:text-base'>Reserve</h1>
+              <div className='mt-6 lg:mt-8 xl:mt-10 flex justify-center items-center'>
+                <button className='flex justify-center items-center w-40 lg:w-48 xl:w-56 h-10 lg:h-12 bg-[#43A047] rounded-full cursor-pointer' onClick={() => router.push('/equipments/reserve')}>
+                  <h1 className='text-white font-medium text-xs lg:text-sm'>Reserve</h1>
                 </button>
               </div>
             </div>
           </div>
         </section>
-        <section className='mt-36 bg-[#43A047] py-16'>
+        <section className='mt-24 bg-[#43A047] py-12'>
           <FooterSection />
         </section>
       </main>
