@@ -1,8 +1,6 @@
 import React from 'react'
-import { useRouter } from 'next/navigation'
 
 function PasswordResetDone({ closeModal, onLogin }: { closeModal: () => void; onLogin: () => void }) {
-  const router = useRouter();
   return (
     <>
       <div className='fixed inset-0 bg-black/70 bg-opacity-50 flex items-center justify-center z-50'>

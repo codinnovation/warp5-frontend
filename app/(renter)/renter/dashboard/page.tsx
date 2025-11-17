@@ -1,81 +1,129 @@
-'use client'
+'use client';
 
-import React from 'react'
-import PageHeader from '../../components/PageHeader';
-import EquipmentSearch from '../../components/EquipmentSearch';
-import CarGrid from '../../components/CarGrid';
-import SeeMoreSection from '../../components/SeeMoreSection';
-import CTASection from '../../components/CTASection';
-import WhyChooseUsSection from '../../components/whyChooseUsSection';
-import PartnerSection from '../../components/PartnerSection';
-import HowItWorksSection from '../../components/HowItWorksSection';
-import FAQSection from '../../components/FAQSection';
-import FooterSection from '../../../../components/FooterSection';
-import Car1Image from '../../../../public/cars/car1.jpg';
-import Car3Image from '../../../../public/cars/car3.jpg';
-import Car4Image from '../../../../public/cars/car4.jpg';
-import Car5Image from '../../../../public/cars/car5.jpg';
-import Care6Image from '../../../../public/images/car6.png'
+import { useState } from 'react';
+import { DateRange } from 'react-date-range';
+import type { Range, RangeKeyDict } from 'react-date-range';
+import DashboardHeader from '@/components/renter/DashboardHeader';
 
 function Page() {
+  const [dateRange, setDateRange] = useState<Range[]>([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection'
+    }
+  ])
 
-  const highlyRatedCars = [
-    { id: 1, image: Car1Image, name: 'Toyota Camry', location: 'Kumasi', rating: '4.8' },
-    { id: 2, image: Care6Image, name: 'Honda Accord', location: 'Accra', rating: '4.9' },
-    { id: 3, image: Car3Image, name: 'Mercedes Benz', location: 'Takoradi', rating: '5.0' },
-    { id: 4, image: Car4Image, name: 'BMW X5', location: 'Accra', rating: '4.7' },
-    { id: 5, image: Car5Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9' },
+  const handleDateRangeChange = (ranges: RangeKeyDict) => {
+    setDateRange([ranges.selection]);
+  };
+
+  const reservationHistory = [
+    { id: 'R-EX45', equipment: 'Bulldozer', vendor: 'Mega Earth Movers', dates: 'Nov 01 - 06, 2025', cost: 'GHC 8,450' },
+    { id: 'R-LD11', equipment: 'Loader', vendor: 'Prime Equip Leasing', dates: 'Oct 23 - 28, 2025', cost: 'GHC 6,880' },
+    { id: 'R-CR09', equipment: 'Crane', vendor: 'SkyLift Rentals', dates: 'Oct 10 - 14, 2025', cost: 'GHC 12,300' },
+    { id: 'R-DM54', equipment: 'Dump Truck', vendor: 'HaulPro Logistics', dates: 'Aug 05 - 12, 2025', cost: 'GHC 9,100' },
+    { id: 'R-RL72', equipment: 'Roller', vendor: 'SmoothRoad Co.', dates: 'Jul 25 - 30, 2025', cost: 'GHC 5,420' },
+    { id: 'R-LF08', equipment: 'Lift Boom', vendor: 'ElevateWorks', dates: 'Jun 28 - Jul 03, 2025', cost: 'GHC 7,675' },
   ];
 
   return (
     <>
-      <main className='h-screen bg-white'>
-        <PageHeader />
-
-        <section className='relative h-160 w-full'>
-          <EquipmentSearch />
+      <main className='flex flex-col h-full '>
+        <DashboardHeader title='Overview' />
+        <section className='mt-8 lg:mt-16 flex justify-start items-center bg-[#F7E6E6] h-16 lg:h-20 rounded-lg space-x-4 lg:space-x-8 pl-4 lg:pl-8 xl:pl-15 shrink-0'>
+          <i className="ri-information-line text-[#333333] text-xl lg:text-2xl"></i>
+          <h1 className='text-[#333333] font-regular text-sm lg:text-base'>Your rental for Excavator ends tomorrow 15 November, 2025</h1>
         </section>
 
-        <section className='mt-36'>
-          <CarGrid title='Highly Rated By Customers' cars={highlyRatedCars} />
-        </section>
+        <section className='mt-6 lg:mt-8 flex-1 overflow-hidden'>
+          <div className='grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 lg:gap-12 xl:gap-20 h-full'>
+            <div className='flex flex-col h-full overflow-hidden'>
+              <div className='flex flex-col lg:flex-row justify-between items-start lg:items-center bg-white shadow-xs rounded-lg px-4 lg:px-8 xl:px-15 py-6 lg:py-8 xl:py-12 space-y-4 lg:space-y-0'>
 
-        <section className='mt-20'>
-          <CarGrid title='Most Viewed Equipment' cars={highlyRatedCars} />
-        </section>
+                <div className='flex flex-col space-y-4 lg:space-y-6'>
+                  <h1 className='text-[#333333] font-medium text-base lg:text-lg'>Upcoming Reservation</h1>
+                  <p className='text-[#333333] font-regular text-sm lg:text-base'>Equipment Name: Excavator | Nov 15 - 20, 2025</p>
 
-        <section className='mt-20'>
-          <CarGrid title='You Might Also Like' cars={highlyRatedCars} />
-        </section>
+                  <button className='flex justify-center items-center border border-[#333333] rounded-full w-32 lg:w-40 py-2 text-[#333333] font-regular text-sm lg:text-base'>View Details</button>
+                </div>
 
-        <section className='mt-20 pb-10 flex justify-center'>
-          <SeeMoreSection />
-        </section>
+                <div className='hidden lg:block border-l border-[#E8E8E8] h-20 lg:h-full' />
 
-        <section className='mt-36'>
-          <CTASection />
-        </section>
+                <div className='flex flex-col space-y-4 lg:space-y-6'>
+                  <h1 className='text-[#333333] font-medium text-base lg:text-lg'>Upcoming Reservation</h1>
+                  <p className='text-[#333333] font-regular text-sm lg:text-base'>Equipment Name: Excavator | Nov 15 - 20, 2025</p>
 
-        <section className='pt-32 rounded-4xl backdrop-blur-xl p-10' style={{ background: 'linear-gradient(135deg, #dffbfe 1%, #fff0f1 100%)' }}>
-          <WhyChooseUsSection />
-        </section>
+                  <button className='flex justify-center items-center border border-[#333333] rounded-full w-32 lg:w-40 py-2 text-[#333333] font-regular text-sm lg:text-base'>View Details</button>
+                </div>
 
-        <section className='bg-[#F6F6F6] py-32'>
-          <PartnerSection />
-        </section>
+              </div>
 
-        <section className='mt-36'>
-          <HowItWorksSection />
-        </section>
+              <div className='mt-6 lg:mt-8 bg-white rounded-lg flex-1 overflow-hidden'>
+                <h1 className='mt-4 pl-4 lg:pl-8 xl:pl-15 text-[#333333] font-medium text-base lg:text-lg'>Reservation History</h1>
+                <div className='mt-5 px-4 lg:px-8 xl:px-15 h-full overflow-hidden'>
+                  <div className='overflow-x-auto'>
+                    <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center min-w-[600px]'>
+                      <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>ID</h1>
+                      <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Equipment</h1>
+                      <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Vendor</h1>
+                      <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Dates</h1>
+                      <h1 className='text-[#1C1D21] font-medium text-sm lg:text-base'>Cost</h1>
+                      <span />
+                    </div>
+                  </div>
 
-        <section className='mt-36'>
-          <FAQSection />
-        </section>
+                  <div className='mt-5 space-y-4 h-full overflow-y-auto pr-4 pb-12'>
+                    {reservationHistory.map((reservation) => (
+                      <div key={reservation.id} className='overflow-x-auto'>
+                        <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center h-12 lg:h-14 min-w-[600px]'>
+                          <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.id}</h1>
+                          <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.equipment}</h1>
+                          <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.vendor}</h1>
+                          <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.dates}</h1>
+                          <h1 className='text-[#1C1D21] font-regular text-sm lg:text-base'>{reservation.cost}</h1>
+                          <i className="ri-arrow-right-up-long-line text-[#1C1D21] text-base lg:text-lg"></i>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <section className='mt-36 bg-[#43A047] py-16'>
-          <FooterSection />
+            <div className='flex flex-col h-full overflow-hidden'>
+              <div className='w-full flex justify-center items-center shrink-0'>
+                <DateRange
+                  ranges={dateRange}
+                  onChange={handleDateRangeChange}
+                  months={1}
+                  direction="vertical"
+                  className="w-full"
+                  moveRangeOnFirstSelection={false}
+                />
+              </div>
+
+              <div className='mt-6 lg:mt-8 flex-1 overflow-y-auto pr-2'>
+                <h1 className='text-[#333333] font-medium text-base lg:text-lg'>Updates</h1>
+                <div className='mt-5 flex justify-start items-center bg-[#F7E6E6] p-6 lg:p-8 xl:p-12 rounded-lg'>
+                  <h1 className='text-sm lg:text-base'>Rent of excavator will end this
+                    thursday Nov 20</h1>
+                </div>
+
+                <div className='mt-5 flex justify-start items-center bg-[#F7E6E6] p-6 lg:p-8 xl:p-12 rounded-lg'>
+                  <h1 className='text-sm lg:text-base'>Other relevant booking info here</h1>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </section>
       </main>
+      <style jsx global>{`
+        .rdrDateDisplayWrapper {
+          display: none;
+        }
+      `}</style>
     </>
   )
 }

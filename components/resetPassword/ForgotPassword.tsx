@@ -44,8 +44,8 @@ function ForgotPassword({ closeModal, onContinue }: { closeModal: () => void; on
 
           <div className='text-center mt-6'>
             <p className='text-gray-600'>
-              Don't have an account?{' '}
-              <a href='#' className='text-[#43A047] hover:text-[#2E7D32] border-b border-[#43A047]font-medium'>
+              Don&apos;t have an account?{' '}
+              <a href='/signup' className='text-[#43A047] hover:text-[#2E7D32] border-b border-[#43A047] font-medium'>
                 Sign up
               </a>
             </p>
