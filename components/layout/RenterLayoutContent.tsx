@@ -40,7 +40,7 @@ export default function RenterLayoutContent({ children }: RenterLayoutContentPro
         ></div>
       )}
 
-      <main className='lg:ml-80 xl:ml-90 2xl:ml-90 pt-32 lg:pt-36 pb-6 lg:pb-8 pl-4 lg:pl-5 xl:pl-8 pr-4 lg:pr-5 xl:pr-8 h-full overflow-hidden flex flex-col'>
+      <main className='lg:ml-80 xl:ml-90 2xl:ml-90 pt-32 lg:pt-36 pb-6 lg:pb-8 pl-4 lg:pl-5 xl:pl-8 pr-4 lg:pr-5 xl:pr-8 h-full overflow-auto lg:overflow-hidden flex flex-col'>
         <div className='flex-1 overflow-hidden'>
           {children}
         </div>

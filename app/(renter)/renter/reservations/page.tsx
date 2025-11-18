@@ -1,9 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 import DashboardHeader from '@/components/renter/DashboardHeader'
 
 function Page() {
+  const router = useRouter();
 
   const reservationHistory = [
     { id: 'R-EX45', equipment: 'Bulldozer', vendor: 'Mega Earth Movers', dates: 'Nov 01 - 06, 2025', cost: 'GHC 8,450' },
@@ -46,24 +48,24 @@ function Page() {
         </div>
 
         <section className='mt-6 lg:mt-9 flex flex-wrap space-x-3 lg:space-x-6 shrink-0'>
-          <h1 className='text-[#000000] font-regular text-sm lg:text-base'>Completed</h1>
+          <h1 className='text-[#000000] font-regular text-sm'>Completed</h1>
           <div className='border-r border-[#333333] h-5' />
-          <h1 className='text-[#000000] font-regular text-sm lg:text-base'>Active Reservations</h1>
+          <h1 className='text-[#000000] font-regular text-sm'>Active Reservations</h1>
           <div className='border-r border-[#333333] h-5' />
-          <h1 className='text-[#000000] font-regular text-sm lg:text-base'>Cancelled Reservations</h1>
+          <h1 className='text-[#000000] font-regular text-sm'>Cancelled Reservations</h1>
         </section>
 
         <section className='mt-6 lg:mt-9 flex flex-col flex-1 overflow-hidden'>
           <div className='bg-white/30 p-4 lg:p-6 xl:p-8 rounded-lg flex-1 overflow-hidden flex flex-col'>
-            <h1 className='text-[#333333] font-medium text-sm lg:text-base'>Reservation History</h1>
+            <h1 className='text-[#333333] font-medium text-sm'>Reservation History</h1>
             <div className='mt-3 flex flex-col h-full overflow-hidden'>
               <div className='overflow-x-auto'>
                 <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center shrink-0 min-w-[600px]'>
-                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>ID</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Equipment</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Vendor</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Dates</h1>
-                  <h1 className='text-[#1C1D21] font-medium text-xs lg:text-sm'>Cost</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs'>ID</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs'>Equipment</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs'>Vendor</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs'>Dates</h1>
+                  <h1 className='text-[#1C1D21] font-medium text-xs'>Cost</h1>
                   <span />
                 </div>
               </div>
@@ -72,12 +74,12 @@ function Page() {
                 {paginatedReservations.map((reservation) => (
                   <div key={reservation.id} className='overflow-x-auto'>
                     <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center h-10 lg:h-12 min-w-[600px]'>
-                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.id}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.equipment}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.vendor}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.dates}</h1>
-                      <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{reservation.cost}</h1>
-                      <i className="ri-arrow-right-up-long-line text-[#1C1D21] text-sm lg:text-base"></i>
+                      <h1 className='text-[#1C1D21] font-regular text-xs'>{reservation.id}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs'>{reservation.equipment}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs'>{reservation.vendor}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs'>{reservation.dates}</h1>
+                      <h1 className='text-[#1C1D21] font-regular text-xs'>{reservation.cost}</h1>
+                      <i className="ri-arrow-right-up-long-line text-[#1C1D21] text-sm" onClick={() => router.push('/renter/reservations/id')}></i>
                     </div>
                   </div>
                 ))}
@@ -97,7 +99,7 @@ function Page() {
               {pages.map((pageNumber) => (
                 <button
                   key={pageNumber}
-                  className={`px-2 flex items-center justify-center text-xs lg:text-sm transition-colors ${pageNumber === currentPage
+                  className={`px-2 flex items-center justify-center text-xs transition-colors ${pageNumber === currentPage
                     ? 'bg-[#43A047] min-w-6 lg:min-w-8 h-5 lg:h-6 rounded-lg text-white'
                     : 'text-[#1C1D21] hover:bg-[#1C1D21]/10'
                     }`}
