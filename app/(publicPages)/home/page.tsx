@@ -31,9 +31,7 @@ function Page() {
       <main className='h-screen bg-white'>
         <PublicPageHeader />
 
-        <section className='relative h-120 sm:h-100 md:h-130 lg:h-155 xl:h-155 w-full'>
           <EquipmentSearch />
-        </section>
 
         <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
           <CarGrid title='Highly Rated By Customers' cars={highlyRatedCars} />
