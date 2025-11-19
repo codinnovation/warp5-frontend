@@ -19,29 +19,29 @@ function Page() {
   return (
     <>
       <div className='h-screen bg-white flex items-center justify-center'>
-        <div className='bg-white min-h-auto w-full max-w-sm lg:max-w-md xl:max-w-lg shadow-xl py-12 px-8 md:px-16 lg:px-20 xl:px-24 rounded-2xl flex flex-col '>
-          <div className='flex justify-end items-center w-full mb-8'>
-            <i className="ri-close-line text-[#333333] text-4xl cursor-pointer" onClick={() => router.back()}></i>
+        <div className='bg-white min-h-auto w-full max-w-xs lg:max-w-sm xl:max-w-md shadow-xl py-6 sm:py-8 px-6 md:px-12 lg:px-16 xl:px-20 rounded-2xl flex flex-col '>
+          <div className='flex justify-end items-center w-full mb-4 sm:mb-6'>
+            <i className="ri-close-line text-[#333333] text-2xl sm:text-3xl cursor-pointer" onClick={() => router.back()}></i>
           </div>
 
           {step === 1 && (
             <>
               <div className='w-full'>
-                <div className='text-center mb-6 mt-12 space-y-4 lg:space-y-6 xl:space-y-8'>
-                  <h2 className='text-xl lg:text-2xl xl:text-3xl font-bold text-[#333333]'>Forgot Password?</h2>
-                  <p className='text-sm lg:text-base xl:text-lg'>Enter your email to receive a secure rest link.</p>
-                  <p className='text-sm lg:text-base xl:text-lg'>*****@gmail.com</p>
+                <div className='text-center mb-4 sm:mb-6 mt-6 sm:mt-8 space-y-2 sm:space-y-3 lg:space-y-5 xl:space-y-7'>
+                  <h2 className='text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-[#333333]'>Forgot Password?</h2>
+                  <p className='text-xs sm:text-xs lg:text-sm xl:text-base'>Enter your email to receive a secure rest link.</p>
+                  <p className='text-xs sm:text-xs lg:text-sm xl:text-base'>*****@gmail.com</p>
                 </div>
 
-                <div className='space-y-6 lg:space-y-8 xl:space-y-10 mt-12 lg:mt-16 xl:mt-20' >
+                <div className='space-y-3 sm:space-y-4 lg:space-y-6 xl:space-y-8 mt-6 sm:mt-8 lg:mt-12 xl:mt-16' >
                   <div>
-                    <label htmlFor='email' className='mb-4 lg:mb-5 xl:mb-6 block text-sm lg:text-base xl:text-lg font-regular text-[#333333]'>
+                    <label htmlFor='email' className='mb-2 sm:mb-3 lg:mb-4 xl:mb-5 block text-xs sm:text-xs lg:text-sm xl:text-base font-regular text-[#333333]'>
                       Email Address
                     </label>
                     <input
                       type='email'
                       id='email'
-                      className='w-full h-14 lg:h-16 xl:h-18 px-6 lg:px-8 xl:px-10 border border-[#787878] text-sm lg:text-base xl:text-lg text-[#333333] rounded-full transition-all focus:outline-none'
+                      className='w-full h-10 sm:h-12 lg:h-14 xl:h-16 px-4 lg:px-6 xl:px-8 border border-[#787878] text-xs sm:text-xs lg:text-sm xl:text-base text-[#333333] rounded-full transition-all focus:outline-none'
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -50,11 +50,11 @@ function Page() {
                   <button
                     type='button'
                     onClick={handleNext}
-                    className='w-full bg-[#43A047] text-[#FFFFFF] h-14 lg:h-16 xl:h-18 rounded-full font-medium cursor-pointer'
+                    className='w-full bg-[#43A047] text-[#FFFFFF] h-10 sm:h-12 lg:h-14 xl:h-16 rounded-full font-medium cursor-pointer'
                   >
                     Continue
                   </button>
-                  <p className='text-[#333333] text-xs lg:text-sm xl:text-base font-medium text-center'>
+                  <p className='text-[#333333] text-xs sm:text-xs lg:text-sm xl:text-base font-medium text-center'>
                     Don&apos;t have an account?{' '}
                     <a href='/signup' className='text-[#43A047] hover:text-[#2E7D32] border-b border-[#43A047] font-medium'>
                       Sign up
@@ -68,32 +68,32 @@ function Page() {
           {step === 2 && (
             <>
               <div className='w-full'>
-                <div className='text-center mb-6 mt-12 space-y-4 lg:space-y-6 xl:space-y-8'>
-                  <h2 className='text-xl lg:text-2xl xl:text-3xl font-bold text-[#333333]'>Reset Password</h2>
+                <div className='text-center mb-4 sm:mb-6 mt-6 sm:mt-8 space-y-2 sm:space-y-3 lg:space-y-5 xl:space-y-7'>
+                  <h2 className='text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-[#333333]'>Reset Password</h2>
                 </div>
 
-                <div className='space-y-6 lg:space-y-8 xl:space-y-10 mt-12 lg:mt-16 xl:mt-20' >
+                <div className='space-y-3 sm:space-y-4 lg:space-y-6 xl:space-y-8 mt-6 sm:mt-8 lg:mt-12 xl:mt-16' >
                   <div>
-                    <label htmlFor='newPassword' className='mb-4 lg:mb-5 xl:mb-6 block text-sm lg:text-base xl:text-lg font-regular text-[#333333]'>
+                    <label htmlFor='newPassword' className='mb-2 sm:mb-3 lg:mb-4 xl:mb-5 block text-xs sm:text-xs lg:text-sm xl:text-base font-regular text-[#333333]'>
                       New Password
                     </label>
                     <input
                       type='password'
                       id='newPassword'
-                      className='w-full h-14 lg:h-16 xl:h-18 px-6 lg:px-8 xl:px-10 border border-[#787878] text-sm lg:text-base xl:text-lg text-[#333333] rounded-full transition-all focus:outline-none'
+                      className='w-full h-10 sm:h-12 lg:h-14 xl:h-16 px-4 lg:px-6 xl:px-8 border border-[#787878] text-xs sm:text-xs lg:text-sm xl:text-base text-[#333333] rounded-full transition-all focus:outline-none'
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor='confirmPassword' className='mb-4 lg:mb-5 xl:mb-6 block text-sm lg:text-base xl:text-lg font-regular text-[#333333]'>
+                    <label htmlFor='confirmPassword' className='mb-2 sm:mb-3 lg:mb-4 xl:mb-5 block text-xs sm:text-xs lg:text-sm xl:text-base font-regular text-[#333333]'>
                       Confirm Password
                     </label>
                     <input
                       type='password'
                       id='confirmPassword'
-                      className='w-full h-14 lg:h-16 xl:h-18 px-6 lg:px-8 xl:px-10 border border-[#787878] text-sm lg:text-base xl:text-lg text-[#333333] rounded-full transition-all focus:outline-none'
+                      className='w-full h-10 sm:h-12 lg:h-14 xl:h-16 px-4 lg:px-6 xl:px-8 border border-[#787878] text-xs sm:text-xs lg:text-sm xl:text-base text-[#333333] rounded-full transition-all focus:outline-none'
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     />
@@ -102,7 +102,7 @@ function Page() {
                   <button
                     type='button'
                     onClick={handleNext}
-                    className='mt-6 lg:mt-8 xl:mt-10 w-full bg-[#43A047] text-[#FFFFFF] h-14 lg:h-16 xl:h-18 rounded-full font-medium cursor-pointer'
+                    className='mt-3 sm:mt-4 lg:mt-6 xl:mt-8 w-full bg-[#43A047] text-[#FFFFFF] h-10 sm:h-12 lg:h-14 xl:h-16 rounded-full font-medium cursor-pointer'
                   >
                     Continue
                   </button>
@@ -114,13 +114,13 @@ function Page() {
           {step === 3 && (
             <>
 
-              <div className='text-center mb-6 mt-12 space-y-4 lg:space-y-6 xl:space-y-8'>
-                <h2 className='text-xl lg:text-2xl xl:text-3xl font-bold text-[#333333]'>Password Reset Successfully</h2>
-                <p className='text-[#333333] text-sm lg:text-base xl:text-lg font-regular text-center w-full mx-auto'>You can now use your new password to login to your account</p>
+              <div className='text-center mb-4 sm:mb-6 mt-6 sm:mt-8 space-y-2 sm:space-y-3 lg:space-y-5 xl:space-y-7'>
+                <h2 className='text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-[#333333]'>Password Reset Successfully</h2>
+                <p className='text-[#333333] text-xs sm:text-xs lg:text-sm xl:text-base font-regular text-center w-full mx-auto'>You can now use your new password to login to your account</p>
               </div>
 
               <button
-                className='mt-6 lg:mt-8 xl:mt-10 w-full bg-[#43A047] text-[#FFFFFF] h-14 lg:h-16 xl:h-18 rounded-full font-medium cursor-pointer'
+                className='mt-3 sm:mt-4 lg:mt-6 xl:mt-8 w-full bg-[#43A047] text-[#FFFFFF] h-10 sm:h-12 lg:h-14 xl:h-16 rounded-full font-medium cursor-pointer'
               >
                 Login
               </button>

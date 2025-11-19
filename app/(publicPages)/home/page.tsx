@@ -31,47 +31,45 @@ function Page() {
       <main className='h-screen bg-white'>
         <PublicPageHeader />
 
-        <section className='relative h-155 w-full'>
-          <EquipmentSearch />
-        </section>
+        <EquipmentSearch />
 
-        <section className='mt-24 lg:mt-36 xl:mt-48'>
+        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
           <CarGrid title='Highly Rated By Customers' cars={highlyRatedCars} />
         </section>
 
-        <section className='mt-16 lg:mt-20 xl:mt-24'>
+        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20'>
           <CarGrid title='Most Viewed Equipment' cars={highlyRatedCars} />
         </section>
 
-        <section className='mt-16 lg:mt-20 xl:mt-24'>
+        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20'>
           <CarGrid title='You Might Also Like' cars={highlyRatedCars} />
         </section>
 
-        <section className='mt-16 lg:mt-20 xl:mt-24 pb-8 lg:pb-10 xl:pb-12 flex justify-center'>
-          <SeeMoreSection route='/products' />
+        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20 pb-4 sm:pb-6 lg:pb-8 xl:pb-10 flex justify-center'>
+          <SeeMoreSection route='/equipments' />
         </section>
 
-        <section className='mt-24 lg:mt-36 xl:mt-48'>
+        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
           <CTASection />
         </section>
 
-        <section className='pt-24 lg:pt-32 xl:pt-40 rounded-4xl backdrop-blur-xl p-8 lg:p-10 xl:p-12' style={{ background: 'linear-gradient(135deg, #dffbfe 1%, #fff0f1 100%)' }}>
+        <section className='pt-16 sm:pt-20 lg:pt-24 xl:pt-28 rounded-4xl backdrop-blur-xl p-6 lg:p-8 xl:p-10' style={{ background: 'linear-gradient(135deg, #dffbfe 1%, #fff0f1 100%)' }}>
           <WhyChooseUsSection />
         </section>
 
-        <section className='bg-[#F6F6F6] py-24 lg:py-32 xl:py-40'>
+        <section className='bg-[#F6F6F6] py-16 sm:py-20 lg:py-24 xl:py-28'>
           <PartnerSection />
         </section>
 
-        <section className='mt-24 lg:mt-36 xl:mt-48'>
+        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
           <HowItWorksSection />
         </section>
 
-        <section className='mt-24 lg:mt-36 xl:mt-48'>
+        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
           <FAQSection />
         </section>
 
-        <section className='mt-24 lg:mt-36 xl:mt-48 bg-[#43A047] py-12 lg:py-16 xl:py-20'>
+        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36 bg-[#43A047] py-8 sm:py-10 lg:py-12 xl:py-14'>
           <FooterSection />
         </section>
       </main>

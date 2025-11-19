@@ -12,6 +12,7 @@ const PublicPageHeader: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const isUser = false;
   const [showUserModal, setShowUserModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleLoginClick = () => setShowLoginModal(true);
@@ -43,75 +44,68 @@ const PublicPageHeader: React.FC = () => {
 
   const navItems = [
     { label: 'Home', path: '/home' },
-    { label: 'Dashboard', path: '/renter/dashboard' },
+    // { label: 'Dashboard', path: '/renter/dashboard' },
     { label: 'Help', path: '/help' },
   ];
 
   return (
     <>
-      <div className='h-30 bg-white flex items-center justify-center'>
-        <div className='w-[85vw] mx-auto grid grid-cols-3'>
-          <div className='flex justify-start items-center'>
+      <header className="relative h-18 xl:h-20 bg-white flex items-center px-4 shadow-sm">
+        <div className="flex w-[90vw] mx-auto items-center justify-between xl:w-[85vw]">
+          <div className="flex items-center">
             <Image
               src={WarpLogo}
-              alt='Warp Logo'
+              alt="Warp Logo"
               width={100}
               height={100}
-              className='w-32 lg:w-36 xl:w-40 cursor-pointer hover:scale-105 transition-transform duration-300'
+              className="w-20 lg:w-28 xl:w-32 cursor-pointer hover:scale-105 transition-transform duration-300"
               onClick={() => router.push('/home')}
             />
           </div>
-
-          <div className='flex justify-center items-center space-x-2 lg:space-x-4 xl:space-x-6'>
+          <nav className="hidden sm:flex items-center space-x-6">
             {navItems.map(({ label, path }) => (
               <button
                 key={path}
-                type='button'
-                className={`${pathname === path ? 'bg-[#43A047] text-white' : 'text-[#333333] bg-white'} flex justify-center items-center w-44 lg:w-52 xl:w-56 h-12 lg:h-14 xl:h-16 cursor-pointer rounded-full transition-all duration-300 hover:scale-105`}
+                type="button"
+                className={`${pathname === path ? 'bg-[#43A047] text-white' : 'text-[#333333] bg-white'} flex items-center justify-center w-32 h-12 rounded-full transition-all duration-300 hover:scale-105`}
                 onClick={() => router.push(path)}
               >
-                <span className='text-sm lg:text-base xl:text-lg font-medium'>{label}</span>
+                <span className="text-xs lg:text-base font-medium">{label}</span>
               </button>
             ))}
-          </div>
-
-          <div className='flex justify-end items-center space-x-6 lg:space-x-8 xl:space-x-10'>
-            <div className='flex justify-center items-center bg-[#FFF0F6] w-12 lg:w-14 xl:w-16 h-12 lg:h-14 xl:h-16 rounded-full cursor-pointer hover:bg-[#FFE0EB] transition-colors duration-300 hover:scale-110'>
-              <i className='ri-heart-3-fill text-[#FF0063] text-xl lg:text-2xl xl:text-3xl font-medium'></i>
-            </div>
-
-            <div className='flex justify-center items-center w-12 lg:w-14 xl:w-16 h-12 lg:h-14 xl:h-16 rounded-full cursor-pointer hover:bg-gray-100 transition-colors duration-300 hover:scale-105'>
-              <i className='ri-notification-2-line text-[#000000] text-xl lg:text-2xl xl:text-3xl font-medium'></i>
-            </div>
-
+          </nav>
+          <div className="hidden sm:flex items-center space-x-8">
+            <button className="flex items-center justify-center bg-[#FFF0F6] w-12 h-12 rounded-full hover:bg-[#FFE0EB] transition-colors duration-300 hover:scale-110">
+              <i className="ri-heart-3-fill text-[#FF0063] text-lg lg:text-xl xl:text-2xl font-medium"></i>
+            </button>
+            <button className="flex items-center justify-center w-12 h-12 rounded-full hover:bg-gray-100 transition-colors duration-300 hover:scale-105">
+              <i className="ri-notification-2-line text-[#000000] text-lg lg:text-xl xl:text-2xl font-medium"></i>
+            </button>
             {isUser ? (
-              <div className='relative' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <div className='flex justify-center items-center w-12 lg:w-14 xl:w-16 h-12 lg:h-14 xl:h-16 rounded-full cursor-pointer hover:bg-[#F2F2F2] transition-colors duration-300 hover:scale-110'>
-                  <i className='ri-user-6-line text-[#333333] text-xl lg:text-2xl xl:text-3xl font-medium'></i>
-                </div>
-
+              <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <button className="flex items-center justify-center w-12 h-12 rounded-full hover:bg-[#F2F2F2] transition-colors duration-300 hover:scale-110">
+                  <i className="ri-user-6-line text-[#333333] text-lg lg:text-xl xl:text-2xl font-medium"></i>
+                </button>
                 {showUserModal && (
-                  <div className='absolute top-full mt-2 right-0 w-52 lg:w-60 xl:w-68 bg-white rounded-lg shadow-lg z-50'>
-                    <div className='py-6 lg:py-8 xl:py-10'>
-                      <div className='flex flex-col justify-center items-center space-y-3'>
-                        <div className='flex justify-center items-center bg-[#F2F2F2] w-12 lg:w-14 xl:w-16 h-12 lg:h-14 xl:h-16 rounded-full'>
-                          <i className='ri-user-6-line text-[#333333] text-xl lg:text-2xl xl:text-3xl font-medium'></i>
+                  <div className="absolute top-full mt-2 right-0 w-40 lg:w-48 xl:w-56 bg-white rounded-lg shadow-lg z-50">
+                    <div className="py-4">
+                      <div className="flex flex-col items-center space-y-2">
+                        <div className="flex items-center justify-center bg-[#F2F2F2] w-12 h-12 rounded-full">
+                          <i className="ri-user-6-line text-[#333333] text-lg font-medium"></i>
                         </div>
-                        <h1 className='font-medium text-[#333333] text-sm lg:text-base xl:text-lg'>User Name</h1>
+                        <h1 className="font-medium text-[#333333] text-base lg:text-xl">User Name</h1>
                       </div>
-
-                      <div className='mt-6 lg:mt-8 xl:mt-10'>
+                      <div className="mt-4">
                         <button
-                          type='button'
-                          className='flex justify-center items-center w-full font-medium text-[#333333] text-sm lg:text-base xl:text-lg cursor-pointer'
+                          type="button"
+                          className="flex items-center justify-center w-full font-medium text-[#333333] text-sm lg:text-lg"
                           onClick={() => router.push('/profile')}
                         >
                           Account Management
                         </button>
                       </div>
-
-                      <div className='mt-8 lg:mt-12 xl:mt-14 border-t border-[#E4E4E4] pt-4 lg:pt-5 xl:pt-6'>
-                        <button type='button' className='flex justify-center items-center w-full font-medium text-[#333333] text-sm lg:text-base xl:text-lg cursor-pointer'>
+                      <div className="mt-6 border-t border-[#E4E4E4] pt-3">
+                        <button type="button" className="flex items-center justify-center w-full font-medium text-[#333333] text-sm lg:text-lg">
                           Sign Out
                         </button>
                       </div>
@@ -121,17 +115,87 @@ const PublicPageHeader: React.FC = () => {
               </div>
             ) : (
               <button
-                type='button'
-                className='flex justify-center items-center border border-[#333333] w-36 lg:w-40 xl:w-44 h-12 lg:h-14 xl:h-16 rounded-full cursor-pointer hover:bg-gray-100 hover:scale-105 transition-all duration-300'
+                type="button"
+                className="flex items-center justify-center border border-[#333333] w-28 h-12 rounded-full hover:bg-gray-100 hover:scale-105 transition-all duration-300"
                 onClick={handleLoginClick}
               >
-                <span className='text-[#333333] text-sm lg:text-base xl:text-lg font-medium'>Log In</span>
+                <span className="text-[#333333] text-xs lg:text-base font-medium">Log In</span>
               </button>
             )}
           </div>
+          {/* Mobile: hamburger/menu button */}
+          <div className="sm:hidden flex items-center">
+            <button
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              onClick={() => setMobileMenuOpen(prev => !prev)}
+              className="flex items-center justify-center w-10 h-10 rounded-md hover:bg-gray-100 transition-colors duration-200"
+            >
+              {mobileMenuOpen ? (
+                <i className="ri-close-line text-xl"></i>
+              ) : (
+                <i className="ri-menu-line text-xl"></i>
+              )}
+            </button>
+          </div>
         </div>
-      </div>
 
+        {showUserModal && (
+          <div className="sm:hidden absolute right-4 top-20 w-48 bg-white rounded-lg shadow-lg z-50 animate-slideDown">
+            <div className="py-4">
+              <div className="flex flex-col items-center space-y-2">
+                <div className="flex items-center justify-center bg-[#F2F2F2] w-12 h-12 rounded-full">
+                  <i className="ri-user-6-line text-[#333333] text-lg font-medium"></i>
+                </div>
+                <h1 className="font-medium text-[#333333] text-base">User Name</h1>
+              </div>
+              <div className="mt-4">
+                <button
+                  type="button"
+                  className="flex items-center justify-center w-full font-medium text-[#333333] text-sm lg:text-lg"
+                  onClick={() => { router.push('/profile'); setShowUserModal(false); }}
+                >
+                  Account Management
+                </button>
+              </div>
+              <div className="mt-6 border-t border-[#E4E4E4] pt-3">
+                <button type="button" className="flex items-center justify-center w-full font-medium text-[#333333] text-xs lg:text-base">
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Mobile menu dropdown */}
+        {mobileMenuOpen && (
+          <div className="sm:hidden absolute left-0 right-0 top-full bg-white z-50 shadow-lg">
+            <div className="px-4 py-4 space-y-3">
+              {navItems.map(({ label, path }) => (
+                <button
+                  key={path}
+                  type="button"
+                  onClick={() => { router.push(path); setMobileMenuOpen(false); }}
+                  className={`${pathname === path ? 'bg-[#43A047] text-white' : 'text-[#333333] bg-white'} w-full text-left px-4 py-3 rounded-md transition-colors duration-200`}
+                >
+                  <span className="font-medium text-xs">{label}</span>
+                </button>
+              ))}
+
+              <div className="pt-2 border-t border-gray-100">
+                {isUser ? (
+                  <div className="space-y-2">
+                    <button onClick={() => { router.push('/profile'); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 text-xs">Account Management</button>
+                    <button className="w-full text-left px-4 py-3 text-xs">Sign Out</button>
+                  </div>
+                ) : (
+                  <button onClick={() => { handleLoginClick(); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 font-medium text-xs">Log In</button>
+                )}
+
+                <button className='w-full text-left px-4 py-3 font-medium text-xs' onClick={() => router.push('/profile')}>Account Management</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </header>
       {showLoginModal && (
         <LoginForm closeModal={closeModal} onForgotPassword={handleForgotPassword} />
       )}

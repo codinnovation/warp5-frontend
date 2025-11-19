@@ -18,40 +18,40 @@ export interface EquipmentGridProps {
   onCardClick?: (car: CarCardData) => void;
 }
 
-const EquipmentGrid: React.FC<EquipmentGridProps> = ({ title, cars }) => {
+const EquipmentGrid: React.FC<EquipmentGridProps> = ({ cars }) => {
   const router = useRouter();
 
 
   return (
-    <div className='w-[85vw] mx-auto'>
-      <div className='relative mt-10 lg:mt-12 xl:mt-14'>
-        <div className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-6 xl:gap-8'>
+    <div className='w-[90vw] lg:w-[85vw] mx-auto'>
+      <div className='relative mt-6 lg:mt-12'>
+        <div className='grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12'>
           {cars.map((car) => (
             <div
               key={car.id}
               className={`flex flex-col`}
               onClick={() => router.push('/equipments/details')}
             >
-              <div className='group relative mb-3 lg:mb-4 xl:mb-5 w-full overflow-hidden rounded-4xl bg-gray-50 shadow-sm'>
+              <div className='group relative mb-1 sm:mb-2 lg:mb-3 xl:mb-4 w-full overflow-hidden rounded-2xl xl:rounded-4xl bg-gray-50 shadow-sm'>
                 <div className='relative w-full pb-[100%]'>
                   <Image src={car.image} alt={car.name} fill className='object-cover transition-transform duration-300 group-hover:scale-[1.03]' />
                 </div>
 
-                <button className='absolute top-4 lg:top-5 xl:top-6 right-4 lg:right-5 xl:right-6 flex justify-center items-center w-8 lg:w-10 xl:w-12 h-8 lg:h-10 xl:h-12 rounded-full bg-white/50 hover:bg-[#FFF0F6] transition-colors shadow-md'>
-                  <i className='ri-heart-line text-[#FF0063] text-lg lg:text-xl xl:text-2xl'></i>
+                <button className='absolute top-6 right-6 sm:top-4 lg:top-4 xl:top-5 right-2 sm:right-3 lg:right-4 xl:right-5 flex justify-center items-center w-8 sm:w-6 lg:w-8 xl:w-10 h-8 sm:h-6 lg:h-8 xl:h-10 rounded-full bg-white/50 hover:bg-[#FFF0F6] transition-colors shadow-md'>
+                  <i className='ri-heart-line text-[#FF0063] text-xs lg:text-base'></i>
                 </button>
               </div>
 
               <div className='flex flex-col justify-center items-center'>
-                <h1 className='text-base lg:text-lg xl:text-xl text-[#333333] font-semibold'>{car.name}</h1>
+                <h1 className='text-sm lg:text-lg text-[#333333] font-semibold'>{car.name}</h1>
                 <div className='flex items-center space-x-1'>
-                  <i className='ri-map-pin-2-line text-[#787878] text-sm lg:text-base xl:text-lg'></i>
-                  <span className='text-[#787878] text-xs lg:text-sm xl:text-base font-regular'>{car.location}</span>
+                  <i className='ri-map-pin-2-line text-[#787878] text-xs lg:text-base'></i>
+                  <span className='text-[#787878] text-xs lg:text-base font-regular'>{car.location}</span>
                 </div>
 
-                <div className='flex items-center space-x-1 mt-1'>
-                  <i className='ri-star-fill text-[#FFB800] text-sm lg:text-base xl:text-lg'></i>
-                  <span className='text-[#787878] text-xs lg:text-sm xl:text-base font-medium'>{car.rating}</span>
+                <div className='flex items-center space-x-1 mt-0.5 sm:mt-1'>
+                  <i className='ri-star-fill text-[#FFB800] text-xs lg:text-base'></i>
+                  <span className='text-[#787878] text-xs lg:text-base font-medium'>{car.rating}</span>
                 </div>
               </div>
             </div>

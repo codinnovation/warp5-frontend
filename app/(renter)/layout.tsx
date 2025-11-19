@@ -7,7 +7,7 @@ export default function RenterLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='antialiased overflow-hidden'>
+      <body className='antialiased overflow-auto lg:overflow-hidden'>
         <RenterLayoutContent>
           {children}
         </RenterLayoutContent>

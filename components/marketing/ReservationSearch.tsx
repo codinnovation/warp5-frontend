@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DateRange } from 'react-date-range';
 import type { Range, RangeKeyDict } from 'react-date-range';
 
@@ -45,6 +45,25 @@ const ReservationSearch: React.FC = () => {
     },
   ]);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const anyModalOpen = showLocationDropdown || showEquipmentDropdown || showPriceDropdown || showDateDropdown;
+
+  useEffect(() => {
+    // Only lock background scroll on mobile when modals are centered
+    document.body.style.overflow = anyModalOpen && isMobile ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [anyModalOpen, isMobile]);
+
   const closeAllDropdowns = () => {
     setShowLocationDropdown(false);
     setShowEquipmentDropdown(false);
@@ -56,6 +75,27 @@ const ReservationSearch: React.FC = () => {
     closeAllDropdowns();
     setter(!state);
   };
+
+  const handleLocationClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleDropdown(setShowLocationDropdown, showLocationDropdown);
+  };
+
+  const handleEquipmentClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleDropdown(setShowEquipmentDropdown, showEquipmentDropdown);
+  };
+
+  const handlePriceClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleDropdown(setShowPriceDropdown, showPriceDropdown);
+  };
+
+  const handleDateClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleDropdown(setShowDateDropdown, showDateDropdown);
+  };
+
 
   const selectCity = (value: string) => {
     setCity(value);
@@ -93,28 +133,36 @@ const ReservationSearch: React.FC = () => {
   };
 
   return (
-    <div className='relative z-10 flex flex-col justify-end items-center h-full px-6 lg:px-8 xl:px-10'>
+
+    <div className='relative z-10 flex flex-col justify-end items-center h-full '>
       <div
-        className='bg-white/30 backdrop-blur-sm rounded-4xl px-8 lg:px-12 xl:px-16 py-4 lg:py-5 xl:py-6 max-w-6xl lg:max-w-7xl xl:max-w-8xl w-full border border-[#333333] cursor-pointer'
+        className='bg-white/20 w-[95vw] rounded-md px-8 py-6 xl:rounded-4xl xl:max-w-7xl border border-black/30 cursor-pointer'
         onClick={closeAllDropdowns}
       >
-        <div className='grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-0'>
-          <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2]'>
-            <h1 className='text-[#333333] text-base lg:text-lg xl:text-xl font-medium'>Location</h1>
-            <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={(e) => { e.stopPropagation(); toggleDropdown(setShowLocationDropdown, showLocationDropdown); }}>
-              <span className='text-[#787878] font-regular tracking-wide text-xs lg:text-sm xl:text-base'>{city || 'Select Your City'}</span>
-              <i className='ri-arrow-down-s-line text-[#787878] text-sm lg:text-base xl:text-lg'></i>
+        <div className='grid grid-cols-2 gap-8 lg:grid-cols-5 lg:gap-0'>
+          <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2]/70'>
+            <h1 className='text-[#333333] text-sm lg:text-lg font-medium'>Location</h1>
+            <div className='flex space-x-1 items-center cursor-pointer relative lg:space-x-2' onClick={handleLocationClick}>
+              <span className='text-[#787878] font-regular text-xs lg:text-base'>{city || 'Select Your City'}</span>
+              <i className='ri-arrow-down-s-line text-[#787878] text-xs lg:text-base'></i>
             </div>
 
             {showLocationDropdown && (
-              <div className='absolute top-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 lg:p-8 xl:p-10 w-auto z-[100]' onClick={(e) => e.stopPropagation()}>
-                <div className='grid grid-cols-2 lg:grid-cols-3 gap-3'>
+              <div
+                className={
+                  isMobile
+                    ? 'fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-4 w-[90%] max-w-[700px] max-h-[80vh] overflow-auto z-[100]'
+                    : 'absolute top-[35%] mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-4 w-auto z-[100]'
+                }
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className='grid grid-cols-2 gap-4'>
                   {ghanaCities.map((ghanaCity) => (
                     <button
                       key={ghanaCity}
                       type='button'
                       onClick={() => selectCity(ghanaCity)}
-                      className='text-gray-700 hover:text-[#43A047] hover:bg-gray-50 px-3 py-2 rounded-md text-xs lg:text-sm xl:text-base font-medium transition-colors duration-200 text-left'
+                      className='text-gray-700 hover:text-[#43A047] p-2 rounded-md text-xs lg:text-base font-medium text-left w-full'
                     >
                       {ghanaCity}
                     </button>
@@ -124,89 +172,111 @@ const ReservationSearch: React.FC = () => {
             )}
           </div>
 
-          <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2] lg:pl-8'>
-            <h1 className='text-[#333333] text-base lg:text-lg xl:text-xl font-medium'>Equipment</h1>
-            <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={(e) => { e.stopPropagation(); toggleDropdown(setShowEquipmentDropdown, showEquipmentDropdown); }}>
-              <span className='text-[#787878] font-regular tracking-wide text-xs lg:text-sm xl:text-base'>{equipment || 'Choose Type'}</span>
-              <i className='ri-arrow-down-s-line text-[#787878] text-sm lg:text-base xl:text-lg'></i>
+          <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2]/70 pl-0 lg:pl-8'>
+            <h1 className='text-[#333333] text-sm lg:text-lg font-medium'>Equipment</h1>
+            <div className='flex space-x-2 items-center cursor-pointer relative' onClick={handleEquipmentClick}>
+              <span className='text-[#787878] font-regular text-xs lg:text-base'>{equipment || 'Choose Type'}</span>
+              <i className='ri-arrow-down-s-line text-[#787878] text-xs lg:text-base'></i>
             </div>
 
             {showEquipmentDropdown && (
-              <div className='absolute top-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 lg:p-8 xl:p-10 w-auto z-[100]' onClick={(e) => e.stopPropagation()}>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
-                  {equipmentTypes.map((type) => (
-                    <button
-                      key={type}
-                      type='button'
-                      onClick={() => selectEquipment(type)}
-                      className='text-gray-700 hover:text-[#43A047] hover:bg-gray-50 px-3 py-2 rounded-md text-xs lg:text-sm xl:text-base font-medium transition-colors duration-200 text-left'
-                    >
-                      {type}
-                    </button>
-                  ))}
+              <div
+                className={
+                  isMobile
+                    ? 'fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-4 w-[95%] max-w-[700px] max-h-[80vh] overflow-auto z-[100]'
+                    : 'absolute top-[35%] mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-4 w-[320px] z-[100]'
+                }
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className={isMobile ? 'max-h-[60vh] overflow-auto' : ''}>
+                  <div className='grid grid-cols-2 gap-4'>
+                    {equipmentTypes.map((type) => (
+                      <button
+                        key={type}
+                        type='button'
+                        onClick={() => selectEquipment(type)}
+                        className='text-gray-700 hover:text-[#43A047] px-3 py-2 rounded-md text-xs lg:text-base font-medium text-left w-full'
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
-          <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2] lg:pl-8'>
-            <h1 className='text-[#333333] text-base lg:text-lg xl:text-xl font-medium'>Price Range</h1>
-            <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={(e) => { e.stopPropagation(); toggleDropdown(setShowPriceDropdown, showPriceDropdown); }}>
-              <span className='text-[#787878] font-regular tracking-wide text-xs lg:text-sm xl:text-base'>{(minPrice || maxPrice) ? `${minPrice || '0'} - ${maxPrice || '∞'}` : 'Choose Range'}</span>
-              <i className='ri-arrow-down-s-line text-[#787878] text-sm lg:text-base xl:text-lg'></i>
+          <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2]/70 pl-0 lg:pl-8'>
+            <h1 className='text-[#333333] text-sm lg:text-lg font-medium'>Price Range</h1>
+            <div className='flex space-x-2 items-center cursor-pointer relative' onClick={handlePriceClick}>
+              <span className='text-[#787878] font-regular text-xs lg:text-base'>{(minPrice || maxPrice) ? `${minPrice || '0'} - ${maxPrice || '∞'}` : 'Choose Range'}</span>
+              <i className='ri-arrow-down-s-line text-[#787878] text-xs lg:text-base'></i>
             </div>
 
             {showPriceDropdown && (
-              <div className='absolute top-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 lg:p-8 xl:p-10 w-auto z-[100]' onClick={(e) => e.stopPropagation()}>
+              <div
+                className={
+                  isMobile
+                    ? 'fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 w-[90%] max-w-[700px] max-h-[80vh] overflow-auto z-[100]'
+                    : 'absolute top-[35%] mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-6 w-auto z-[100]'
+                }
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div className='mb-3'>
-                  <h3 className='text-gray-700 font-medium text-xs lg:text-sm xl:text-base'>Price GHC</h3>
+                  <h3 className='text-gray-700 font-medium text-sm lg:text-base'>Price GHC</h3>
                 </div>
-                <div className='flex items-center space-x-2'>
+                <div className='grid grid-cols-2 gap-4 items-center space-x-2'>
                   <input
                     type='number'
                     placeholder='Min'
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
-                    className='w-24 lg:w-30 xl:w-36 px-3 py-3 lg:py-4 xl:py-5 border border-[#E9E9E9] rounded-md text-xs lg:text-sm xl:text-base focus:outline-none'
+                    className='px-3 py-3 border border-[#E9E9E9] rounded-md text-xs lg:text-base focus:outline-none'
                   />
-                  <span className='text-gray-500'>-</span>
                   <input
                     type='number'
                     placeholder='Max'
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(e.target.value)}
-                    className='w-24 lg:w-30 xl:w-36 px-3 py-3 lg:py-4 xl:py-5 border border-[#E9E9E9] rounded-md text-xs lg:text-sm xl:text-base focus:outline-none'
+                    className='px-3 py-3 border border-[#E9E9E9] rounded-md text-xs lg:text-base focus:outline-none'
                   />
                 </div>
               </div>
             )}
           </div>
 
-          <div className='flex flex-col items-start justify-center space-y-2 lg:pl-8'>
-            <h1 className='text-[#333333] text-base lg:text-lg xl:text-xl font-medium'>Date</h1>
-            <div className='flex space-x-2 items-center hover:scale-105 transition-transform duration-500 cursor-pointer relative' onClick={(e) => { e.stopPropagation(); toggleDropdown(setShowDateDropdown, showDateDropdown); }}>
-              <i className='ri-calendar-2-line text-[#787878] text-sm lg:text-base xl:text-lg'></i>
-              <span className='text-[#787878] font-regular tracking-wide text-xs lg:text-sm xl:text-base whitespace-nowrap'>
-                {startDate && endDate ? `${startDate} - ${endDate}` : '**/**/**** -**/**/****'}
+          <div className='flex flex-col items-start justify-center space-y-2 pl-0 lg:pl-8'>
+            <h1 className='text-[#333333] text-sm lg:text-lg font-medium'>Date</h1>
+            <div className='flex space-x-2 items-center cursor-pointer relative' onClick={handleDateClick}>
+              <i className='ri-calendar-2-line text-[#787878] text-xs lg:text-base'></i>
+              <span className='text-[#787878] font-regular text-xs lg:text-base whitespace-nowrap'>
+                {startDate && endDate ? `${startDate} - ${endDate}` : '**/**/**** '}
               </span>
             </div>
 
             {showDateDropdown && (
-              <div className='absolute top-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-3 lg:p-4 xl:p-5 z-[100]' onClick={(e) => e.stopPropagation()}>
+              <div
+                className={
+                  isMobile
+                    ? 'fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-3 w-[95%] max-w-[900px] max-h-[90vh] overflow-auto z-[100]'
+                    : 'absolute top-[35%] mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 p-3 z-[100]'
+                }
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div className='space-y-4'>
-                  <DateRange ranges={dateRange} onChange={handleDateRangeChange} months={1} direction='horizontal' className='w-full' />
-                  <div className='flex space-x-2 pt-2'>
+                  <DateRange ranges={dateRange} onChange={handleDateRangeChange} months={isMobile ? 1 : 2} direction={isMobile ? 'vertical' : 'horizontal'} className='w-full' />
+                  <div className='flex justify-between items-center gap-4 pt-2'>
                     <button
                       type='button'
                       onClick={handleDateCancel}
-                      className='flex-1 px-3 lg:px-4 xl:px-5 py-2 border border-gray-300 rounded-md text-xs lg:text-sm xl:text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200'
+                      className='w-full px-3 py-2 border border-gray-300 rounded-md text-xs lg:text-base font-medium'
                     >
                       Cancel
                     </button>
                     <button
                       type='button'
                       onClick={handleDateDone}
-                      className='flex-1 px-3 lg:px-4 xl:px-5 py-2 bg-[#43A047] text-white rounded-md text-xs lg:text-sm xl:text-base font-medium hover:bg-[#3d8b3d] transition-colors duration-200'
+                      className='w-full px-3 py-2 bg-[#43A047] text-white rounded-md text-xs lg:text-base font-medium'
                     >
                       Done
                     </button>
@@ -216,9 +286,9 @@ const ReservationSearch: React.FC = () => {
             )}
           </div>
 
-          <div className='flex items-center justify-center lg:justify-end lg:pl-8'>
-            <button type='button' className='flex justify-center items-center w-28 lg:w-34 xl:w-40 h-10 lg:h-12 xl:h-14 bg-[#000000] rounded-xl hover:scale-105 transition-transform duration-500 cursor-pointer'>
-              <span className='text-white text-sm lg:text-base xl:text-lg font-medium'>Search</span>
+          <div className='flex items-center xl:justify-center justify-start pl-0 xl:pl-8'>
+            <button type='button' className='flex px-8 py-3 justify-center items-center bg-[#000000] rounded-xl cursor-pointer'>
+              <span className='text-white text-xs lg:text-base font-light'>Search</span>
             </button>
           </div>
         </div>

@@ -27,22 +27,22 @@ const reasons = [
 
 const WhyChooseUsSection: React.FC = () => {
   return (
-    <div className='w-[65vw] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16'>
+    <div className='w-[80vw] lg:w-[65vw] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8'>
       <div className='flex flex-col'>
         <div className='flex justify-center items-center'>
-          <h1 className='text-[#333333] font-semibold text-3xl lg:text-4xl xl:text-5xl tracking-wide'>Why Choose Us</h1>
+          <h1 className='text-[#333333] font-semibold text-base lg:text-xl'>Why Choose Us</h1>
         </div>
 
-        <div className='mt-16 lg:mt-20 xl:mt-24'>
+        <div className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20'>
           {reasons.map((reason) => (
-            <div key={reason.id} className='mb-8 lg:mb-12 xl:mb-16 grid grid-cols-[auto_1fr] justify-start space-x-6 lg:space-x-8 xl:space-x-10'>
-              <div className='flex justify-center items-center w-8 lg:w-10 xl:w-12 h-8 lg:h-10 xl:h-12 bg-[#333333] rounded-full'>
-                <span className='text-white text-xs lg:text-sm xl:text-base'>{reason.id}</span>
+            <div key={reason.id} className='mb-4 sm:mb-6 lg:mb-8 xl:mb-10 grid grid-cols-[auto_1fr] justify-start space-x-3 sm:space-x-4 lg:space-x-6 xl:space-x-8'>
+              <div className='flex justify-center items-center w-4 sm:w-6 lg:w-8 xl:w-10 h-4 sm:h-6 lg:h-8 xl:h-10 bg-[#333333] rounded-full'>
+                <span className='text-white text-xs lg:text-base'>{reason.id}</span>
               </div>
 
-              <div className='flex flex-col space-y-3 lg:space-y-4 xl:space-y-5'>
-                <h2 className='text-[#333333] text-base lg:text-lg xl:text-xl font-semibold'>{reason.title}</h2>
-                <p className='text-[#333333] text-sm lg:text-base xl:text-lg'>{reason.description}</p>
+              <div className='flex flex-col space-y-1 sm:space-y-2 lg:space-y-3 xl:space-y-4'>
+                <h2 className='text-[#333333] text-sm lg:text-lg font-semibold'>{reason.title}</h2>
+                <p className='text-[#333333] text-xs lg:text-base'>{reason.description}</p>
               </div>
             </div>
           ))}
@@ -50,7 +50,7 @@ const WhyChooseUsSection: React.FC = () => {
       </div>
 
       <div className='flex items-center justify-center'>
-        <div className='relative w-full h-full min-h-[300px] lg:min-h-[400px] xl:min-h-[500px]'>
+        <div className='relative w-full h-full min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] xl:min-h-[400px]'>
           <Image src={AboutUsImage} fill alt='Why choose us' className='object-contain' />
         </div>
       </div>

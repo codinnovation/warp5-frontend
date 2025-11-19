@@ -28,23 +28,23 @@ const HowItWorksSection: React.FC = () => {
   ];
 
   return (
-    <div className='w-[65vw] mx-auto'>
+    <div className='w-[80vw] sm:w-[65vw] mx-auto'>
       <div className='flex justify-center items-center'>
-        <h1 className='text-[#333333] text-3xl lg:text-4xl xl:text-5xl font-semibold'>How It Works</h1>
+        <h1 className='text-[#333333] text-base lg:text-xl font-semibold'>How It Works</h1>
       </div>
 
-      <div className='mt-8 lg:mt-10 xl:mt-12 flex flex-col space-y-8 lg:space-y-10 xl:space-y-12'>
+      <div className='mt-4 sm:mt-6 lg:mt-8 xl:mt-10 flex flex-col space-y-4 sm:space-y-6 lg:space-y-8 xl:space-y-10'>
         {howItWorksSteps.map((step, index) => (
-          <div key={step.id} className='flex items-start space-x-6 lg:space-x-8 xl:space-x-10'>
+          <div key={step.id} className='flex items-start space-x-3 sm:space-x-4 lg:space-x-6 xl:space-x-8'>
             <div className='flex flex-col items-center'>
-              <div className='flex justify-center items-center w-6 lg:w-7 xl:w-8 h-6 lg:h-7 xl:h-8 bg-[#333333] rounded-full'>
-                <span className='text-white text-xs lg:text-sm xl:text-base'>{step.id}</span>
+              <div className='flex justify-center items-center w-4 sm:w-5 lg:w-6 xl:w-7 h-4 sm:h-5 lg:h-6 xl:h-7 bg-[#333333] rounded-full'>
+                <span className='text-white text-xs sm:text-xs lg:text-sm xl:text-base'>{step.id}</span>
               </div>
-              {index < howItWorksSteps.length - 1 && <div className='w-0.5 h-16 lg:h-20 xl:h-24 bg-[#333333] mt-2'></div>}
+              {index < howItWorksSteps.length - 1 && <div className='w-0.5 h-8 sm:h-12 lg:h-16 xl:h-20 bg-[#333333] mt-2'></div>}
             </div>
-            <div className='flex flex-col space-y-3 lg:space-y-4 xl:space-y-5'>
-              <h2 className='text-[#333333] text-base lg:text-lg xl:text-xl font-semibold'>{step.title}</h2>
-              <p className='text-[#333333] text-sm lg:text-base xl:text-lg'>{step.description}</p>
+            <div className='flex flex-col space-y-1 sm:space-y-2 lg:space-y-3 xl:space-y-4'>
+              <h2 className='text-[#333333] text-sm lg:text-lg font-semibold'>{step.title}</h2>
+              <p className='text-[#333333] text-xs lg:text-base'>{step.description}</p>
             </div>
           </div>
         ))}

@@ -14,22 +14,22 @@ export default function RenterLayoutContent({ children }: RenterLayoutContentPro
   return (
     <div className='relative h-screen bg-[#E4E4E4]/40'>
       <div className='fixed top-0 left-0 right-0 z-50'>
-        <div className='lg:hidden flex justify-between items-center p-4 bg-white shadow-md'>
+        <div className='lg:hidden flex justify-between items-center p-3 bg-white shadow-md'>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className='text-[#333333] text-2xl'
+            className='text-[#333333] text-xl'
             aria-label='Toggle sidebar'
           >
             <i className="ri-menu-line"></i>
           </button>
-          <h1 className='text-[#000000] font-medium text-xl'>Warp5</h1>
+          <h1 className='text-[#000000] font-medium text-lg'>Warp5</h1>
         </div>
         <div className='hidden lg:block'>
           <PublicPageHeader />
         </div>
       </div>
 
-      <div className={`fixed top-30 left-0 bottom-0 z-40 w-64 lg:w-80 xl:w-94 bg-white transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:block`}>
+      <div className={`fixed top-24 left-0 bottom-0 z-40 w-64 lg:w-80 xl:w-90 bg-white transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:block`}>
         <SidebarMenu />
       </div>
 
@@ -40,7 +40,7 @@ export default function RenterLayoutContent({ children }: RenterLayoutContentPro
         ></div>
       )}
 
-      <main className='lg:ml-64 xl:ml-80 2xl:ml-94 pt-32 lg:pt-40 pb-6 lg:pb-10 pl-4 lg:pl-6 xl:pl-10 pr-4 lg:pr-6 xl:pr-10 h-full overflow-hidden flex flex-col'>
+      <main className='lg:ml-80 xl:ml-90 2xl:ml-90 pt-32 lg:pt-36 pb-6 lg:pb-8 pl-4 lg:pl-5 xl:pl-8 pr-4 lg:pr-5 xl:pr-8 h-full overflow-auto lg:overflow-hidden flex flex-col'>
         <div className='flex-1 overflow-hidden'>
           {children}
         </div>
