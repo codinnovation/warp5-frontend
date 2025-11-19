@@ -89,7 +89,7 @@ function Page() {
   };
 
 
-  const pageSize = 8;
+  const pageSize = 12;
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.max(1, Math.ceil(paymentHistory.length / pageSize));
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
@@ -106,48 +106,39 @@ function Page() {
       <main className='flex flex-col h-full'>
         <DashboardHeader title='Payment' />
 
-        <section className='mt-8 max-w-7xl w-full'>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <section className='mt-8 max-w-7xl w-full shadow-md rounded-xl py-4 lg:py-8'>
+          <div className='bg-white grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
             {/* Card 1 */}
-            <div className='flex flex-col bg-white rounded-2xl shadow-sm border border-[#F0F0F0] p-4 sm:p-6'>
+            <div className='flex flex-col bg-white border-r border-[#E8E8E8] p-4 lg:p-6'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center space-x-3'>
-                  <div className='bg-[#EEF8F1] text-[#2F7A2B] w-10 h-10 flex items-center justify-center rounded-lg'>
-                    <i className="ri-bar-chart-grouped-line text-xl"></i>
-                  </div>
                   <div>
-                    <h2 className='text-[#333333] font-medium text-sm sm:text-base'>Total Paid</h2>
-                    <p className='text-[#333333] font-semibold text-xl sm:text-2xl'>GHC 100,000</p>
+                    <h2 className='text-[#333333] font-medium text-xs lg:text-base'>Total Paid</h2>
+                    <p className='text-[#333333] font-semibold text-xsml lg:text-2xl'>GHC 100,000</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Card 2 */}
-            <div className='flex flex-col bg-white rounded-2xl shadow-sm border border-[#F0F0F0] p-4 sm:p-6'>
+            <div className='flex flex-col bg-white border-r border-[#E8E8E8] p-4 lg:p-6'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center space-x-3'>
-                  <div className='bg-[#FFF6ED] text-[#B65B00] w-10 h-10 flex items-center justify-center rounded-lg'>
-                    <i className="ri-pass-pending-line text-xl"></i>
-                  </div>
                   <div>
-                    <h2 className='text-[#333333] font-medium text-sm sm:text-base'>Pending Refunds</h2>
-                    <p className='text-[#333333] font-semibold text-xl sm:text-2xl'>GHC 2,400</p>
+                    <h2 className='text-[#333333] font-medium text-xs lg:text-base'>Outstanding</h2>
+                    <p className='text-[#333333] font-semibold text-sm lg:text-2xl'>GHC 200,400</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Card 3 */}
-            <div className='flex flex-col bg-white rounded-2xl shadow-sm border border-[#F0F0F0] p-4 sm:p-6'>
+            <div className='flex flex-col bg-white  p-4 lg:p-6'>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center space-x-3'>
-                  <div className='bg-[#F4F7FF] text-[#1E3A8A] w-10 h-10 flex items-center justify-center rounded-lg'>
-                    <i className="ri-focus-line text-xl"></i>
-                  </div>
                   <div>
-                    <h2 className='text-[#333333] font-medium text-sm sm:text-base'>Active Subscriptions</h2>
-                    <p className='text-[#333333] font-semibold text-xl sm:text-2xl'>3</p>
+                    <h2 className='text-[#333333] font-medium text-xs lg:text-base'>Refunded</h2>
+                    <p className='text-[#333333] font-semibold text-sm lg:text-2xl'>GHC 100,000</p>
                   </div>
                 </div>
               </div>
@@ -157,21 +148,28 @@ function Page() {
 
         <section className='mt-16 flex-1'>
           <h1 className='text-[#333333] font-medium text-lg'>Payment History</h1>
-          <div className='mt-8 grid grid-cols-6 gap-4'>
-            {tableHeaders.map((e, i) => (
-              <h1 className='text-base text-[#1C1D21] font-medium' key={i}>{e}</h1>
-            ))}
+          <div className='mt-8 lg:mt-12 overflow-x-auto'>
+            <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center min-w-[600px]'>
+              <h1 className='text-[#1C1D21] font-medium text-xs lg:text-base'>Payment ID</h1>
+              <h1 className='text-[#1C1D21] font-medium text-xs lg:text-base'>Equipment</h1>
+              <h1 className='text-[#1C1D21] font-medium text-xs lg:text-base'>Date</h1>
+              <h1 className='text-[#1C1D21] font-medium text-xs lg:text-base'>Amount</h1>
+              <h1 className='text-[#1C1D21] font-medium text-xs lg:text-base'>Status</h1>
+              <span />
+            </div>
           </div>
 
-          <div className='mt-4 space-y-8'>
-            {paginatedPayments.map((payment, index) => (
-              <div key={index} className='grid grid-cols-6 gap-4'>
-                <h1 className='text-[#1C1D21] font-regular text-base'>{payment.id}</h1>
-                <h1 className='text-[#1C1D21] font-regular text-base'>{payment.equipment}</h1>
-                <h1 className='text-[#1C1D21] font-regular text-base'>{payment.date}</h1>
-                <h1 className='text-[#1C1D21] font-regular text-base'>{payment.amount}</h1>
-                <h1 className={`font-regular text-base ${getStatusColor(payment.status)}`}>{payment.status}</h1>
-                <h1 className='text-[#43A047] font-regular text-base'>View Invoice</h1>
+          <div className='mt-4 space-y-3 overflow-y-auto pb-9'>
+            {paginatedPayments.map((payment) => (
+              <div key={payment.id} className='overflow-x-auto'>
+                <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_auto] items-center h-10 lg:h-12 min-w-[600px]'>
+                  <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{payment.id}</h1>
+                  <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{payment.equipment}</h1>
+                  <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{payment.date}</h1>
+                  <h1 className='text-[#1C1D21] font-regular text-xs lg:text-sm'>{payment.amount}</h1 >
+                  <h1 className={`font-regular text-xs lg:text-sm ${getStatusColor(payment.status)}`}>{payment.status}</h1>
+                  <h1 className='text-[#43A047] text-xs lg:text-base'>View Invoice</h1>
+                </div>
               </div>
             ))}
           </div>
