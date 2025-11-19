@@ -24,6 +24,7 @@ function Page() {
     { id: 3, image: Car3Image, name: 'Mercedes Benz', location: 'Takoradi', rating: '5.0' },
     { id: 4, image: Car4Image, name: 'BMW X5', location: 'Accra', rating: '4.7' },
     { id: 5, image: Car5Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9' },
+    { id: 5, image: Car5Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9' },
   ];
 
   return (

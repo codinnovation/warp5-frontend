@@ -215,7 +215,7 @@ function Page() {
                   <i className="ri-arrow-left-s-line text-[#fff] text-lg lg:text-xl"></i>
                 </button>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6'>
+                <div className='grid grid-cols-2 gap-6 lg:grid-cols-6 lg:gap-10'>
                   {cars.map((car) => (
                     <div key={car.id} className='flex flex-col'>
                       <div className='group relative mb-1 sm:mb-2 lg:mb-3 xl:mb-4 w-full overflow-hidden rounded-2xl xl:rounded-4xl bg-gray-50 shadow-sm'>
@@ -234,15 +234,15 @@ function Page() {
                       </div>
 
                       <div className='flex flex-col justify-center items-center'>
-                        <h1 className='text-sm lg:text-lg text-[#333333] font-semibold'>{car.name}</h1>
+                        <h1 className='text-xs text-[#333333] font-semibold lg:text-base'>{car.name}</h1>
                         <div className='flex items-center space-x-1'>
-                          <i className="ri-map-pin-2-line text-[#787878]"></i>
-                          <h1 className='text-[#787878] text-xs lg:text-base font-regular'>{car.location}</h1>
+                          <i className='ri-map-pin-2-line text-[#787878] text-xs lg:text-base'></i>
+                          <span className='text-[#787878] text-xs lg:text-base font-regular'>{car.location}</span>
                         </div>
 
                         <div className='flex items-center space-x-1 mt-1'>
-                          <i className="ri-star-fill text-[#FFB800]"></i>
-                          <h1 className='text-[#787878] text-xs lg:text-base font-medium'>{car.rating}</h1>
+                          <i className='ri-star-fill text-[#FFB800] text-sm lg:text-base'></i>
+                          <span className='text-[#787878] text-xs lg:text-base font-medium'>{car.rating}</span>
                         </div>
                       </div>
                     </div>
