@@ -44,14 +44,22 @@ const PublicPageHeader: React.FC = () => {
 
   const navItems = [
     { label: 'Home', path: '/home' },
-    // { label: 'Dashboard', path: '/renter/dashboard' },
+    { label: 'Dashboard', path: '/renter/dashboard' },
     { label: 'Help', path: '/help' },
+  ];
+
+  const renterLinks = [
+    { label: 'Overview', path: '/renter/dashboard' },
+    { label: 'My Reservations', path: '/renter/reservations' },
+    { label: 'Payment', path: '/renter/payment' },
+    { label: 'Notifications', path: '/renter/notifications' },
+    { label: 'Manage Profile', path: '/renter/profile' },
   ];
 
   return (
     <>
-      <header className="relative h-18 xl:h-20 bg-white flex items-center px-4 shadow-sm">
-        <div className="flex w-[90vw] mx-auto items-center justify-between xl:w-[85vw]">
+      <header className="fixed top-0 left-0 right-0 z-[9999] h-18 bg-white flex items-center px-4 shadow-sm lg:h-20">
+        <div className="flex w-[90vw] mx-auto items-center justify-between lg:w-[85vw]">
           <div className="flex items-center">
             <Image
               src={WarpLogo}
@@ -180,6 +188,20 @@ const PublicPageHeader: React.FC = () => {
                 </button>
               ))}
 
+              <div className="pt-2">
+                <h2 className="text-xs font-semibold text-[#333333] mb-2">Renter</h2>
+                {renterLinks.map(({ label, path }) => (
+                  <button
+                    key={path}
+                    type="button"
+                    onClick={() => { router.push(path); setMobileMenuOpen(false); }}
+                    className={`${pathname === path ? 'bg-[#43A047] text-white' : 'text-[#333333] bg-white'} w-full text-left px-4 py-2 rounded-md transition-colors duration-200`}
+                  >
+                    <span className="text-xs">{label}</span>
+                  </button>
+                ))}
+              </div>
+
               <div className="pt-2 border-t border-gray-100">
                 {isUser ? (
                   <div className="space-y-2">
@@ -196,6 +218,7 @@ const PublicPageHeader: React.FC = () => {
           </div>
         )}
       </header>
+      <div className="h-18 lg:h-20" aria-hidden="true" />
       {showLoginModal && (
         <LoginForm closeModal={closeModal} onForgotPassword={handleForgotPassword} />
       )}

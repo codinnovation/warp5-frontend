@@ -136,20 +136,20 @@ const EquipmentSearch: React.FC = () => {
 
   return (
     <>
-      <section className='relative h-155 w-full xl:h-155' onClick={closeAllDropdowns}>
+      <section className='relative h-155 w-full lg:h-155' onClick={closeAllDropdowns}>
         <Image src={BannerImage} alt='Banner' fill className='object-cover' priority />
         <div className='absolute inset-0 bg-black/35'></div>
 
-        <div className='relative z-10 flex flex-col justify-end items-center h-full pb-50 xl:pb-50'>
+        <div className='relative z-10 flex flex-col justify-end items-center h-full pb-50'>
           <div
-            className='bg-white/20 backdrop-blur-sm w-[90vw] rounded-md px-8 py-6 shadow-xl xl:rounded-4xl xl:max-w-7xl border border-white/60 cursor-pointer'
+            className='bg-white/20 backdrop-blur-sm w-[90vw] rounded-md px-8 py-6 shadow-xl lg:rounded-4xl border border-white/60 cursor-pointer lg:max-w-7xl'
             onClick={closeAllDropdowns}
           >
-            <div className='grid grid-cols-2 gap-8 xl:grid-cols-5 xl:gap-0'>
-              <div className='flex flex-col items-start justify-center space-y-2 xl:border-r-[1px] xl:border-[#DDDDDDB2]/70'>
-                <h1 className='text-[#FFFFFF] text-sm lg:text-lg font-medium'>Location</h1>
-                <div className='flex space-x-1 items-center cursor-pointer relative xl:space-x-2' onClick={handleLocationClick}>
-                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-base'>{city || 'Select Your City'}</span>
+            <div className='grid grid-cols-2 gap-8 lg:grid-cols-5 lg:gap-0'>
+              <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2]/70'>
+                <h1 className='text-[#FFFFFF] text-sm font-medium lg:text-base'>Location</h1>
+                <div className='flex space-x-1 items-center cursor-pointer relative' onClick={handleLocationClick}>
+                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-sm'>{city || 'Select Your City'}</span>
                   <i className='ri-arrow-down-s-line text-[#DDDDDD] text-sm lg:text-base'></i>
                 </div>
 
@@ -168,7 +168,7 @@ const EquipmentSearch: React.FC = () => {
                           key={ghanaCity}
                           type='button'
                           onClick={() => selectCity(ghanaCity)}
-                          className='text-gray-700 hover:text-[#43A047] p-2 rounded-md text-xs lg:text-base font-medium text-left w-full'
+                          className='text-gray-700 hover:text-[#43A047] p-2 rounded-md text-xs lg:text-sm font-medium text-left w-full'
                         >
                           {ghanaCity}
                         </button>
@@ -178,11 +178,11 @@ const EquipmentSearch: React.FC = () => {
                 )}
               </div>
 
-              <div className='flex flex-col items-start justify-center space-y-2 xl:border-r-[1px] xl:border-[#DDDDDDB2]/70 pl-0 xl:pl-8'>
-                <h1 className='text-[#FFFFFF] text-sm lg:text-lg font-medium'>Equipment</h1>
+              <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2]/70 pl-0 lg:pl-8'>
+                <h1 className='text-[#FFFFFF] text-xs lg:text-base font-medium'>Equipment</h1>
                 <div className='flex space-x-2 items-center cursor-pointer relative' onClick={handleEquipmentClick}>
-                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-base'>{equipment || 'Choose Type'}</span>
-                  <i className='ri-arrow-down-s-line text-[#DDDDDD] text-xs lg:text-base'></i>
+                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-sm'>{equipment || 'Choose Type'}</span>
+                  <i className='ri-arrow-down-s-line text-[#DDDDDD] text-xs lg:text-sm'></i>
                 </div>
 
                 {showEquipmentDropdown && (
@@ -201,7 +201,7 @@ const EquipmentSearch: React.FC = () => {
                             key={type}
                             type='button'
                             onClick={() => selectEquipment(type)}
-                            className='text-gray-700 hover:text-[#43A047] px-3 py-2 rounded-md text-xs lg:text-base font-medium text-left w-full'
+                            className='text-gray-700 hover:text-[#43A047] px-3 py-2 rounded-md text-xs lg:text-sm font-medium text-left w-full'
                           >
                             {type}
                           </button>
@@ -212,11 +212,11 @@ const EquipmentSearch: React.FC = () => {
                 )}
               </div>
 
-              <div className='flex flex-col items-start justify-center space-y-2 xl:border-r-[1px] xl:border-[#DDDDDDB2]/70 pl-0 xl:pl-8'>
-                <h1 className='text-[#FFFFFF] text-sm lg:text-lg font-medium'>Price Range</h1>
+              <div className='flex flex-col items-start justify-center space-y-2 lg:border-r-[1px] lg:border-[#DDDDDDB2]/70 pl-0 lg:pl-8'>
+                <h1 className='text-[#FFFFFF] text-sm  font-medium lg:text-base'>Price Range</h1>
                 <div className='flex space-x-2 items-center cursor-pointer relative' onClick={handlePriceClick}>
-                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-base'>{(minPrice || maxPrice) ? `${minPrice || '0'} - ${maxPrice || '∞'}` : 'Choose Range'}</span>
-                  <i className='ri-arrow-down-s-line text-[#DDDDDD] text-xs lg:text-base'></i>
+                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-sm'>{(minPrice || maxPrice) ? `${minPrice || '0'} - ${maxPrice || '∞'}` : 'Choose Range'}</span>
+                  <i className='ri-arrow-down-s-line text-[#DDDDDD] text-xs lg:text-sm'></i>
                 </div>
 
                 {showPriceDropdown && (
@@ -229,7 +229,7 @@ const EquipmentSearch: React.FC = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className='mb-3'>
-                      <h3 className='text-gray-700 font-medium text-sm lg:text-lg'>Price GHC</h3>
+                      <h3 className='text-gray-700 font-medium text-sm lg:text-base'>Price GHC</h3>
                     </div>
                     <div className='grid grid-cols-2 gap-4 items-center space-x-2'>
                       <input
@@ -251,11 +251,11 @@ const EquipmentSearch: React.FC = () => {
                 )}
               </div>
 
-              <div className='flex flex-col items-start justify-center space-y-2 pl-0 xl:pl-8'>
-                <h1 className='text-[#FFFFFF] text-sm lg:text-lg font-medium'>Date</h1>
+              <div className='flex flex-col items-start justify-center space-y-2 pl-0 lg:pl-8'>
+                <h1 className='text-[#FFFFFF] text-sm font-medium lg:text-base'>Date</h1>
                 <div className='flex space-x-2 items-center cursor-pointer relative' onClick={handleDateClick}>
-                  <i className='ri-calendar-2-line text-[#DDDDDD] text-xs lg:text-base'></i>
-                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-base'>
+                  <i className='ri-calendar-2-line text-[#DDDDDD] text-xs lg:text-sm'></i>
+                  <span className='text-[#DDDDDD] font-regular text-xs lg:text-sm'>
                     {startDate && endDate ? `${startDate} - ${endDate}` : '**/**/**** '}
                   </span>
                 </div>
@@ -292,9 +292,9 @@ const EquipmentSearch: React.FC = () => {
                 )}
               </div>
 
-              <div className='flex items-center xl:justify-center justify-start pl-0 xl:pl-8'>
+              <div className='flex items-center lg:justify-center justify-start pl-0 lg:pl-8'>
                 <button type='button' className='flex px-8 py-3 justify-center items-center bg-[#000000] rounded-xl cursor-pointer'>
-                  <span className='text-white text-xs lg:text-base font-light'>Search</span>
+                  <span className='text-white text-xs font-light lg:text-base'>Search</span>
                 </button>
               </div>
             </div>

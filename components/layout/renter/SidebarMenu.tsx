@@ -15,17 +15,17 @@ const SidebarMenu: React.FC = () => {
   const router = useRouter();
 
   return (
-    <aside className='flex h-full min-h-screen w-full flex-col bg-white px-6 lg:px-8 xl:px-9'>
-      <nav className='mt-16 lg:mt-20 xl:mt-22 flex flex-col space-y-6 lg:space-y-8 xl:space-y-9'>
+    <aside className='flex h-full min-h-screen w-full flex-col px-6'>
+      <nav className='mt-20 flex flex-col space-y-6 lg:space-y-8'>
         {links.map(({ href, icon, label }) => (
           <button
             type='button'
             key={href}
-            className={`flex space-x-4 items-center h-12 lg:h-14 xl:h-15 ${pathname === href ? 'bg-[#43A047] text-white' : 'bg-white text-[#1C1D21]'} px-8 lg:px-10 xl:px-11 rounded-lg cursor-pointer`}
+            className={`flex space-x-4 items-center h-12 lg:h-14 ${pathname === href ? 'bg-[#43A047] text-white' : 'bg-white text-[#1C1D21]'} px-8 lg:px-10 rounded-lg cursor-pointer`}
             onClick={() => router.push(href)}
           >
-            <i className={`${icon} text-base lg:text-base xl:text-base`}></i>
-            <span className='font-regular text-sm lg:text-sm xl:text-sm'>{label}</span>
+            <i className={`${icon} text-base lg:text-lg`}></i>
+            <span className='font-regular text-sm lg:text-base'>{label}</span>
           </button>
         ))}
       </nav>

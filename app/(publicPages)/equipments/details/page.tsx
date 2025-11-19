@@ -36,6 +36,7 @@ function Page() {
   const cars = [
     { id: 1, image: Car1Image, name: 'Toyota Camry', location: 'Kumasi', rating: '4.8' },
     { id: 2, image: Car3Image, name: 'Honda Accord', location: 'Accra', rating: '4.9' },
+    { id: 5, image: Car3Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9' },
     { id: 3, image: Car3Image, name: 'Mercedes Benz', location: 'Takoradi', rating: '5.0' },
     { id: 4, image: Car1Image, name: 'BMW X5', location: 'Accra', rating: '4.7' },
     { id: 5, image: Car3Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9' },
@@ -211,11 +212,7 @@ function Page() {
               </div>
 
               <div className='relative mt-6 lg:mt-8'>
-                <button className='absolute left-[-8] top-1/3 -translate-y-0/2 z-10 flex justify-center items-center w-6 lg:w-8 h-6 lg:h-8 rounded-full bg-[#000000]/60 transition-colors shadow-lg cursor-pointer'>
-                  <i className="ri-arrow-left-s-line text-[#fff] text-lg lg:text-xl"></i>
-                </button>
-
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6'>
+                <div className='grid grid-cols-2 gap-6 lg:grid-cols-6 lg:gap-10'>
                   {cars.map((car) => (
                     <div key={car.id} className='flex flex-col'>
                       <div className='group relative mb-1 sm:mb-2 lg:mb-3 xl:mb-4 w-full overflow-hidden rounded-2xl xl:rounded-4xl bg-gray-50 shadow-sm'>
@@ -234,24 +231,20 @@ function Page() {
                       </div>
 
                       <div className='flex flex-col justify-center items-center'>
-                        <h1 className='text-sm lg:text-lg text-[#333333] font-semibold'>{car.name}</h1>
+                        <h1 className='text-xs text-[#333333] font-semibold lg:text-base'>{car.name}</h1>
                         <div className='flex items-center space-x-1'>
-                          <i className="ri-map-pin-2-line text-[#787878]"></i>
-                          <h1 className='text-[#787878] text-xs lg:text-base font-regular'>{car.location}</h1>
+                          <i className='ri-map-pin-2-line text-[#787878] text-xs lg:text-base'></i>
+                          <span className='text-[#787878] text-xs lg:text-base font-regular'>{car.location}</span>
                         </div>
 
                         <div className='flex items-center space-x-1 mt-1'>
-                          <i className="ri-star-fill text-[#FFB800]"></i>
-                          <h1 className='text-[#787878] text-xs lg:text-base font-medium'>{car.rating}</h1>
+                          <i className='ri-star-fill text-[#FFB800] text-sm lg:text-base'></i>
+                          <span className='text-[#787878] text-xs lg:text-base font-medium'>{car.rating}</span>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
-
-                <button className='absolute right-[-8] top-1/3 -translate-y-0/2 z-10 flex justify-center items-center w-6 lg:w-8 h-6 lg:h-8 rounded-full bg-[#000000]/60 transition-colors shadow-lg cursor-pointer'>
-                  <i className="ri-arrow-right-s-line text-white text-lg lg:text-xl"></i>
-                </button>
               </div>
             </div>
           </div>
