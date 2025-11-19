@@ -34,43 +34,43 @@ function Page() {
 
         <EquipmentSearch />
 
-        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
+        <section className='mt-16 lg:mt-28'>
           <CarGrid title='Highly Rated By Customers' cars={highlyRatedCars} />
         </section>
 
-        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20'>
+        <section className='mt-8 lg:mt-16'>
           <CarGrid title='Most Viewed Equipment' cars={highlyRatedCars} />
         </section>
 
-        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20'>
+        <section className='mt-8 lg:mt-16'>
           <CarGrid title='You Might Also Like' cars={highlyRatedCars} />
         </section>
 
-        <section className='mt-8 sm:mt-12 lg:mt-16 xl:mt-20 pb-4 sm:pb-6 lg:pb-8 xl:pb-10 flex justify-center'>
+        <section className='mt-8 lg:mt-16 pb-4 lg:pb-8 flex justify-center'>
           <SeeMoreSection route='/equipments' />
         </section>
 
-        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
+        <section className='mt-16 lg:mt-28'>
           <CTASection />
         </section>
 
-        <section className='pt-16 sm:pt-20 lg:pt-24 xl:pt-28 rounded-4xl backdrop-blur-xl p-6 lg:p-8 xl:p-10' style={{ background: 'linear-gradient(135deg, #dffbfe 1%, #fff0f1 100%)' }}>
+        <section className='pt-16 lg:pt-24 rounded-4xl backdrop-blur-xl p-6 lg:p-8 xl:p-10' style={{ background: 'linear-gradient(135deg, #dffbfe 1%, #fff0f1 100%)' }}>
           <WhyChooseUsSection />
         </section>
 
-        <section className='bg-[#F6F6F6] py-16 sm:py-20 lg:py-24 xl:py-28'>
+        <section className='bg-[#F6F6F6] py-16 lg:py-24'>
           <PartnerSection />
         </section>
 
-        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
+        <section className='mt-16 lg:mt-28'>
           <HowItWorksSection />
         </section>
 
-        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36'>
+        <section className='mt-16 lg:mt-28'>
           <FAQSection />
         </section>
 
-        <section className='mt-16 sm:mt-20 lg:mt-28 xl:mt-36 bg-[#43A047] py-8 sm:py-10 lg:py-12 xl:py-14'>
+        <section className='mt-16 lg:mt-28 bg-[#43A047] py-8 lg:py-12'>
           <FooterSection />
         </section>
       </main>

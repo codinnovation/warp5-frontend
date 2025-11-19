@@ -44,14 +44,14 @@ const PublicPageHeader: React.FC = () => {
 
   const navItems = [
     { label: 'Home', path: '/home' },
-    // { label: 'Dashboard', path: '/renter/dashboard' },
+    { label: 'Dashboard', path: '/renter/dashboard' },
     { label: 'Help', path: '/help' },
   ];
 
   return (
     <>
-      <header className="relative h-18 xl:h-20 bg-white flex items-center px-4 shadow-sm">
-        <div className="flex w-[90vw] mx-auto items-center justify-between xl:w-[85vw]">
+      <header className="fixed top-0 left-0 right-0 z-[9999] h-18 bg-white flex items-center px-4 shadow-sm lg:h-20">
+        <div className="flex w-[90vw] mx-auto items-center justify-between lg:w-[85vw]">
           <div className="flex items-center">
             <Image
               src={WarpLogo}
@@ -196,6 +196,7 @@ const PublicPageHeader: React.FC = () => {
           </div>
         )}
       </header>
+      <div className="h-18 lg:h-20" aria-hidden="true" />
       {showLoginModal && (
         <LoginForm closeModal={closeModal} onForgotPassword={handleForgotPassword} />
       )}
