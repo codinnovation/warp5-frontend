@@ -8,6 +8,7 @@ function Page() {
   const [step, setStep] = useState(1);
   const [activeTab, setActiveTab] = useState('personalInfo');
   const [otp, setOtp] = useState(['', '', '', '']);
+  const [isSigningUp, setIsSigningUp] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -68,6 +69,33 @@ function Page() {
     { label: 'Password', name: 'password' },
     { label: 'Confirm Password', name: 'confirmPassword' },
   ];
+
+  const handleSignUp = async () => {
+    setIsSigningUp(true);
+
+    try {
+      const apiRes = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const apiData = await apiRes.json();
+
+      if (!apiRes.ok) {
+        console.error(apiData.message || 'Something went wrong.');
+        setIsSigningUp(false);
+        return;
+      }
+    } catch (error) {
+      setIsSigningUp(false);
+      console.error('Failed to sign up', error);
+    } finally {
+      setIsSigningUp(false);
+    }
+  }
 
   return (
     <>

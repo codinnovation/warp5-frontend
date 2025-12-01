@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface LoginFormProps {
@@ -17,6 +17,50 @@ const LoginForm: React.FC<LoginFormProps> = ({
   heading = 'Login',
 }) => {
   const router = useRouter();
+
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSignIn = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setIsSigningIn(true);
+
+    try {
+      const apiRes = await fetch('/api/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formData
+        })
+      });
+
+      const apiData = await apiRes.json();
+
+      if (!apiRes.ok) {
+        console.error(apiData.message || 'Something went wrong.');
+        return;
+      }
+
+      console.log('Sign-in successful.', apiData);
+    } catch (error) {
+      console.error('Failed to sign in', error);
+    } finally {
+      setIsSigningIn(false);
+    }
+  };
 
   return (
     <div className='fixed inset-0 bg-black/70 bg-opacity-50 flex items-center justify-center z-50'>
