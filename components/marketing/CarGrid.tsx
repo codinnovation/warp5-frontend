@@ -57,6 +57,17 @@ const CarGrid: React.FC<CarGridProps> = ({ title, cars }) => {
                   <i className='ri-star-fill text-[#FFB800] text-sm lg:text-base'></i>
                   <span className='text-[#787878] text-xs lg:text-base font-medium'>{car.rating}</span>
                 </div>
+
+                <div className='flex justify-between items-center mt-4 gap-8'>
+                  <div className='flex'>
+                    <h1 className='text-[#333333] font-semibold text-base'>GHC1,123 /</h1>
+                    <h1 className='text-[#787878] text-base'>day</h1>
+                  </div>
+
+                  <div className='flex justify-center items-center bg-[#43A047] px-3 h-11 rounded-lg cursor-pointer'>
+                    <h1 className='text-white text-sm'>View Details</h1>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
