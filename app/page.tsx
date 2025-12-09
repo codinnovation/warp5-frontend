@@ -107,7 +107,6 @@ export default function Page() {
     { id: 2, image: Car2Image, name: 'Honda Accord', location: 'Accra', rating: '4.9', price: 'GHC1,123' },
     { id: 3, image: Car1Image, name: 'Mercedes Benz', location: 'Takoradi', rating: '5.0', price: 'GHC1,123' },
     { id: 4, image: Car2Image, name: 'BMW X5', location: 'Accra', rating: '4.7', price: 'GHC1,123' },
-    { id: 5, image: Car1Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9', price: 'GHC1,123' },
     { id: 5, image: Car2Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9', price: 'GHC1,123' },
   ];
 
@@ -314,11 +313,11 @@ export default function Page() {
                   </div>
 
                   {showLocationModal && (
-                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-64 max-h-60 overflow-y-auto z-50">
+                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-auto max-h-60 overflow-y-auto z-50 xl:w-64">
                       {cities.map((city) => (
                         <div
                           key={city}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer rounded text-gray-800"
+                          className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer rounded text-gray-800 xl:text-base"
                           onClick={() => {
                             setSelectedLocation(city);
                             setShowLocationModal(false);
@@ -342,11 +341,11 @@ export default function Page() {
                   </div>
 
                   {showEquipmentModal && (
-                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-72 max-h-60 overflow-y-auto z-50">
+                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-auto max-h-60 overflow-y-auto z-50 xl:w-72">
                       {equipmentTypes.map((equipment) => (
                         <div
                           key={equipment}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer rounded text-gray-800"
+                          className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer rounded text-gray-800 xl:text-base"
                           onClick={() => {
                             setSelectedEquipment(equipment);
                             setShowEquipmentModal(false);
@@ -372,15 +371,15 @@ export default function Page() {
                   </div>
 
                   {showPriceRangeModal && (
-                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-6 w-80 z-50">
-                      <h3 className="text-gray-800 font-medium mb-4">Select Price Range</h3>
+                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-6 w-auto z-50 xl:w-80">
+                      <h3 className="text-gray-800 text-xs font-medium mb-4 xl:text-base">Select Price Range</h3>
                       <div className="flex items-center gap-3">
                         <input
                           type="number"
                           placeholder="Min"
                           value={minPrice}
                           onChange={(e) => setMinPrice(e.target.value)}
-                          className="w-[120px] px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#43A047]"
+                          className="w-[90px] text-sm px-3 py-2 border border-gray-300 rounded-lg text-sm xl:text-base xl:w-[120px]"
                         />
                         <span className="text-gray-500">-</span>
                         <input
@@ -388,12 +387,12 @@ export default function Page() {
                           placeholder="Max"
                           value={maxPrice}
                           onChange={(e) => setMaxPrice(e.target.value)}
-                          className="w-[120px] px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#43A047]"
+                          className="w-[90px] text-sm px-3 py-2 border border-gray-300 rounded-lg text-sm xl:text-base xl:w-[120px]"
                         />
                       </div>
                       <button
                         onClick={() => setShowPriceRangeModal(false)}
-                        className="w-full mt-4 bg-[#43A047] hover:bg-[#388E3C] text-white py-2 rounded-lg font-medium transition-colors duration-300"
+                        className="w-full mt-4 bg-[#43A047] text-white py-2 text-sm rounded-lg xl:text-base"
                       >
                         Apply
                       </button>
@@ -413,25 +412,25 @@ export default function Page() {
                   </div>
 
                   {showDateRangeModal && (
-                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-6 w-96 z-50">
-                      <h3 className="text-gray-800 font-medium mb-4">Select Date Range</h3>
-                      <div className="space-y-4">
+                    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-6 w-auto z-50 xl:w-80">
+                      <h3 className="text-gray-800 text-xs font-medium mb-4 xl:text-base">Select Date Range</h3>
+                      <div className="flex items-center gap-3">
                         <div>
-                          <label className="block text-gray-700 text-sm font-medium mb-2">From</label>
+                          <label className="block text-gray-700 text-xs font-medium mb-2 xl:text-sm">From</label>
                           <input
                             type="date"
                             value={fromDate}
                             onChange={(e) => setFromDate(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#43A047]"
+                            className="w-[90px] text-sm px-3 py-2 border border-gray-300 rounded-lg text-sm xl:text-base xl:w-[120px]"
                           />
                         </div>
                         <div>
-                          <label className="block text-gray-700 text-sm font-medium mb-2">To</label>
+                          <label className="block text-gray-700 text-xs font-medium mb-2 xl:text-sm">To</label>
                           <input
                             type="date"
                             value={toDate}
                             onChange={(e) => setToDate(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#43A047]"
+                            className="w-[90px] text-sm px-3 py-2 border border-gray-300 rounded-lg text-sm xl:text-base xl:w-[120px]"
                           />
                         </div>
                       </div>
@@ -442,13 +441,13 @@ export default function Page() {
                             setToDate('');
                             setShowDateRangeModal(false);
                           }}
-                          className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-lg font-medium transition-colors duration-300"
+                          className="flex-1 text-sm py-2 border border-gray-300 rounded-lg text-sm xl:text-base"
                         >
                           Cancel
                         </button>
                         <button
                           onClick={() => setShowDateRangeModal(false)}
-                          className="flex-1 bg-[#43A047] hover:bg-[#388E3C] text-white py-2 rounded-lg font-medium transition-colors duration-300"
+                          className="flex-1 bg-[#43A047] text-white py-2 rounded-lg font-medium text-sm xl:text-base"
                         >
                           Done
                         </button>
@@ -472,10 +471,10 @@ export default function Page() {
           <div className="max-w-[85vw] mx-auto">
             <h1 className="text-[#333333] font-medium text-base xl:text-xl">Highly Rated By Customers</h1>
 
-            <div className="mt-8 grid grid-cols-1 gap-12 xl:grid-cols-6">
+            <div className="mt-8 grid grid-cols-1 gap-12 xl:grid-cols-5">
               {highlyRatedCars.map((item, index) => (
                 <div className="flex flex-col" key={index}>
-                  <div className="relative w-full h-[220px] overflow-hidden rounded-3xl">
+                  <div className="relative w-full h-[300px] overflow-hidden rounded-3xl">
                     <Image src={item.image} alt='Car' fill className='object-cover' />
                   </div>
 
@@ -513,10 +512,10 @@ export default function Page() {
           <div className="max-w-[85vw] mx-auto">
             <h1 className="text-[#333333] font-medium text-base xl:text-xl">Most View Equipment</h1>
 
-            <div className="mt-8 grid grid-cols-1 gap-12 xl:grid-cols-6">
+            <div className="mt-8 grid grid-cols-1 gap-12 xl:grid-cols-5">
               {highlyRatedCars.map((item, index) => (
                 <div className="flex flex-col" key={index}>
-                  <div className="relative w-full h-[220px] overflow-hidden rounded-3xl">
+                  <div className="relative w-full h-[300px] overflow-hidden rounded-3xl">
                     <Image src={item.image} alt='Car' fill className='object-cover' />
                   </div>
 
@@ -554,10 +553,10 @@ export default function Page() {
           <div className="max-w-[85vw] mx-auto">
             <h1 className="text-[#333333] font-medium text-base xl:text-xl">You may Also Like</h1>
 
-            <div className="mt-8 grid grid-cols-1 gap-12 xl:grid-cols-6">
+            <div className="mt-8 grid grid-cols-1 gap-12 xl:grid-cols-5">
               {highlyRatedCars.map((item, index) => (
                 <div className="flex flex-col" key={index}>
-                  <div className="relative w-full h-[220px] overflow-hidden rounded-3xl">
+                  <div className="relative w-full h-[300px] overflow-hidden rounded-3xl">
                     <Image src={item.image} alt='Car' fill className='object-cover' />
                   </div>
 
@@ -691,7 +690,7 @@ export default function Page() {
         </section>
 
         <section className="mt-20 pb-4">
-          <div className='w-[90vw] mx-auto xl:w-[80vw]'>
+          <div className='w-[90vw] mx-auto xl:w-[70vw]'>
             <div className='flex justify-center items-center'>
               <h1 className='text-[#333333] text-base font-semibold xl:text-xl'>FAQ</h1>
             </div>
