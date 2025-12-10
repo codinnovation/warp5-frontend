@@ -43,7 +43,7 @@ export default function PriceModal({
       </div>
       <button
         onClick={onClose}
-        className="w-full mt-4 bg-[#43A047] text-white py-2 text-sm rounded-lg xl:text-base"
+        className="w-full mt-4 bg-[#43A047] hover:bg-[#388E3C] text-white py-2 text-sm rounded-lg transition-all xl:text-base"
       >
         Apply
       </button>

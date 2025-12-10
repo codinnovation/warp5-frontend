@@ -34,11 +34,11 @@ export default function EquipmentModal({ show, selectedEquipment, onSelect, onCl
   if (!show) return null;
 
   return (
-    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-auto max-h-60 overflow-y-auto z-50 xl:w-72">
+    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-auto max-h-60 overflow-y-auto scroll-smooth z-50 xl:w-72">
       {equipmentTypes.map((equipment) => (
         <div
           key={equipment}
-          className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer rounded text-gray-800 xl:text-base"
+          className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer rounded text-gray-800 transition-colors xl:text-base"
           onClick={() => {
             onSelect(equipment);
             onClose();

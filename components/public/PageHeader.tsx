@@ -11,7 +11,7 @@ import LoginForm from "@/components/auth/LoginForm";
 function PageHeader() {
   const router = useRouter();
   const pathname = usePathname();
-  const isUser = true;
+  const isUser = false;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -42,7 +42,7 @@ function PageHeader() {
 
   return (
     <>
-      <header className="fixed right-0 left-0 top-0 h-20 z-[9999] bg-white xl:h-24">
+      <header className="fixed right-0 left-0 top-0 h-20 md:h-22 z-[100] bg-white xl:h-24">
         <div className="max-w-[90vw] mx-auto grid grid grid-cols-2 items-center h-full xl:grid-cols-3 xl:max-w-[85vw]">
           <div className="flex items-center">
             <Image
@@ -59,7 +59,7 @@ function PageHeader() {
               <div
                 onClick={() => router.push(path)}
                 key={path}
-                className={`${pathname === path ? 'bg-[#43A047] text-white' : 'text-[#333333] bg-white'} cursor-pointer flex items-center justify-center w-32 h-12 rounded-full`}
+                className={`${pathname === path ? 'bg-[#43A047] text-white' : 'text-[#333333] bg-white'} cursor-pointer flex items-center justify-center px-6 py-3 rounded-full transition-all hover:shadow-md`}
               >
                 <h1 className="text-base font-medium">{label}</h1>
               </div>

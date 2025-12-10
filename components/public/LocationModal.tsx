@@ -26,11 +26,11 @@ export default function LocationModal({ show, selectedLocation, onSelect, onClos
   if (!show) return null;
 
   return (
-    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-auto max-h-60 overflow-y-auto z-50 xl:w-64">
+    <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl p-4 w-auto max-h-60 overflow-y-auto scroll-smooth z-50 xl:w-64">
       {cities.map((city) => (
         <div
           key={city}
-          className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer rounded text-gray-800 xl:text-base"
+          className="px-4 py-2 text-xs hover:bg-gray-100 cursor-pointer rounded text-gray-800 transition-colors xl:text-base"
           onClick={() => {
             onSelect(city);
             onClose();

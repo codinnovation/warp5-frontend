@@ -156,82 +156,80 @@ function Page() {
 
   return (
     <>
-      <div className="h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center px-4 py-8">
         {step === 1 ? (
           <>
-            <div className="bg-white h-auto w-full max-w-xs lg:max-w-sm xl:max-w-md shadow-md py-4 sm:py-6 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-20 rounded-2xl">
+            <div className="bg-white h-auto w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg shadow-md py-4 md:py-6 sm:py-6 px-4 md:px-8 sm:px-6 lg:px-12 xl:px-16 rounded-2xl">
               <div className="flex justify-end items-center ">
-                <i
-                  className="ri-close-line text-[#333333] text-2xl sm:text-3xl cursor-pointer"
+                <button
+                  className="hover:bg-gray-100 rounded-full p-1 transition-all focus:outline-none"
                   onClick={() => router.back()}
-                ></i>
+                >
+                  <i className="ri-close-line text-[#333333] text-2xl md:text-3xl sm:text-3xl cursor-pointer"></i>
+                </button>
               </div>
 
-              <div className="flex justify-center items-center mt-6 sm:mt-8">
-                <h1 className="text-[#333333] text-sm sm:text-base font-bold">
+              <div className="flex justify-center items-center mt-6 md:mt-8 sm:mt-8">
+                <h1 className="text-[#333333] text-sm md:text-base sm:text-base font-bold">
                   Account Type
                 </h1>
               </div>
 
-              <div className="mt-6 sm:mt-8">
-                <div className="flex flex-col space-y-6 sm:space-y-8">
-                  <div
-                    className={`flex justify-between items-center h-16 sm:h-20 p-4 sm:p-6 border ${
-                      formData.accountType === "hirer"
-                        ? "border-[#43A047]"
-                        : "border-[#787878]"
-                    } rounded-2xl cursor-pointer`}
+              <div className="mt-6 md:mt-8 sm:mt-8">
+                <div className="flex flex-col space-y-4 md:space-y-6 sm:space-y-8">
+                  <button
+                    className={`flex justify-between items-center h-16 md:h-18 sm:h-20 p-4 md:p-5 sm:p-6 border ${formData.accountType === "hirer"
+                        ? "border-[#43A047] bg-[#F1FBF3]"
+                        : "border-[#787878] hover:border-[#43A047] hover:bg-gray-50"
+                      } rounded-2xl cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:ring-opacity-50 text-left`}
                     onClick={() =>
                       setFormData({ ...formData, accountType: "hirer" })
                     }
                   >
-                    <div className="flex flex-col space-y-2">
-                      <h1 className="text-[#333333] font-medium text-xs sm:text-sm">
+                    <div className="flex flex-col space-y-1 md:space-y-2">
+                      <h1 className="text-[#333333] font-medium text-xs md:text-sm sm:text-sm">
                         Hirer
                       </h1>
-                      <p className="text-[#333333] font-regular text-xs">
+                      <p className="text-[#333333] font-regular text-xs md:text-sm">
                         You&apos;re looking to rent equipment
                       </p>
                     </div>
                     <div className="flex justify-end items-center">
                       <i
-                        className={
-                          formData.accountType === "hirer"
+                        className={`text-base md:text-lg ${formData.accountType === "hirer"
                             ? "ri-checkbox-circle-fill text-[#43A047]"
-                            : "ri-checkbox-blank-circle-line"
-                        }
+                            : "ri-checkbox-blank-circle-line text-[#787878]"
+                          }`}
                       ></i>
                     </div>
-                  </div>
+                  </button>
 
-                  <div
-                    className={`flex justify-between items-center h-16 sm:h-20 p-4 sm:p-6 border ${
-                      formData.accountType === "owner"
-                        ? "border-[#43A047]"
-                        : "border-[#787878]"
-                    } rounded-2xl cursor-pointer`}
+                  <button
+                    className={`flex justify-between items-center h-16 md:h-18 sm:h-20 p-4 md:p-5 sm:p-6 border ${formData.accountType === "owner"
+                        ? "border-[#43A047] bg-[#F1FBF3]"
+                        : "border-[#787878] hover:border-[#43A047] hover:bg-gray-50"
+                      } rounded-2xl cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:ring-opacity-50 text-left`}
                     onClick={() =>
                       setFormData({ ...formData, accountType: "owner" })
                     }
                   >
-                    <div className="flex flex-col space-y-2">
-                      <h1 className="text-[#333333] font-medium text-xs sm:text-sm">
+                    <div className="flex flex-col space-y-1 md:space-y-2">
+                      <h1 className="text-[#333333] font-medium text-xs md:text-sm sm:text-sm">
                         Owner
                       </h1>
-                      <p className="text-[#333333] font-regular text-xs">
+                      <p className="text-[#333333] font-regular text-xs md:text-sm">
                         You&apos;re looking to list equipment
                       </p>
                     </div>
                     <div className="flex justify-end items-center">
                       <i
-                        className={
-                          formData.accountType === "owner"
+                        className={`text-base md:text-lg ${formData.accountType === "owner"
                             ? "ri-checkbox-circle-fill text-[#43A047]"
-                            : "ri-checkbox-blank-circle-line"
-                        }
+                            : "ri-checkbox-blank-circle-line text-[#787878]"
+                          }`}
                       ></i>
                     </div>
-                  </div>
+                  </button>
                 </div>
               </div>
 
@@ -271,54 +269,53 @@ function Page() {
           </>
         ) : (
           <>
-            <div className="bg-white min-h-[60vh] w-full max-w-xl lg:max-w-3xl xl:max-w-4xl shadow-md py-6 sm:py-8 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-24 rounded-2xl grid grid-cols-1 lg:grid-cols-2">
-              <div className="flex flex-col mt-4 sm:mt-6 lg:mt-12 space-y-4 sm:space-y-6 lg:space-y-12">
+            <div className="bg-white min-h-[60vh] w-full max-w-xl lg:max-w-3xl xl:max-w-4xl shadow-md py-6 md:py-8 sm:py-8 px-4 md:px-8 sm:px-6 lg:px-12 xl:px-16 rounded-2xl grid grid-cols-1 lg:grid-cols-2">
+              <div className="flex flex-col mt-4 md:mt-6 sm:mt-6 lg:mt-8 space-y-4 md:space-y-5 sm:space-y-6 lg:space-y-8">
                 {tabs.map((tab) => (
-                  <div
+                  <button
                     key={tab.id}
-                    className="flex cursor-pointer items-center"
+                    type="button"
+                    className="flex cursor-pointer items-center text-left hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:ring-opacity-50 rounded"
                     onClick={() => setActiveTab(tab.id)}
                   >
                     <h1
-                      className={`text-sm sm:text-base font-regular ${
-                        activeTab === tab.id
-                          ? "text-[#43A047]"
+                      className={`text-sm md:text-base sm:text-base font-regular ${activeTab === tab.id
+                          ? "text-[#43A047] font-medium"
                           : "text-[#333333]"
-                      }`}
+                        }`}
                     >
                       {tab.label}
                     </h1>
-                  </div>
+                  </button>
                 ))}
               </div>
 
               <div className="flex flex-col justify-start">
                 <div className="flex justify-center items-center">
-                  <h1 className="text-[#333333] font-medium text-base sm:text-lg">
+                  <h1 className="text-[#333333] font-medium text-base md:text-lg sm:text-lg">
                     {tabs.find((tab) => tab.id === activeTab)?.label}
                   </h1>
                 </div>
 
                 {(error || success) && (
                   <div
-                    className={`mt-4 ${
-                      success
+                    className={`mt-4 ${success
                         ? "bg-green-100 border-green-400 text-green-700"
                         : "bg-red-100 border-red-400 text-red-700"
-                    } border px-4 py-3 rounded-lg text-sm`}
+                      } border px-4 py-3 rounded-lg text-sm`}
                   >
                     {error || success}
                   </div>
                 )}
 
-                <div className="mt-4 sm:mt-6 space-y-6 sm:space-y-8">
+                <div className="mt-4 md:mt-6 sm:mt-6 space-y-6 md:space-y-7 sm:space-y-8">
                   {activeTab === "personalInfo" && (
                     <>
                       {personalInfo.map((info) => (
                         <div key={info.name}>
                           <label
                             htmlFor={info.name}
-                            className="mb-2 block text-xs sm:text-sm font-regular text-[#333333]"
+                            className="mb-2 block text-xs md:text-sm sm:text-sm font-regular text-[#333333]"
                           >
                             {info.label}
                           </label>
@@ -333,19 +330,21 @@ function Page() {
                             }
                             id={info.name}
                             name={info.name}
-                            className="w-full h-10 sm:h-12 px-4 sm:px-6 border border-[#787878] text-xs sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047]"
+                            placeholder={`Enter ${info.label.replace('*', '').trim().toLowerCase()}`}
+                            className="w-full h-10 md:h-11 sm:h-12 px-4 md:px-5 sm:px-6 border border-[#787878] text-xs md:text-sm sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047] focus:ring-2 focus:ring-[#43A047] focus:ring-opacity-50"
                             required={info.label.includes("*")}
                           />
                         </div>
                       ))}
-                      <div
-                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] text-white h-10 sm:h-12 rounded-full cursor-pointer transition-colors"
+                      <button
+                        type="button"
+                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] active:scale-95 text-white h-10 md:h-11 sm:h-12 rounded-full cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:ring-offset-2 w-full"
                         onClick={handleNextTab}
                       >
-                        <h1 className="text-xs sm:text-sm font-medium">
+                        <h1 className="text-xs md:text-sm sm:text-sm font-medium">
                           Continue
                         </h1>
-                      </div>
+                      </button>
                     </>
                   )}
 
@@ -355,7 +354,7 @@ function Page() {
                         <div key={info.name}>
                           <label
                             htmlFor={info.name}
-                            className="mb-2 block text-xs sm:text-sm font-regular text-[#333333]"
+                            className="mb-2 block text-xs md:text-sm sm:text-sm font-regular text-[#333333]"
                           >
                             {info.label}
                           </label>
@@ -370,19 +369,21 @@ function Page() {
                             }
                             id={info.name}
                             name={info.name}
-                            className="w-full h-10 sm:h-12 px-4 sm:px-6 border border-[#787878] text-xs sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047]"
+                            placeholder={`Enter ${info.label.replace('*', '').trim().toLowerCase()}`}
+                            className="w-full h-10 md:h-11 sm:h-12 px-4 md:px-5 sm:px-6 border border-[#787878] text-xs md:text-sm sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047] focus:ring-2 focus:ring-[#43A047] focus:ring-opacity-50"
                             required={info.label.includes("*")}
                           />
                         </div>
                       ))}
-                      <div
-                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] text-white h-10 sm:h-12 rounded-full cursor-pointer transition-colors"
+                      <button
+                        type="button"
+                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] active:scale-95 text-white h-10 md:h-11 sm:h-12 rounded-full cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:ring-offset-2 w-full"
                         onClick={handleNextTab}
                       >
-                        <h1 className="text-xs sm:text-sm font-medium">
+                        <h1 className="text-xs md:text-sm sm:text-sm font-medium">
                           Continue
                         </h1>
-                      </div>
+                      </button>
                     </>
                   )}
 
@@ -392,7 +393,7 @@ function Page() {
                         <div key={info.name}>
                           <label
                             htmlFor={info.name}
-                            className="mb-2 block text-xs sm:text-sm font-regular text-[#333333]"
+                            className="mb-2 block text-xs md:text-sm sm:text-sm font-regular text-[#333333]"
                           >
                             {info.label}
                           </label>
@@ -407,19 +408,21 @@ function Page() {
                             }
                             id={info.name}
                             name={info.name}
-                            className="w-full h-10 sm:h-12 px-4 sm:px-6 border border-[#787878] text-xs sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047]"
+                            placeholder={`Enter ${info.label.replace('*', '').trim().toLowerCase()}`}
+                            className="w-full h-10 md:h-11 sm:h-12 px-4 md:px-5 sm:px-6 border border-[#787878] text-xs md:text-sm sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047] focus:ring-2 focus:ring-[#43A047] focus:ring-opacity-50"
                             required={info.label.includes("*")}
                           />
                         </div>
                       ))}
-                      <div
-                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] text-white h-10 sm:h-12 rounded-full cursor-pointer transition-colors"
+                      <button
+                        type="button"
+                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] active:scale-95 text-white h-10 md:h-11 sm:h-12 rounded-full cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:ring-offset-2 w-full"
                         onClick={handleNextTab}
                       >
-                        <h1 className="text-xs sm:text-sm font-medium">
+                        <h1 className="text-xs md:text-sm sm:text-sm font-medium">
                           Continue
                         </h1>
-                      </div>
+                      </button>
                     </>
                   )}
 
@@ -429,7 +432,7 @@ function Page() {
                         <div key={info.name}>
                           <label
                             htmlFor={info.name}
-                            className="mb-2 block text-xs sm:text-sm font-regular text-[#333333]"
+                            className="mb-2 block text-xs md:text-sm sm:text-sm font-regular text-[#333333]"
                           >
                             {info.label}
                           </label>
@@ -444,23 +447,25 @@ function Page() {
                             }
                             id={info.name}
                             name={info.name}
-                            className="w-full h-10 sm:h-12 px-4 sm:px-6 border border-[#787878] text-xs sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047]"
+                            placeholder={`Enter ${info.label.replace('*', '').trim().toLowerCase()}`}
+                            className="w-full h-10 md:h-11 sm:h-12 px-4 md:px-5 sm:px-6 border border-[#787878] text-xs md:text-sm sm:text-sm text-[#333333] rounded-full transition-all focus:outline-none focus:border-[#43A047] focus:ring-2 focus:ring-[#43A047] focus:ring-opacity-50"
                             required={info.label.includes("*")}
                           />
                         </div>
                       ))}
 
-                      <div className="mt-2 sm:mt-3">
+                      <div className="mt-2 md:mt-3 sm:mt-3">
                         <p className="text-[#787878] text-xs font-regular">
                           Must be at least 8 characters
                         </p>
                       </div>
                       <button
+                        type="button"
                         onClick={handleSignUp}
                         disabled={isSigningUp}
-                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] disabled:bg-gray-400 disabled:cursor-not-allowed text-white h-10 sm:h-12 rounded-full w-full cursor-pointer transition-colors"
+                        className="flex justify-center items-center bg-[#43A047] hover:bg-[#388E3C] active:scale-95 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:active:scale-100 text-white h-10 md:h-11 sm:h-12 rounded-full w-full cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:ring-offset-2"
                       >
-                        <h1 className="text-xs sm:text-sm font-medium">
+                        <h1 className="text-xs md:text-sm sm:text-sm font-medium">
                           {isSigningUp ? "Signing up..." : "Create Account"}
                         </h1>
                       </button>

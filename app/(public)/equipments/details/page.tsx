@@ -3,10 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { DateRange } from 'react-date-range';
-import type { RangeKeyDict, Range } from 'react-date-range';
-import FooterSection from '@/components/layout/FooterSection';
+import Footer from '@/components/public/Footer'
 import PageHeader from '@/components/public/PageHeader';
+import EquipmentCard from '@/components/public/EquipmentCard';
 import Car1Image from '../../../../public/cars/car1.jpg';
 import Car2Image from '../../../../public/cars/car2.jpg';
 import Car3Image from '../../../../public/cars/car3.jpg';
@@ -19,13 +18,6 @@ function Page() {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [activeTab, setActiveTab] = useState('description');
-  const [dateRange, setDateRange] = useState<Range[]>([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection'
-    }
-  ])
 
   const images = [
     { src: Car1Image, alt: 'Main product view' },
@@ -47,30 +39,14 @@ function Page() {
     setShowDateDropdown(!showDateDropdown);
   };
 
-
   const handleDateDone = () => {
-    const start = dateRange[0].startDate?.toLocaleDateString('en-GB') || '';
-    const end = dateRange[0].endDate?.toLocaleDateString('en-GB') || '';
-    setStartDate(start);
-    setEndDate(end);
     setShowDateDropdown(false);
   };
 
   const handleDateCancel = () => {
-    setDateRange([
-      {
-        startDate: new Date(),
-        endDate: new Date(),
-        key: 'selection'
-      }
-    ]);
     setStartDate('');
     setEndDate('');
     setShowDateDropdown(false);
-  };
-
-  const handleDateRangeChange = (ranges: RangeKeyDict) => {
-    setDateRange([ranges.selection]);
   };
 
   const description = `consectetur adipiscing elit. Nullam volutpat dolor lobortis, interdum turpis et, interdum leo. Nunc hendrerit
@@ -84,10 +60,10 @@ function Page() {
 
   return (
     <>
-      <main className='bg-white'>
+      <main className='min-h-screen bg-white'>
         <PageHeader />
 
-        <section className='mt-20 w-[90vw] mx-auto grid grid-cols-1 xl:w-[85vw] xl:grid-cols-[2.5fr_1fr] xl:gap-10'>
+        <section className='mt-20 md:mt-24 xl:mt-28 w-[90vw] mx-auto grid grid-cols-1 gap-8 xl:w-[85vw] xl:grid-cols-[2.5fr_1fr] xl:gap-10'>
           <div className='flex flex-col gap-4'>
             <div className='relative w-full aspect-[6/4] bg-gray-100 overflow-hidden'>
               <Image
@@ -143,12 +119,12 @@ function Page() {
               </div>
             </div>
 
-            <div className='mt-4'>
+            <div className='mt-4 lg:mt-6'>
               <div className='flex flex-col'>
                 <div className='flex items-center space-x-1'>
-                  <h1 className={`flex justify-center items-center ${activeTab === 'description' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-sm lg:text-lg font-medium w-24 lg:w-32 h-10 lg:h-12`} onClick={() => setActiveTab('description')}>Description</h1>
-                  <h1 className={`flex justify-center items-center ${activeTab === 'rate' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-sm lg:text-lg font-medium w-24 lg:w-32 h-10 lg:h-12`} onClick={() => setActiveTab('rate')}>Rate</h1>
-                  <h1 className={`flex justify-center items-center ${activeTab === 'availability' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-sm lg:text-lg font-medium w-24 lg:w-32 h-10 lg:h-12`} onClick={() => setActiveTab('availability')}>Availability</h1>
+                  <button className={`flex justify-center items-center ${activeTab === 'description' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-xs md:text-sm lg:text-base font-medium w-24 md:w-28 lg:w-32 h-10 lg:h-12 transition-all hover:opacity-90 cursor-pointer`} onClick={() => setActiveTab('description')}>Description</button>
+                  <button className={`flex justify-center items-center ${activeTab === 'rate' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-xs md:text-sm lg:text-base font-medium w-20 md:w-24 lg:w-28 h-10 lg:h-12 transition-all hover:opacity-90 cursor-pointer`} onClick={() => setActiveTab('rate')}>Rate</button>
+                  <button className={`flex justify-center items-center ${activeTab === 'availability' ? 'bg-[#F4F4F4] text-[#333333]' : 'bg-[#333333] text-white'} text-xs md:text-sm lg:text-base font-medium w-24 md:w-28 lg:w-32 h-10 lg:h-12 transition-all hover:opacity-90 cursor-pointer`} onClick={() => setActiveTab('availability')}>Availability</button>
                 </div>
 
                 {activeTab === 'description' && (
@@ -205,43 +181,14 @@ function Page() {
               </div>
             </div>
 
-            <div className="mt-20">
+            <div className="mt-12 md:mt-16 xl:mt-20">
               <div className="max-w-[85vw] mx-auto">
-                <h1 className="text-[#333333] font-medium text-base xl:text-xl">Highly Rated By Customers</h1>
+                <h1 className="text-[#333333] font-medium text-base md:text-lg xl:text-xl">Highly Rated By Customers</h1>
 
-                <div className="mt-8 grid grid-cols-1 gap-12 xl:grid-cols-4">
+                <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:grid-cols-4 xl:grid-cols-4 xl:gap-10">
                   {highlyRatedCars.map((item, index) => (
-                    <div className="flex flex-col" key={index}>
-                      <div className="relative w-full h-[300px] overflow-hidden rounded-3xl">
-                        <Image src={item.image} alt='Car' fill className='object-cover' />
-                      </div>
-
-                      <div className="flex flex-col items-center mt-4">
-                        <h1 className="text-[#333333] font-medium text-sm mt-2 xl:text-base">{item.name}</h1>
-                        <h1 className="text-[#787878] text-xs xl:text-sm">
-                          <i className="ri-map-pin-2-line text-base mr-1"></i>
-                          {item.location}
-                        </h1>
-                        <h1 className="text-[#787878] text-xs xl:text-sm mt-1">
-                          <i className="ri-star-fill text-base mr-1"></i>
-                          {item.rating}
-                        </h1>
-
-                        <div className="w-full flex justify-between items-center">
-                          <div className="flex space-x-1 items-center">
-                            <h1 className="text-[#333333] font-semibold text-sm xl:text-base">{item.price}/</h1>
-                            <h1 className="text-[#787878] text-xs xl:text-base">day</h1>
-                          </div>
-
-                          <div className="flex justify-center items-center bg-[#43A047] px-4 py-3 rounded-2xl cursor-pointer">
-                            <h1 className="text-white text-xs xl:text-sm">View Details</h1>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
+                    <EquipmentCard key={index} item={item} />
                   ))}
-
                 </div>
               </div>
             </div>
@@ -280,27 +227,41 @@ function Page() {
 
                 {showDateDropdown && (
                   <div
-                    className='absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-3 z-[100] w-max'
+                    className='absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-gray-200 p-4 lg:p-6 z-[100] min-w-[280px]'
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className='space-y-4'>
-                      <DateRange
-                        ranges={dateRange}
-                        onChange={handleDateRangeChange}
-                        months={1}
-                        direction="horizontal"
-                        className="w-full"
-                      />
+                      <div className='flex flex-col space-y-3'>
+                        <div className='flex flex-col'>
+                          <label className='text-xs lg:text-sm font-medium text-[#333333] mb-1'>Start Date</label>
+                          <input
+                            type='date'
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                            className='px-3 py-2 border border-gray-300 rounded-lg text-xs lg:text-base focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:border-transparent'
+                          />
+                        </div>
+                        <div className='flex flex-col'>
+                          <label className='text-xs lg:text-sm font-medium text-[#333333] mb-1'>End Date</label>
+                          <input
+                            type='date'
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                            min={startDate}
+                            className='px-3 py-2 border border-gray-300 rounded-lg text-xs lg:text-base focus:outline-none focus:ring-2 focus:ring-[#43A047] focus:border-transparent'
+                          />
+                        </div>
+                      </div>
                       <div className='flex space-x-2 pt-2'>
                         <button
                           onClick={handleDateCancel}
-                          className='flex-1 px-3 py-2 border border-gray-300 rounded-md text-xs lg:text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200'
+                          className='flex-1 px-3 py-2 border border-gray-300 rounded-lg text-xs lg:text-base font-medium text-gray-700 hover:bg-gray-50 active:scale-95 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-gray-300'
                         >
                           Cancel
                         </button>
                         <button
                           onClick={handleDateDone}
-                          className='flex-1 px-3 py-2 bg-[#43A047] text-white rounded-md text-xs lg:text-base font-medium hover:bg-[#3d8b3d] transition-colors duration-200'
+                          className='flex-1 px-3 py-2 bg-[#43A047] text-white rounded-lg text-xs lg:text-base font-medium hover:bg-[#388E3C] active:scale-95 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#43A047]'
                         >
                           Done
                         </button>
@@ -311,15 +272,15 @@ function Page() {
               </div>
 
               <div className='mt-6 lg:mt-8 xl:mt-10 flex justify-center items-center'>
-                <button className='flex justify-center items-center w-40 lg:w-48 xl:w-56 h-10 lg:h-12 bg-[#43A047] rounded-full cursor-pointer' onClick={() => router.push('/equipments/reserve')}>
+                <button className='flex justify-center items-center w-40 lg:w-48 xl:w-56 h-10 lg:h-12 bg-[#43A047] hover:bg-[#388E3C] active:scale-95 transition-all rounded-full cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-[#43A047]' onClick={() => router.push('/equipments/reserve')}>
                   <h1 className='text-white font-medium text-xs lg:text-base'>Reserve</h1>
                 </button>
               </div>
             </div>
           </div>
         </section>
-        <section className='mt-24 bg-[#43A047] py-12'>
-          <FooterSection />
+        <section className='mt-12 md:mt-16 xl:mt-20'>
+          <Footer />
         </section>
       </main>
     </>
