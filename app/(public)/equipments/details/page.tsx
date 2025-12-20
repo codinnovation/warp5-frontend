@@ -103,12 +103,12 @@ function Page() {
 
             {/* Mobile Title Block (Visible only on small screens) */}
             <div className="lg:hidden">
-              <h1 className="text-2xl font-bold mb-2">{equipmentDetails.name}</h1>
+              <h1 className="text-lg font-bold mb-2 leading-tight">{equipmentDetails.name}</h1>
               <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                 <span className="flex items-center gap-1"><i className="ri-map-pin-line"></i> {equipmentDetails.location}</span>
                 <span className="flex items-center gap-1 text-yellow-500"><i className="ri-star-fill"></i> {equipmentDetails.rating} ({equipmentDetails.reviews})</span>
               </div>
-              <div className="text-2xl font-bold text-green-600">GH₵{equipmentDetails.price}<span className="text-sm font-normal text-gray-500">/day</span></div>
+              <div className="text-lg font-bold text-green-600">GH₵{equipmentDetails.price}<span className="text-sm font-normal text-gray-500">/day</span></div>
             </div>
 
             {/* Tabs & Details */}
@@ -129,7 +129,7 @@ function Page() {
               <div className="min-h-[200px]">
                 {activeTab === 'description' && (
                   <div className="space-y-6 animate-in fade-in duration-300">
-                    <h3 className="text-xl font-bold text-gray-900">About this Equipment</h3>
+                    <h3 className="text-lg font-bold text-gray-900">About this Equipment</h3>
                     <p className="text-gray-600 leading-relaxed">
                       The {equipmentDetails.name} sets a new standard for performance and fuel efficiency in this size class.
                       With the industry's highest level of standard factory technology, a new cab focused on operator comfort and productivity,
@@ -170,7 +170,7 @@ function Page() {
 
             {/* Desktop Title details */}
             <div className="hidden lg:block">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2 leading-tight">{equipmentDetails.name}</h1>
+              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2 leading-tight">{equipmentDetails.name}</h1>
               <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
                 <span><i className="ri-map-pin-line text-green-600"></i> {equipmentDetails.location}</span>
                 <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
@@ -183,7 +183,7 @@ function Page() {
               <div className="flex items-end justify-between mb-8">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Daily Rate</p>
-                  <h2 className="text-3xl font-bold text-gray-900">GH₵{equipmentDetails.price}</h2>
+                  <h2 className="text-lg md:text-2xl lg:text-4xl font-bold text-gray-900">GH₵{equipmentDetails.price}</h2>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-green-600 font-bold bg-green-50 px-2 py-1 rounded-lg">Best Value</p>
@@ -251,7 +251,7 @@ function Page() {
 
         {/* Related Items */}
         <div className="mt-20 md:mt-32">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">Similar Equipment</h2>
+          <h2 className="text-lg md:text-2xl lg:text-4xl font-bold text-gray-900 mb-8">Similar Equipment</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlyRatedCars.map((item, index) => (
               <EquipmentCard key={index} item={item} />

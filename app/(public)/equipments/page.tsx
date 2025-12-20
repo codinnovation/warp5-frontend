@@ -52,8 +52,8 @@ function Page() {
           <div className="max-w-[95vw] xl:max-w-[90vw] mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Explore Inventory</h1>
-                <p className="text-gray-500">Find the perfect machinery for your next project.</p>
+                <h1 className="text-lg md:text-2xl lg:text-4xl font-bold text-gray-900 mb-2">Explore Inventory</h1>
+                <p className="text-gray-500 text-sm md:text-base">Find the perfect machinery for your next project.</p>
               </div>
               <div className="hidden md:flex items-center gap-2 text-sm font-medium text-gray-500">
                 <span>Showing {highlyRatedCars.length} results</span>
@@ -61,7 +61,7 @@ function Page() {
             </div>
 
             {/* Sticky-ish Filter Bar */}
-            <div className="bg-white rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 p-2 md:p-2 max-w-7xl">
+            <div className="bg-white rounded-3xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 p-2 md:p-2 max-w-7xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-0 items-center">
 
                 {/* Location */}
@@ -170,7 +170,7 @@ function Page() {
               - Desktop (lg): grid-cols-4
               - Large Screens (xl): grid-cols-6 (As requested)
             */}
-            <div className="mt-6 md:mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-4 lg:gap-6">
+            <div className="mt-6 md:mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
               {highlyRatedCars.map((item, index) => (
                 <EquipmentCard key={index} item={item} />
               ))}
