@@ -48,7 +48,7 @@ export default function EquipmentCard({ item }: EquipmentCardProps) {
       {/* Details Section */}
       <div className="p-4 md:p-5 flex flex-col flex-1">
         <div className="flex-1">
-          <h3 className="font-bold text-gray-900 text-base md:text-lg line-clamp-1 mb-1 group-hover:text-green-600 transition-colors">
+          <h3 className="font-bold text-gray-900 text-sm md:text-lg line-clamp-1 mb-1 group-hover:text-green-600 transition-colors">
             {item.name}
           </h3>
           <div className="flex items-center text-gray-500 text-xs md:text-sm mb-4">

@@ -67,10 +67,10 @@ function Page() {
           <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
 
           <div className="relative z-10 text-center px-4 animate-in fade-in slide-in-from-bottom-6 duration-700">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+            <h1 className="text-lg md:text-2xl lg:text-4xl font-bold text-white mb-4 tracking-tight">
               How can we <span className="text-green-400">help?</span>
             </h1>
-            <p className="text-gray-200 text-lg md:text-xl font-light max-w-2xl mx-auto">
+            <p className="text-gray-200 text-sm md:text-base font-light max-w-2xl mx-auto">
               Find answers to common questions or get in touch with our support team.
             </p>
           </div>
@@ -80,8 +80,8 @@ function Page() {
         <section className="py-20 md:py-28 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-16">
-              <span className="text-green-600 font-bold tracking-wider uppercase text-sm mb-2 block">Support</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
+              <span className="text-green-600 font-bold tracking-wider uppercase text-xs md:text-sm mb-2 block">Support</span>
+              <h2 className="text-lg md:text-2xl lg:text-4xl font-bold text-gray-900">Frequently Asked Questions</h2>
             </div>
 
             <div className="space-y-4">
