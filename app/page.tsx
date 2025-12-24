@@ -15,10 +15,17 @@ import DateModal from "@/components/public/DateModal";
 import Footer from "@/components/public/Footer";
 import PageHeader from "@/components/public/PageHeader";
 import EquipmentCard from "@/components/public/EquipmentCard";
+import { useMostViewedEquipment } from "@/context/mostViewContext";
+import { useHighlyRatedEquipment } from "@/context/highlyRatedContext";
+import { useRecommendationsEquipment } from "@/context/recommendationsContext";
 
 
 export default function Page() {
   const router = useRouter();
+
+  const { mostViewedData } = useMostViewedEquipment();
+  const { higlyRatedData } = useHighlyRatedEquipment();
+  const { recommendedData } = useRecommendationsEquipment();
 
   const [showLocationModal, setShowLocationModal] = useState(false);
   const [showEquipmentModal, setShowEquipmentModal] = useState(false);
@@ -31,6 +38,7 @@ export default function Page() {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [openFaqs, setOpenFaqs] = useState<Set<number>>(new Set());
+
 
   const toggleFaq = (id: number) => {
     setOpenFaqs((prev) => {
@@ -302,8 +310,17 @@ export default function Page() {
             <h1 className="text-[#333333] font-medium text-base md:text-lg">Highly Rated By Customers</h1>
 
             <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 xl:gap-12">
-              {highlyRatedCars.map((item, index) => (
-                <EquipmentCard key={index} item={item} />
+              {higlyRatedData?.data?.map((item, index) => (
+                <EquipmentCard
+                  key={index}
+                  item={{
+                    id: item.id,
+                    imageOne: item.imageOne,
+                    name: item.name,
+                    location: item.location,
+                    rating: item.rating.toString(),
+                    price: item.price.toString(),
+                  }} />
               ))}
             </div>
           </div>
@@ -314,8 +331,18 @@ export default function Page() {
             <h1 className="text-[#333333] font-medium text-base md:text-lg">Most Viewed Equipment</h1>
 
             <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 xl:gap-12">
-              {highlyRatedCars.map((item, index) => (
-                <EquipmentCard key={index} item={item} />
+              {mostViewedData?.data?.map((item, index) => (
+                <EquipmentCard
+                  key={index}
+                  item={{
+                    id: item.id,
+                    imageOne: item.imageOne,
+                    name: item.name,
+                    location: item.location,
+                    rating: item.rating.toString(),
+                    price: item.price.toString(),
+                  }}
+                />
               ))}
             </div>
           </div>
@@ -326,8 +353,18 @@ export default function Page() {
             <h1 className="text-[#333333] font-medium text-base md:text-lg">You may Also Like</h1>
 
             <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 xl:gap-12">
-              {highlyRatedCars.map((item, index) => (
-                <EquipmentCard key={index} item={item} />
+              {recommendedData?.data?.map((item, index) => (
+                <EquipmentCard
+                  key={index}
+                  item={{
+                    id: item.id,
+                    imageOne: item.imageOne,
+                    name: item.name,
+                    location: item.location,
+                    rating: item.rating.toString(),
+                    price: item.price.toString(),
+                  }}
+                />
               ))}
             </div>
           </div>

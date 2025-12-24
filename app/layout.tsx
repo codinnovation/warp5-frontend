@@ -6,6 +6,9 @@ import "react-date-range/dist/theme/default.css";
 import "./globals.css";
 import { UserProvider } from "@/context/userContext";
 import { EquipmentProvider } from "@/context/equipmentContext";
+import { MostViewedEquipmentProvider } from "@/context/mostViewContext";
+import { HighlyRatedEquipmentProvider } from "@/context/highlyRatedContext";
+import { RecommendationsEquipmentProvider } from "@/context/recommendationsContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,7 +25,13 @@ export default function RootLayout({
       <body className={`antialiased`}>
         <UserProvider>
           <EquipmentProvider>
-            {children}
+            <MostViewedEquipmentProvider>
+              <HighlyRatedEquipmentProvider>
+                <RecommendationsEquipmentProvider>
+                  {children}
+                </RecommendationsEquipmentProvider>
+              </HighlyRatedEquipmentProvider>
+            </MostViewedEquipmentProvider>
           </EquipmentProvider>
         </UserProvider>
         <Toaster />
