@@ -44,7 +44,7 @@ function Page() {
               </div>
               <div className="hidden md:flex items-center gap-2 text-sm font-medium text-gray-500">
                 <span>
-                  {isLoading ? 'Loading equipment...' : `Showing ${equipment?.equipments?.length || 0} results`}
+                  {isLoading ? 'Loading equipment...' : `Showing ${equipment?.data?.length || 0} results`}
                 </span>
               </div>
             </div>
