@@ -284,7 +284,19 @@ export default function Page() {
 
                 {/* Search Button */}
                 <div className="md:col-span-1 p-1 mt-2 md:mt-0">
-                  <button className="w-full h-11 md:h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white rounded-xl md:rounded-full flex items-center justify-center gap-2 md:gap-0 transition-all shadow-lg shadow-green-600/30 active:scale-95">
+                  <button
+                    onClick={() => {
+                      const params = new URLSearchParams();
+                      if (selectedLocation && selectedLocation !== 'Select Your City') params.append('location', selectedLocation);
+                      if (selectedEquipment && selectedEquipment !== 'Choose Type') params.append('name', selectedEquipment);
+                      if (minPrice) params.append('minPrice', minPrice);
+                      if (maxPrice) params.append('maxPrice', maxPrice);
+                      if (fromDate) params.append('fromDate', fromDate);
+                      if (toDate) params.append('toDate', toDate);
+
+                      router.push(`/equipments?${params.toString()}`);
+                    }}
+                    className="w-full h-11 md:h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white rounded-xl md:rounded-full flex items-center justify-center gap-2 md:gap-0 transition-all shadow-lg shadow-green-600/30 active:scale-95">
                     <span className="md:hidden font-bold text-sm">Search</span>
                     <i className="ri-search-line text-lg md:text-xl"></i>
                   </button>

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 import PageHeader from '@/components/public/PageHeader';
 import Footer from '@/components/public/Footer';
@@ -9,12 +9,12 @@ import LocationModal from '@/components/public/LocationModal';
 import EquipmentModal from '@/components/public/EquipmentModal';
 import PriceModal from '@/components/public/PriceModal';
 import DateModal from '@/components/public/DateModal';
-import EquipmentCard from '@/components/public/EquipmentCard';
-import EquipmentCardSkeleton from "@/components/public/EquipmentCardSkeleton";
+import SearchResultsList from '@/components/public/SearchResultsList';
 import { useEquipment, Equipment } from '@/context/equipmentContext';
 
-function Page() {
+function EquipmentsContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const { equipment, isLoading } = useEquipment();
 
@@ -32,29 +32,18 @@ function Page() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<Equipment[] | null>(null);
 
-  const handleSearch = async () => {
+  const performSearch = async (params: URLSearchParams) => {
     setIsSearching(true);
     setSearchResults(null);
 
     try {
-      const params = new URLSearchParams();
-
-      if (selectedLocation && selectedLocation !== 'Select Your City') {
-        params.append('location', selectedLocation);
-      }
-      if (selectedEquipment && selectedEquipment !== 'Choose Type') {
-        params.append('equipment', selectedEquipment);
-      }
-      if (minPrice) params.append('minPrice', minPrice);
-      if (maxPrice) params.append('maxPrice', maxPrice);
-      if (fromDate) params.append('fromDate', fromDate);
-      if (toDate) params.append('toDate', toDate);
-
       const res = await fetch(`/api/searchRoutes/filtering?${params.toString()}`);
       const data = await res.json();
 
       if (res.ok) {
         setSearchResults(data.data);
+        // Only show toast if it was a manual search or explicit URL navigation, 
+        // maybe suppress on initial load if desired, but "Equipment found" is fine.
         toast.success(data.message);
       } else {
         toast.error(data.message || "Search failed");
@@ -67,8 +56,50 @@ function Page() {
     }
   };
 
-  const displayData = equipment?.data || [];
-  const isDataLoading = isLoading || isSearching;
+  const handleManualSearch = () => {
+    const params = new URLSearchParams();
+
+    if (selectedLocation && selectedLocation !== 'Select Your City') {
+      params.append('location', selectedLocation);
+    }
+    if (selectedEquipment && selectedEquipment !== 'Choose Type') {
+      params.append('name', selectedEquipment);
+    }
+    if (minPrice) params.append('minPrice', minPrice);
+    if (maxPrice) params.append('maxPrice', maxPrice);
+    if (fromDate) params.append('fromDate', fromDate);
+    if (toDate) params.append('toDate', toDate);
+
+    performSearch(params);
+  };
+
+  // Effect to handle URL params
+  useEffect(() => {
+    // Only run if there are search params
+    if (searchParams.toString()) {
+      const location = searchParams.get('location');
+      const name = searchParams.get('name');
+      const minP = searchParams.get('minPrice');
+      const maxP = searchParams.get('maxPrice');
+      const fromD = searchParams.get('fromDate');
+      const toD = searchParams.get('toDate');
+
+      // Update local state to reflect URL
+      if (location) setSelectedLocation(location);
+      if (name) setSelectedEquipment(name);
+      if (minP) setMinPrice(minP);
+      if (maxP) setMaxPrice(maxP);
+      if (fromD) setFromDate(fromD);
+      if (toD) setToDate(toD);
+
+      // Perform search
+      performSearch(new URLSearchParams(searchParams.toString()));
+    }
+  }, [searchParams]);
+
+
+  const displayData = searchResults || equipment?.data || [];
+  const isDataLoading = isSearching || (!searchResults && isLoading);
 
   return (
     <>
@@ -86,6 +117,23 @@ function Page() {
                 <span>
                   {isDataLoading ? 'Loading equipment...' : `Showing ${displayData.length} results`}
                 </span>
+                {searchResults && (
+                  <button
+                    onClick={() => {
+                      setSearchResults(null);
+                      setSelectedLocation('Select Your City');
+                      setSelectedEquipment('Choose Type');
+                      setMinPrice('');
+                      setMaxPrice('');
+                      setFromDate('');
+                      setToDate('');
+                      router.push('/equipments'); // Clear URL params
+                    }}
+                    className="ml-2 text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-md text-gray-600 transition-colors"
+                  >
+                    Clear Search
+                  </button>
+                )}
               </div>
             </div>
 
@@ -179,7 +227,7 @@ function Page() {
                 {/* Search Button */}
                 <div className="md:col-span-1 p-1 mt-2 md:mt-0">
                   <button
-                    onClick={handleSearch}
+                    onClick={handleManualSearch}
                     disabled={isSearching}
                     className="w-full h-12 md:h-14 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white rounded-xl md:rounded-full flex items-center justify-center gap-2 md:gap-0 transition-all shadow-lg shadow-green-600/30 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed">
                     {isSearching ? (
@@ -201,32 +249,8 @@ function Page() {
         {/* Listings Grid */}
         <section className="py-12 md:py-16">
           <div className="max-w-[95vw] xl:max-w-[90vw] mx-auto">
-            <div className="mt-6 md:mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
-              {isDataLoading ? (
-                Array.from({ length: 10 }).map((_, index) => (
-                  <EquipmentCardSkeleton key={index} />
-                ))
-              ) : (
-                displayData.length > 0 ? (
-                  displayData.map((item, index) => (
-                    <EquipmentCard
-                      key={index}
-                      item={{
-                        id: item.id,
-                        imageOne: item.imageOne,
-                        name: item.name,
-                        location: item.location,
-                        rating: item.rating.toString(),
-                        price: item.price.toString(),
-                      }}
-                    />
-                  ))
-                ) : (
-                  <div className="col-span-full text-center py-20 text-gray-500">
-                    <p className="text-xl">No equipment found matching your criteria.</p>
-                  </div>
-                )
-              )}
+            <div className="mt-6 md:mt-8">
+              <SearchResultsList isLoading={isDataLoading} results={displayData} />
             </div>
           </div>
         </section>
@@ -253,6 +277,18 @@ function Page() {
         <Footer />
       </main>
     </>
+  );
+}
+
+function Page() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-gray-50/50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>
+      </main>
+    }>
+      <EquipmentsContent />
+    </Suspense>
   );
 }
 

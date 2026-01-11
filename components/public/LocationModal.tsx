@@ -16,6 +16,7 @@ const cities = [
   'Accra, Ghana',
   'Ahafo, Ghana',
   'Tema, Ghana',
+  'Nsuta, Ghana'
 ];
 
 export default function LocationModal({ show, selectedLocation, onSelect, onClose }: LocationModalProps) {

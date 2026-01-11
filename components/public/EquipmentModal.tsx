@@ -10,24 +10,13 @@ interface EquipmentModalProps {
 }
 
 const equipmentTypes = [
-  'Dragline Excavator',
-  'Continuous Miner',
-  'Bucket Wheel Excavator',
-  'Longwall Miner',
-  'Hydraulic Mining Shovel',
-  'Roadheader',
-  'Electric Rope Shovel',
-  'Load-Haul Dump (LHD) Loader',
-  'Wheel Loader',
-  'Underground Mining Truck',
-  'Bulldozer',
-  'Rotary Drill',
-  'Grader',
-  'Blasthole Drill',
-  'Haul Truck',
-  'Rock Bolter',
-  'Crusher',
-  'Shotcrete Machine',
+  'Mobile Crane GMK6400',
+  'Excavator Model X',
+  'Dump Truck 797F',
+  'Crawler Excavator HX500',
+  'Tower Crane TC700',
+  'Mini Excavator E50',
+  'Excavator Model Z300'
 ];
 
 export default function EquipmentModal({ show, selectedEquipment, onSelect, onClose }: EquipmentModalProps) {

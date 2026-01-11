@@ -7,18 +7,20 @@ export async function GET(req: Request) {
 
     const { searchParams } = new URL(req.url);
 
-    const location = searchParams.get('location');
-    const equipment = searchParams.get('equipment');
-    const minPrice = searchParams.get('minPrice');
-    const maxPrice = searchParams.get('maxPrice');
+    const location = searchParams.get('location') || '';
+    const equipment = searchParams.get('name') || '';
+    const minPrice = searchParams.get('minPrice') || '0';
+    const maxPrice = searchParams.get('maxPrice') || '200000';
+    const minRating = searchParams.get('minRating') || '4';
     const fromDate = searchParams.get('fromDate');
     const toDate = searchParams.get('toDate');
 
     const params = new URLSearchParams();
     if (location) params.append('location', location);
-    if (equipment) params.append('equipment', equipment);
+    if (equipment) params.append('name', equipment);
     if (minPrice) params.append('minPrice', minPrice);
     if (maxPrice) params.append('maxPrice', maxPrice);
+    if (minRating) params.append('minRating', minRating);
     if (fromDate) params.append('fromDate', fromDate);
     if (toDate) params.append('toDate', toDate);
 
