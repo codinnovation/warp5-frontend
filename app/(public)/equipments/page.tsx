@@ -11,12 +11,14 @@ import PriceModal from '@/components/public/PriceModal';
 import DateModal from '@/components/public/DateModal';
 import SearchResultsList from '@/components/public/SearchResultsList';
 import { useEquipment, Equipment } from '@/context/equipmentContext';
+import { useUser } from '@/context/userContext';
 
 function EquipmentsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const { equipment, isLoading } = useEquipment();
+  const { user } = useUser();
 
   const [showLocationModal, setShowLocationModal] = useState(false);
   const [showEquipmentModal, setShowEquipmentModal] = useState(false);
@@ -28,6 +30,8 @@ function EquipmentsContent() {
   const [showDateRangeModal, setShowDateRangeModal] = useState(false);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
+
+  console.log('user', user)
 
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<Equipment[] | null>(null);

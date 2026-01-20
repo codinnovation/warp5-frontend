@@ -7,14 +7,12 @@ const links = [
   { href: '/renter/dashboard', icon: 'ri-dashboard-line', label: 'Overview' },
   { href: '/renter/reservations', icon: 'ri-calendar-check-line', label: 'Reservations' },
   { href: '/renter/payment', icon: 'ri-wallet-3-line', label: 'Payments' },
-  { href: '/renter/notifications', icon: 'ri-notification-3-line', label: 'Notifications' },
 ];
 
 const SidebarMenu: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Helper to check active state (inclusive of sub-paths for reservations)
   const isActive = (href: string) => {
     if (href === '/renter/reservations' && pathname.startsWith('/renter/reservations')) return true;
     return pathname === href;
@@ -23,9 +21,7 @@ const SidebarMenu: React.FC = () => {
   return (
     <aside className='hidden lg:flex fixed left-0 top-0 h-full min-h-screen w-64 xl:w-72 flex-col bg-white border-r border-gray-100 px-4 py-6 z-40 justify-between'>
 
-      {/* Top Section */}
       <div>
-        {/* Invisible spacer for fixed header, ensuring menu starts below it */}
         <div className="h-20 md:h-22 xl:h-24"></div>
 
         <nav className='flex flex-col space-y-2'>
@@ -42,17 +38,12 @@ const SidebarMenu: React.FC = () => {
             >
               <i className={`${icon} text-xl ${isActive(href) ? 'text-white' : 'text-gray-400 group-hover:text-gray-600'}`}></i>
               <span className='font-medium text-sm xl:text-base'>{label}</span>
-              {href === '/renter/notifications' && (
-                <span className={`ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full ${isActive(href) ? 'bg-white/20 text-white' : 'bg-red-100 text-red-600'}`}>2</span>
-              )}
             </button>
           ))}
         </nav>
       </div>
 
-      {/* Bottom Section */}
       <div className='space-y-6'>
-        {/* Settings & Support */}
         <nav className='flex flex-col space-y-1'>
           <p className="px-4 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Support</p>
           <button className='flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors w-full text-left'>
@@ -65,7 +56,6 @@ const SidebarMenu: React.FC = () => {
           </button>
         </nav>
 
-        {/* User Profile */}
         <div className="border-t border-gray-100 pt-6">
           <div className="flex items-center gap-3 px-2">
             <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-green-500 to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-sm shrink-0">

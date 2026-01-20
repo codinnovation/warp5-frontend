@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 export async function GET(req: Request) {
   const searchParams = new URL(req.url).searchParams;
   const limit = parseFloat(searchParams.get('limit') || '5');
+  
   const store = await cookies();
   const user = store.get("user");
 

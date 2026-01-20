@@ -1,12 +1,14 @@
 'use client';
 
 import React from 'react';
+import { useUser } from '@/context/userContext';
 
 interface DashboardHeaderProps {
   title: string;
 }
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title }) => {
+  const { user } = useUser();
   // Get current date
   const today = new Date();
   const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -21,8 +23,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title }) => {
 
       {/* Optional: Add a subtle user greeting or contextual action here if needed in future */}
       <div className="hidden md:block text-right">
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Welcome Back</p>
-        <p className="text-sm font-bold text-gray-900">Kwame Mensah</p>
+        <p className="text-xs font-bold text-gray-600 uppercase tracking-widest mb-1">Welcome Back, {user?.firstName}</p>
       </div>
     </header>
   );

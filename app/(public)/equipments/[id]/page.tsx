@@ -255,6 +255,7 @@ function Page() {
                                     }
                                     const params = new URLSearchParams({
                                         id: id?.toString() || '',
+                                        ownerId: equipment.ownerId || '',
                                         name: equipmentDetails.name,
                                         location: equipmentDetails.location,
                                         price: equipmentDetails.price.toString(),
@@ -265,8 +266,8 @@ function Page() {
                                     router.push(`/equipments/reserve?${params.toString()}`);
                                 }}
                                 className={`w-full py-4 rounded-xl font-bold text-lg transition-all shadow-lg active:scale-95 ${startDate && endDate
-                                        ? 'bg-black hover:bg-green-600 text-white hover:shadow-green-500/30'
-                                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    ? 'bg-black hover:bg-green-600 text-white hover:shadow-green-500/30'
+                                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                                     }`}
                             >
                                 Reserve Now

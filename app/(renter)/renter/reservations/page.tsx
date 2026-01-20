@@ -1,8 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import DashboardHeader from '@/components/renter/DashboardHeader';
+import { useUser } from '@/context/userContext';
+import useSWR from 'swr';
+import { fetcher } from '@/lib/fetcher';
 
 type ReservationStatus = 'Active' | 'Pending' | 'Completed' | 'Cancelled';
 
@@ -10,34 +13,43 @@ function Page() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'All' | ReservationStatus>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 8;
 
-  const allReservations = [
-    { id: 'R-EX45', equipment: 'Bulldozer D6K', vendor: 'Mega Earth Movers', status: 'Active', dates: 'Nov 01 - Nov 06, 2025', cost: 'GHC 8,450' },
-    { id: 'R-LD11', equipment: 'Wheel Loader 950GC', vendor: 'Prime Equip Leasing', status: 'Pending', dates: 'Oct 23 - Oct 28, 2025', cost: 'GHC 6,880' },
-    { id: 'R-CR09', equipment: 'Mobile Crane 50T', vendor: 'SkyLift Rentals', status: 'Completed', dates: 'Oct 10 - Oct 14, 2025', cost: 'GHC 12,300' },
-    { id: 'R-DM54', equipment: 'Dump Truck 8x4', vendor: 'HaulPro Logistics', status: 'Cancelled', dates: 'Aug 05 - Aug 12, 2025', cost: 'GHC 9,100' },
-    { id: 'R-CP22', equipment: 'Vibratory Compactor', vendor: 'GroundForce Rentals', status: 'Completed', dates: 'May 10 - May 15, 2025', cost: 'GHC 5,050' },
-    { id: 'R-RL72', equipment: 'Road Roller', vendor: 'SmoothRoad Co.', status: 'Completed', dates: 'Jul 25 - Jul 30, 2025', cost: 'GHC 5,420' },
-    { id: 'R-LF08', equipment: 'Boom Lift 60ft', vendor: 'ElevateWorks', status: 'Active', dates: 'Jun 28 - Jul 03, 2025', cost: 'GHC 7,675' },
-    { id: 'R-EX46', equipment: 'Mini Excavator', vendor: 'Mega Earth Movers', status: 'Pending', dates: 'Dec 01 - Dec 03, 2025', cost: 'GHC 2,400' },
-    { id: 'R-Gen01', equipment: 'Diesel Generator 100kVA', vendor: 'PowerSystems Ltd', status: 'Completed', dates: 'Jan 10 - Jan 15, 2025', cost: 'GHC 3,500' },
-    { id: 'R-Fork22', equipment: 'Forklift 3Ton', vendor: 'WareLogistics', status: 'Active', dates: 'Nov 18 - Nov 25, 2025', cost: 'GHC 4,200' },
-  ];
+  const { user } = useUser();
 
-  // Filtering Logic
-  const filteredReservations = allReservations.filter(res => {
-    const matchesTab = activeTab === 'All' || res.status === activeTab;
-    const matchesSearch = res.equipment.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      res.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      res.vendor.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesTab && matchesSearch;
-  });
+  const { data: reservationsData, error: reservationsError, isLoading: reservationsLoading } = useSWR(
+    user?.id ? `/api/reservationRoutes?renterId=${user.id}` : null,
+    fetcher
+  );
 
-  // Pagination Logic
-  const totalPages = Math.max(1, Math.ceil(filteredReservations.length / pageSize));
-  const paginatedData = filteredReservations.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+  // Map API data to UI format
+  const reservations = useMemo(() => {
+    if (!reservationsData?.data || !Array.isArray(reservationsData.data)) return [];
+
+    return reservationsData.data.map((item: any) => {
+      const startDate = new Date(item.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const endDate = new Date(item.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+      // Map backend status to frontend status
+      let status: ReservationStatus = 'Pending';
+      const backendStatus = (item.approvalStatus || item.status || '').toLowerCase();
+
+      if (backendStatus === 'approved') status = 'Active';
+      else if (backendStatus === 'completed') status = 'Completed';
+      else if (backendStatus === 'rejected' || backendStatus === 'cancelled') status = 'Cancelled';
+      else status = 'Pending';
+
+      return {
+        id: item.id?.toString() || `R-${Math.random().toString(36).substr(2, 5).toUpperCase()}`,
+        equipment: item.equipmentName || 'Unknown Equipment',
+        vendor: item.ownerId || 'Unknown Vendor',
+        status: status,
+        dates: `${startDate} - ${endDate}`,
+        cost: `GHC ${parseFloat(item.rentalAmount || '0').toLocaleString()}`,
+        originalData: item
+      };
+    });
+  }, [reservationsData]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -48,6 +60,15 @@ function Page() {
       default: return 'bg-gray-50 text-gray-600 border-gray-200';
     }
   };
+
+  if (reservationsLoading) {
+    return (
+      <div className='flex flex-col h-full space-y-8 pb-10 justify-center items-center'>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>
+        <p className="text-gray-500">Loading reservations...</p>
+      </div>
+    )
+  }
 
   return (
     <div className='flex flex-col h-full space-y-8 pb-10'>
@@ -60,10 +81,9 @@ function Page() {
           {['All', 'Active', 'Pending', 'Completed', 'Cancelled'].map((tab) => (
             <button
               key={tab}
-              onClick={() => { setActiveTab(tab as any); setCurrentPage(1); }}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === tab
-                  ? 'bg-green-600 text-white shadow-md'
-                  : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                ? 'bg-green-600 text-white shadow-md'
+                : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                 }`}
             >
               {tab}
@@ -86,7 +106,7 @@ function Page() {
 
       {/* Mobile Reservations List (Visible on sm/md) */}
       <div className="lg:hidden space-y-4">
-        {paginatedData.map((res) => (
+        {reservations?.map((res: any) => (
           <div key={res.id} onClick={() => router.push(`/renter/reservations/${res.id}`)} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm active:scale-[0.98] transition-all">
             <div className="flex justify-between items-start mb-3">
               <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${getStatusColor(res.status)}`}>{res.status}</span>
@@ -123,8 +143,8 @@ function Page() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
-              {paginatedData.length > 0 ? (
-                paginatedData.map((res) => (
+              {reservations.length > 0 ? (
+                reservations.map((res: any) => (
                   <tr
                     key={res.id}
                     onClick={() => router.push(`/renter/reservations/${res.id}`)}
@@ -168,33 +188,21 @@ function Page() {
         {/* Pagination Footer */}
         <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between bg-gray-50/30">
           <span className="text-sm text-gray-500">
-            Showing <span className="font-bold text-gray-900">{paginatedData.length}</span> of <span className="font-bold text-gray-900">{filteredReservations.length}</span> results
+            Showing <span className="font-bold text-gray-900">1</span> of <span className="font-bold text-gray-900">2</span> results
           </span>
           <div className="flex gap-2">
             <button
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               <i className="ri-arrow-left-s-line"></i>
             </button>
             <div className="flex gap-1">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-medium transition-all ${currentPage === i + 1
-                      ? 'bg-green-600 text-white shadow-md'
-                      : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
-                    }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
+              <button
+                className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-medium transition-all`}
+              >
+              </button>
             </div>
             <button
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages}
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               <i className="ri-arrow-right-s-line"></i>
