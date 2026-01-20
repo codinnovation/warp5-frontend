@@ -5,9 +5,10 @@ import { useUser } from '@/context/userContext';
 
 interface DashboardHeaderProps {
   title: string;
+  className?: string;
 }
 
-const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title }) => {
+const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title, className }) => {
   const { user } = useUser();
   // Get current date
   const today = new Date();
@@ -15,7 +16,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({ title }) => {
   const formattedDate = today.toLocaleDateString('en-US', options);
 
   return (
-    <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 shrink-0 mt-8 mb-2">
+    <header className={`flex flex-col md:flex-row md:items-end justify-between gap-4 shrink-0 ${className || 'mt-8 mb-2'}`}>
       <div>
         <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">{title}</h1>
         <p className="text-sm text-gray-500 mt-1 font-medium">{formattedDate}</p>

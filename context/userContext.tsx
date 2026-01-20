@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import { createContext, useContext } from "react";
 import { fetcher } from "../lib/fetcher";
-import useSWR from "swr";
+import useSWR, { KeyedMutator } from "swr";
 
 type User = {
   addressLine1: string;
@@ -19,9 +19,9 @@ type User = {
 
 type UserContextType = {
   user: User | null;
-  error: any;
-  isLoading: any;
-  mutate: any;
+  error: unknown;
+  isLoading: boolean;
+  mutate: KeyedMutator<unknown>;
 } | null;
 
 const UserContext = createContext<UserContextType>(null);

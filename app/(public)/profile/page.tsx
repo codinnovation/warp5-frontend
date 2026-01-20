@@ -110,7 +110,7 @@ function Page() {
       router.refresh();
       mutate(null);
       router.push('/');
-    } catch (error) {
+    } catch {
       toast.error('Failed to logout');
     } finally {
       setIsLoggingOut(false);
@@ -145,8 +145,9 @@ function Page() {
       mutate();
       router.refresh();
 
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to update profile');
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Failed to update profile';
+      toast.error(message);
     } finally {
       setIsUpdating(false);
     }

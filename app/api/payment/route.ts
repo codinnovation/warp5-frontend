@@ -21,15 +21,11 @@ export async function POST(req: Request) {
                 renterId,
                 ownerId,
                 email,
-                amount: 1,
+                amount,
             })
         });
 
         const apiData = await apiRes.json();
-
-        console.log('res', apiRes)
-        console.log('data', apiData)
-
 
         if (!apiRes.ok) {
             return NextResponse.json({ message: apiData.message || 'Failed to initiate payment.' }, { status: apiRes.status });
@@ -37,7 +33,8 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ data: apiData }, { status: 200 });
 
-    } catch (error) {
-        return NextResponse.json({ message: 'Internal Server Error' + error }, { status: 500 });
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        return NextResponse.json({ message: 'Internal Server Error: ' + errorMessage }, { status: 500 });
     }
 }

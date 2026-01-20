@@ -80,9 +80,9 @@ function Page() {
       }
 
       toast.success("Account created successfully! Redirecting...");
-      router.push("/login");
+      router.push("/");
 
-    } catch (error) {
+    } catch {
       toast.error("Failed to sign up. Please try again.");
     } finally {
       setIsSigningUp(false);

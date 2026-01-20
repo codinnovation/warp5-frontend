@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from "react";
 import { fetcher } from "../lib/fetcher";
-import useSWR from "swr";
+import useSWR, { KeyedMutator } from "swr";
 import { ReactNode } from "react";
 
 export interface RecommendationsEquipment {
@@ -28,9 +28,9 @@ export interface EquipmentResponse {
 
 interface EquipmentContextType {
   recommendedData: EquipmentResponse | undefined;
-  error: any;
+  error: unknown;
   isLoading: boolean;
-  mutate: any;
+  mutate: KeyedMutator<EquipmentResponse>;
 }
 
 const RecommendationsEquipmentContext = createContext<EquipmentContextType | null>(null);

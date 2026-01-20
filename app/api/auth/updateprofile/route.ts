@@ -46,7 +46,7 @@ export async function PUT(request: NextRequest) {
             const text = await apiRes.text();
             try {
                 apiData = JSON.parse(text);
-            } catch (e) {
+            } catch {
                 apiData = { message: text || "An error occurred" };
             }
         }

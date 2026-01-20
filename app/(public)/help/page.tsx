@@ -128,7 +128,7 @@ function Page() {
                 <div className="relative z-10">
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
                   <p className="text-gray-400 mb-12 text-lg">
-                    We're here to help you find the right equipment for your job. Reach out to us anytime.
+                    We&apos;re here to help you find the right equipment for your job. Reach out to us anytime.
                   </p>
 
                   <div className="space-y-8">
@@ -173,7 +173,7 @@ function Page() {
                 <div className="mb-10">
                   <h2 className="text-3xl font-bold text-gray-900 mb-4">Send us a Message</h2>
                   <p className="text-gray-500">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
                 </div>
 

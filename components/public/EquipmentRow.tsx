@@ -4,9 +4,18 @@ import { useRef } from 'react';
 import EquipmentCard from './EquipmentCard';
 import EquipmentCardSkeleton from './EquipmentCardSkeleton';
 
+interface Equipment {
+    id: number;
+    name: string;
+    imageOne: string;
+    location: string;
+    rating?: number | string;
+    price?: number | string;
+}
+
 interface EquipmentRowProps {
     title: string;
-    data: any[] | undefined;
+    data: Equipment[] | undefined;
     isLoading: boolean;
 }
 
@@ -60,7 +69,7 @@ export default function EquipmentRow({ title, data, isLoading }: EquipmentRowPro
                             </div>
                         ))
                     ) : (
-                        data?.map((item: any, index: number) => (
+                        data?.map((item: Equipment, index: number) => (
                             <div key={index} className="min-w-[85%] md:min-w-[calc(33.333%-1rem)] lg:min-w-[calc(25%-1.125rem)] xl:min-w-[calc(20%-1.2rem)] snap-start shrink-0">
                                 <EquipmentCard
                                     item={{

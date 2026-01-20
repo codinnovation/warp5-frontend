@@ -49,7 +49,10 @@ function UserModal({ setShowUserModal }: { setShowUserModal: React.Dispatch<Reac
         {/* Footer */}
         <div className="p-2 border-t border-gray-100">
           <button
-            onClick={() => { setShowUserModal(false); /* Add logout logic here */ }}
+            onClick={async () => {
+              await fetch('/api/auth/logout', { method: 'POST' });
+              window.location.href = '/';
+            }}
             className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-all flex items-center gap-3"
           >
             <i className="ri-logout-box-r-line text-lg opacity-70"></i>

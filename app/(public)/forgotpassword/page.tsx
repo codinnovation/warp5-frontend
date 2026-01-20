@@ -12,11 +12,6 @@ function Page() {
   const [resetToken, setResetToken] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNext = () => {
-    if (step < 3) {
-      setStep(step + 1);
-    }
-  };
 
   const handleForgotPassword = async () => {
     setIsSubmitting(true);
@@ -43,7 +38,7 @@ function Page() {
       setResetToken(cleanToken);
       setStep(2);
 
-    } catch (error) {
+    } catch {
       toast.error("Failed to send password reset email. Please try again later.");
     } finally {
       setIsSubmitting(false);
@@ -73,7 +68,7 @@ function Page() {
       toast.success(apiData.message);
       setStep(3);
 
-    } catch (error) {
+    } catch {
       toast.error("Failed to reset password. Please try again later.");
     } finally {
       setIsSubmitting(false);

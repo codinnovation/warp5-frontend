@@ -61,14 +61,6 @@ function PageHeader() {
           </nav>
 
           <div className="flex justify-end items-center space-x-8">
-            <div className="hidden justify-center items-center bg-[#FFF0F6] w-16 h-16 rounded-full xl:flex cursor-pointer hover:bg-[#FFE6F1] transition-all">
-              <i className="ri-heart-3-fill text-[#FF0063] text-2xl"></i>
-            </div>
-
-            <button className="hidden justify-center items-center xl:flex hover:bg-gray-100 rounded-full p-2 transition-all focus:outline-none">
-              <i className="ri-notification-2-line text-[#000000] text-2xl"></i>
-            </button>
-
             {user ? (
               <div className="relative hidden xl:flex">
                 <button
@@ -100,7 +92,7 @@ function PageHeader() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden absolute left-0 right-0 top-full bg-white z-50 shadow-xl border-t border-gray-100 rounded-b-3xl overflow-hidden pb-4 transition-all animate-in slide-in-from-top-2">
+          <div className="xl:hidden absolute left-0 right-0 top-full bg-white z-50 shadow-xl border-t border-gray-100 rounded-b-3xl overflow-hidden pb-4 transition-all animate-in slide-in-from-top-2">
             <div className="px-4 py-4 space-y-1">
 
               {/* Main Nav Items */}
@@ -149,7 +141,12 @@ function PageHeader() {
                       <i className="ri-user-settings-line text-lg text-gray-400"></i>
                       Profile
                     </button>
-                    <button className="w-full text-left px-4 py-3.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-xl flex items-center gap-3">
+                    <button
+                      onClick={async () => {
+                        await fetch('/api/auth/logout', { method: 'POST' });
+                        window.location.href = '/';
+                      }}
+                      className="w-full text-left px-4 py-3.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-xl flex items-center gap-3">
                       <i className="ri-logout-box-r-line text-lg text-red-400"></i>
                       Sign Out
                     </button>

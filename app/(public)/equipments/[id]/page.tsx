@@ -8,19 +8,19 @@ import { fetcher } from '@/lib/fetcher';
 import Footer from '@/components/public/Footer';
 import PageHeader from '@/components/public/PageHeader';
 import EquipmentCard from '@/components/public/EquipmentCard';
-import Car1Image from '../../../../public/cars/car1.jpg';
-import Car2Image from '../../../../public/cars/car2.jpg';
-import Car3Image from '../../../../public/cars/car3.jpg';
+import EquipmentRow from '@/components/public/EquipmentRow';
+import { useHighlyRatedEquipment } from '@/context/highlyRatedContext';
 
 function Page() {
     const router = useRouter();
     const { id } = useParams();
+    const { higlyRatedData, isLoading: isHighlyRatedLoading } = useHighlyRatedEquipment();
 
     const [selectedImage, setSelectedImage] = useState(0);
     const [showDateDropdown, setShowDateDropdown] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [activeTab, setActiveTab] = useState<'description' | 'specs' | 'reivews'>('description');
+    const [activeTab, setActiveTab] = useState<'description' | 'specs' | 'reviews'>('description');
 
     const { data: apiResponse, error, isLoading } = useSWR(`/api/equipmentRoutes/equipmentByID?id=${id}`, fetcher);
 
@@ -64,12 +64,6 @@ function Page() {
         features: ['Air Conditioning', 'GPS Tracking', 'Safety Camera', 'Quick Coupler']
     };
 
-    const highlyRatedCars = [
-        { id: 1, image: Car1Image, name: 'Bucket Wheel Excavator', location: 'Kumasi, Ghana', rating: '4.8', price: 'GHC1,123' },
-        { id: 2, image: Car2Image, name: 'Honda Accord', location: 'Accra', rating: '4.9', price: 'GHC1,123' },
-        { id: 3, image: Car1Image, name: 'Mercedes Benz', location: 'Takoradi', rating: '5.0', price: 'GHC1,123' },
-        { id: 5, image: Car2Image, name: 'Audi A6', location: 'Kumasi', rating: '4.9', price: 'GHC1,123' },
-    ];
 
     const handleDateClick = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -133,56 +127,6 @@ function Page() {
                             </div>
                             <div className="text-lg font-bold text-green-600">GH₵{equipmentDetails.price}<span className="text-sm font-normal text-gray-500">/day</span></div>
                         </div>
-
-                        {/* Tabs & Details */}
-                        <div className="bg-white rounded-[2rem] p-6 md:p-10 shadow-sm border border-gray-100">
-                            <div className="flex items-center gap-8 border-b border-gray-100 mb-8 overflow-x-auto">
-                                {['Description', 'Specs', 'Reviews'].map((tab) => (
-                                    <button
-                                        key={tab}
-                                        onClick={() => setActiveTab(tab.toLowerCase() as any)}
-                                        className={`pb-4 text-sm md:text-base font-semibold capitalize relative transition-colors ${activeTab === tab.toLowerCase() ? 'text-green-600' : 'text-gray-400 hover:text-gray-600'}`}
-                                    >
-                                        {tab}
-                                        {activeTab === tab.toLowerCase() && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-green-600 rounded-t-full"></div>}
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div className="min-h-[200px]">
-                                {activeTab === 'description' && (
-                                    <div className="space-y-6 animate-in fade-in duration-300">
-                                        <h3 className="text-lg font-bold text-gray-900">About this Equipment</h3>
-                                        <p className="text-gray-600 leading-relaxed">
-                                            {equipmentDetails.description}
-                                        </p>
-
-                                        <div>
-                                            <h4 className="font-bold text-gray-900 mb-3">Key Features</h4>
-                                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                                {equipmentDetails.features.map((feature, idx) => (
-                                                    <li key={idx} className="flex items-center gap-2 text-gray-600">
-                                                        <i className="ri-checkbox-circle-fill text-green-500"></i> {feature}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {activeTab === 'specs' && (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in duration-300">
-                                        {equipmentDetails.specs.map((spec, idx) => (
-                                            <div key={idx} className="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                                                <span className="text-gray-500 font-medium">{spec.label}</span>
-                                                <span className="text-gray-900 font-bold">{spec.value}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
                     </div>
 
 
@@ -290,19 +234,15 @@ function Page() {
                 </div>
 
                 {/* Related Items */}
-                <div className="mt-20 md:mt-32">
-                    <h2 className="text-lg md:text-2xl lg:text-4xl font-bold text-gray-900 mb-8">Similar Equipment</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {highlyRatedCars.map((item, index) => (
-                            <EquipmentCard key={index} item={item} />
-                        ))}
-                    </div>
-                </div>
-
+                <EquipmentRow
+                    title="Similar Equipment"
+                    data={higlyRatedData?.data}
+                    isLoading={isHighlyRatedLoading}
+                />
             </div>
 
             <Footer />
-        </main>
+        </main >
     );
 }
 

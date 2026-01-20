@@ -5,7 +5,7 @@ import EquipmentCardSkeleton from './EquipmentCardSkeleton';
 interface SearchResultItem {
     id: number | string;
     imageOne?: string;
-    image?: any;
+    image?: string;
     name: string;
     location: string;
     rating: string | number;

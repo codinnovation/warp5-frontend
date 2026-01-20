@@ -16,17 +16,38 @@ function Page() {
 
   const { user } = useUser();
 
-  const { data: reservationsData, error: reservationsError, isLoading: reservationsLoading } = useSWR(
+  const { data: reservationsData, isLoading: reservationsLoading } = useSWR(
     user?.id ? `/api/reservationRoutes?renterId=${user.id}` : null,
     fetcher
   );
 
 
+  interface ReservationData {
+    id: number;
+    startDate: string;
+    endDate: string;
+    approvalStatus?: string;
+    status?: string;
+    equipmentName?: string;
+    ownerId?: string | number;
+    rentalAmount?: string;
+  }
+
+  interface MappedReservation {
+    id: string;
+    equipment: string;
+    vendor: string | number;
+    status: ReservationStatus;
+    dates: string;
+    cost: string;
+    originalData: ReservationData;
+  }
+
   // Map API data to UI format
-  const reservations = useMemo(() => {
+  const reservations: MappedReservation[] = useMemo(() => {
     if (!reservationsData?.data || !Array.isArray(reservationsData.data)) return [];
 
-    return reservationsData.data.map((item: any) => {
+    return reservationsData.data.map((item: ReservationData, index: number) => {
       const startDate = new Date(item.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       const endDate = new Date(item.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -40,7 +61,7 @@ function Page() {
       else status = 'Pending';
 
       return {
-        id: item.id?.toString() || `R-${Math.random().toString(36).substr(2, 5).toUpperCase()}`,
+        id: item.id?.toString() || `R-${index}`,
         equipment: item.equipmentName || 'Unknown Equipment',
         vendor: item.ownerId || 'Unknown Vendor',
         status: status,
@@ -81,6 +102,7 @@ function Page() {
           {['All', 'Active', 'Pending', 'Completed', 'Cancelled'].map((tab) => (
             <button
               key={tab}
+              onClick={() => setActiveTab(tab as any)}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${activeTab === tab
                 ? 'bg-green-600 text-white shadow-md'
                 : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
@@ -106,7 +128,7 @@ function Page() {
 
       {/* Mobile Reservations List (Visible on sm/md) */}
       <div className="lg:hidden space-y-4">
-        {reservations?.map((res: any) => (
+        {reservations?.map((res: MappedReservation) => (
           <div key={res.id} onClick={() => router.push(`/renter/reservations/${res.id}`)} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm active:scale-[0.98] transition-all">
             <div className="flex justify-between items-start mb-3">
               <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${getStatusColor(res.status)}`}>{res.status}</span>
@@ -144,7 +166,7 @@ function Page() {
             </thead>
             <tbody className="divide-y divide-gray-50">
               {reservations.length > 0 ? (
-                reservations.map((res: any) => (
+                reservations.map((res: MappedReservation) => (
                   <tr
                     key={res.id}
                     onClick={() => router.push(`/renter/reservations/${res.id}`)}

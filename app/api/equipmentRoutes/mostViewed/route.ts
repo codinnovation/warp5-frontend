@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   const baseUrl = process.env.BASE_URL;
 
   try {
@@ -21,7 +21,7 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ data: apiData }, { status: 200 });
 
-  } catch (error) {
-    return NextResponse.json({ message: 'Internal Server Error' + error }, { status: 500 });
+  } catch (error: unknown) {
+    return NextResponse.json({ message: 'Internal Server Error' + String(error) }, { status: 500 });
   }
 }

@@ -79,8 +79,6 @@ export async function GET(req: Request) {
             );
         }
 
-        console.log('reservation', apiData)
-
         return NextResponse.json(
             { message: "Rentals retrieved successfully.", data: apiData },
             { status: 200 }

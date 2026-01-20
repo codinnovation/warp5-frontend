@@ -2,16 +2,18 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
+import { useUser } from '@/context/userContext';
 
 const links = [
   { href: '/renter/dashboard', icon: 'ri-dashboard-line', label: 'Overview' },
   { href: '/renter/reservations', icon: 'ri-calendar-check-line', label: 'Reservations' },
-  { href: '/renter/payment', icon: 'ri-wallet-3-line', label: 'Payments' },
 ];
 
 const SidebarMenu: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
+
+  const { user } = useUser();
 
   const isActive = (href: string) => {
     if (href === '/renter/reservations' && pathname.startsWith('/renter/reservations')) return true;
@@ -44,28 +46,20 @@ const SidebarMenu: React.FC = () => {
       </div>
 
       <div className='space-y-6'>
-        <nav className='flex flex-col space-y-1'>
-          <p className="px-4 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Support</p>
-          <button className='flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors w-full text-left'>
-            <i className="ri-settings-4-line text-xl text-gray-400"></i>
-            <span className='font-medium text-sm xl:text-base'>Settings</span>
-          </button>
-          <button className='flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors w-full text-left'>
-            <i className="ri-question-line text-xl text-gray-400"></i>
-            <span className='font-medium text-sm xl:text-base'>Help Center</span>
-          </button>
-        </nav>
-
         <div className="border-t border-gray-100 pt-6">
           <div className="flex items-center gap-3 px-2">
             <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-green-500 to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-sm shrink-0">
-              KM
+              {user?.firstName.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-bold text-gray-900 truncate">Kwame Mensah</h4>
-              <p className="text-xs text-gray-400 truncate">kwame@example.com</p>
+              <h4 className="text-sm font-bold text-gray-900 truncate">{user?.firstName} {user?.lastName}</h4>
+              <p className="text-xs text-gray-400 truncate">{user?.email}</p>
             </div>
             <button
+              onClick={async () => {
+                await fetch('/api/auth/logout', { method: 'POST' });
+                window.location.href = '/';
+              }}
               className="text-gray-400 hover:text-red-500 transition-colors p-2"
               title="Logout"
             >

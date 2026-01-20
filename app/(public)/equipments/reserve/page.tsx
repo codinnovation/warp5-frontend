@@ -2,7 +2,7 @@
 
 import React, { useState, Suspense } from 'react';
 import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import PageHeader from '@/components/public/PageHeader';
 import Footer from '@/components/public/Footer';
 import toast from 'react-hot-toast';
@@ -10,7 +10,6 @@ import { useUser } from '@/context/userContext';
 
 
 function ReserveContent() {
-  const router = useRouter();
   const { user } = useUser();
 
   const searchParams = useSearchParams();
@@ -139,9 +138,10 @@ function ReserveContent() {
         throw new Error('Authorization URL not found in response');
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Payment Error:', error);
-      toast.error('Payment Error: ' + (error.message || 'An unexpected error occurred'));
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      toast.error('Payment Error: ' + errorMessage);
     } finally {
       setIsProcessing(false);
     }

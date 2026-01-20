@@ -12,8 +12,6 @@ import PriceModal from "@/components/public/PriceModal";
 import DateModal from "@/components/public/DateModal";
 import Footer from "@/components/public/Footer";
 import PageHeader from "@/components/public/PageHeader";
-import EquipmentCard from "@/components/public/EquipmentCard";
-import EquipmentCardSkeleton from "@/components/public/EquipmentCardSkeleton";
 import EquipmentRow from "@/components/public/EquipmentRow";
 import { useMostViewedEquipment } from "@/context/mostViewContext";
 import { useHighlyRatedEquipment } from "@/context/highlyRatedContext";
@@ -78,26 +76,26 @@ export default function Page() {
   const howItWorksSteps = [
     {
       id: 1,
-      title: 'Make a Reservation Online',
+      title: 'Search & Select',
       description:
-        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+        'Browse our extensive catalog of high-performance machinery. Filter by location, price, or category to find the perfect match for your project.',
     },
     {
       id: 2,
-      title: 'Pick Up Your Equipment',
+      title: 'Book Securely',
       description:
-        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.',
+        'Choose your rental dates and complete your reservation in minutes with our streamlined, secure online booking system. No paperwork headaches.',
     },
     {
       id: 3,
-      title: 'Use the Equipment',
+      title: 'Receive Equipment',
       description:
-        'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam.',
+        'Opt for hassle-free delivery directly to your job site or pick up from one of our convenient locations. All equipment is inspected and ready to work.',
     },
     {
       id: 4,
-      title: 'Return the Equipment',
-      description: 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.',
+      title: 'Get to Work',
+      description: 'Start your project with confidence using top-tier, reliable equipment. Support is just a call away if you need any assistance during your rental.',
     },
   ];
 
@@ -390,51 +388,6 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Partners Section (Marquee) */}
-        <section className="py-12 border-y border-gray-100 bg-white overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 text-center mb-8">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">Trusted By Top Companies</span>
-          </div>
-
-          {/* Mobile/Tablet Grid View */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-6 lg:hidden opacity-50 grayscale">
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">CAT</h1></div>
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">KOMATSU</h1></div>
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">HITACHI</h1></div>
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">VOLVO</h1></div>
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">JCB</h1></div>
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">LIEBHERR</h1></div>
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">SANY</h1></div>
-            <div className="flex justify-center"><h1 className="text-base md:text-xl font-black text-gray-800">DEERE</h1></div>
-          </div>
-
-          {/* Desktop Marquee View */}
-          <div className="hidden lg:flex w-[200%] animate-marquee">
-            {/* Set 1 */}
-            <div className="flex w-1/2 justify-around items-center px-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-              <h1 className="text-3xl font-black text-gray-800">CAT</h1>
-              <h1 className="text-3xl font-black text-gray-800">KOMATSU</h1>
-              <h1 className="text-3xl font-black text-gray-800">HITACHI</h1>
-              <h1 className="text-3xl font-black text-gray-800">VOLVO</h1>
-              <h1 className="text-3xl font-black text-gray-800">JCB</h1>
-              <h1 className="text-3xl font-black text-gray-800">LIEBHERR</h1>
-              <h1 className="text-3xl font-black text-gray-800">SANY</h1>
-              <h1 className="text-3xl font-black text-gray-800">DEERE</h1>
-            </div>
-            {/* Set 2 (Duplicate) */}
-            <div className="flex w-1/2 justify-around items-center px-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-              <h1 className="text-3xl font-black text-gray-800">CAT</h1>
-              <h1 className="text-3xl font-black text-gray-800">KOMATSU</h1>
-              <h1 className="text-3xl font-black text-gray-800">HITACHI</h1>
-              <h1 className="text-3xl font-black text-gray-800">VOLVO</h1>
-              <h1 className="text-3xl font-black text-gray-800">JCB</h1>
-              <h1 className="text-3xl font-black text-gray-800">LIEBHERR</h1>
-              <h1 className="text-3xl font-black text-gray-800">SANY</h1>
-              <h1 className="text-3xl font-black text-gray-800">DEERE</h1>
-            </div>
-          </div>
-        </section>
-
         {/* How It Works */}
         <section className="py-20 md:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -447,7 +400,7 @@ export default function Page() {
               {/* Connecting line for desktop */}
               <div className="hidden lg:block absolute top-10 left-1/2 -translate-x-1/2 w-[85%] h-0.5 bg-gray-100 -z-10"></div>
 
-              {howItWorksSteps.map((step, index) => (
+              {howItWorksSteps.map((step) => (
                 <div key={step.id} className="relative group p-6 rounded-3xl bg-white border border-gray-100 hover:border-green-100 hover:shadow-xl hover:shadow-green-500/5 transition-all duration-300">
                   <div className="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center font-bold text-lg mb-5 group-hover:bg-green-600 transition-colors shadow-lg group-hover:scale-110 duration-300">
                     {step.id}

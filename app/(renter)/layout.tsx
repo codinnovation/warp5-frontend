@@ -1,4 +1,3 @@
-import { Poppins } from 'next/font/google';
 import type { Metadata } from "next";
 import 'remixicon/fonts/remixicon.css';
 import "react-date-range/dist/styles.css";
@@ -18,15 +17,13 @@ export default function RenterLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`antialiased`}>
-        <PageHeader />
-        <SidebarMenu />
+    <>
+      <PageHeader />
+      <SidebarMenu />
 
-        <main className="min-h-screen bg-[#E4E4E4]/30 pt-20 pb-6 px-4 md:px-6 lg:ml-64 xl:ml-72 lg:px-8 xl:px-10 lg:pb-8 lg:pt-24">
-          {children}
-        </main>
-      </body>
-    </html>
+      <main className="min-h-screen bg-[#E4E4E4]/30 pt-20 pb-6 px-4 md:px-6 lg:ml-64 xl:ml-72 lg:px-8 xl:px-10 lg:pb-8 lg:pt-24">
+        {children}
+      </main>
+    </>
   );
 }

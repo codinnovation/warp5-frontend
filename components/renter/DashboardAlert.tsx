@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 
-function DashboardAlert() {
+function DashboardAlert({ className }: { className?: string }) {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) return null;
 
   return (
-    <div className='mt-8 animate-in fade-in slide-in-from-top-4 duration-500'>
+    <div className={`animate-in fade-in slide-in-from-top-4 duration-500 ${className || 'mt-8'}`}>
       <div className='relative bg-orange-50 border border-orange-100 rounded-2xl p-4 md:p-5 flex items-start gap-4 shadow-sm'>
 
         {/* Icon Container */}

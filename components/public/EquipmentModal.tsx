@@ -28,7 +28,8 @@ export default function EquipmentModal({ show, selectedEquipment, onSelect, onCl
       {equipmentTypes.map((equipment) => (
         <div
           key={equipment}
-          className="px-4 py-3 text-sm font-medium hover:bg-green-50 hover:text-green-700 cursor-pointer rounded-xl text-gray-700 transition-all duration-200 flex items-center justify-between group"
+          className={`px-4 py-3 text-sm font-medium cursor-pointer rounded-xl transition-all duration-200 flex items-center justify-between group ${selectedEquipment === equipment ? 'bg-green-50 text-green-700' : 'hover:bg-green-50 hover:text-green-700 text-gray-700'
+            }`}
           onClick={() => {
             onSelect(equipment);
             onClose();
