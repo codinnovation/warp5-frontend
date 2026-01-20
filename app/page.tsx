@@ -14,6 +14,7 @@ import Footer from "@/components/public/Footer";
 import PageHeader from "@/components/public/PageHeader";
 import EquipmentCard from "@/components/public/EquipmentCard";
 import EquipmentCardSkeleton from "@/components/public/EquipmentCardSkeleton";
+import EquipmentRow from "@/components/public/EquipmentRow";
 import { useMostViewedEquipment } from "@/context/mostViewContext";
 import { useHighlyRatedEquipment } from "@/context/highlyRatedContext";
 import { useRecommendationsEquipment } from "@/context/recommendationsContext";
@@ -308,88 +309,23 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="mt-12 md:mt-16 xl:mt-20">
-          <div className="max-w-[85vw] mx-auto">
-            <h1 className="text-[#333333] font-medium text-base md:text-lg">Highly Rated By Customers</h1>
+        <EquipmentRow
+          title="Highly Rated By Customers"
+          data={higlyRatedData?.data}
+          isLoading={isHighlyRatedLoading}
+        />
 
-            <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 xl:gap-12">
-              {isHighlyRatedLoading ? (
-                Array.from({ length: 5 }).map((_, index) => (
-                  <EquipmentCardSkeleton key={index} />
-                ))
-              ) : (
-                higlyRatedData?.data?.map((item, index) => (
-                  <EquipmentCard
-                    key={index}
-                    item={{
-                      id: item.id,
-                      imageOne: item.imageOne,
-                      name: item.name,
-                      location: item.location,
-                      rating: item.rating.toString(),
-                      price: item.price.toString(),
-                    }} />
-                ))
-              )}
-            </div>
-          </div>
-        </section>
+        <EquipmentRow
+          title="Most Viewed Equipment"
+          data={mostViewedData?.data}
+          isLoading={isMostViewedLoading}
+        />
 
-        <section className="mt-12 md:mt-16 xl:mt-20">
-          <div className="max-w-[85vw] mx-auto">
-            <h1 className="text-[#333333] font-medium text-base md:text-lg">Most Viewed Equipment</h1>
-
-            <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 xl:gap-12">
-              {isMostViewedLoading ? (
-                Array.from({ length: 5 }).map((_, index) => (
-                  <EquipmentCardSkeleton key={index} />
-                ))
-              ) : (
-                mostViewedData?.data?.map((item, index) => (
-                  <EquipmentCard
-                    key={index}
-                    item={{
-                      id: item.id,
-                      imageOne: item.imageOne,
-                      name: item.name,
-                      location: item.location,
-                      rating: item.rating.toString(),
-                      price: item.price.toString(),
-                    }}
-                  />
-                ))
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-12 md:mt-16 xl:mt-20">
-          <div className="max-w-[85vw] mx-auto">
-            <h1 className="text-[#333333] font-medium text-base md:text-lg">You may Also Like</h1>
-
-            <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 xl:gap-12">
-              {isRecommendedLoading ? (
-                Array.from({ length: 5 }).map((_, index) => (
-                  <EquipmentCardSkeleton key={index} />
-                ))
-              ) : (
-                recommendedData?.data?.map((item, index) => (
-                  <EquipmentCard
-                    key={index}
-                    item={{
-                      id: item.id,
-                      imageOne: item.imageOne,
-                      name: item.name,
-                      location: item.location,
-                      rating: item.rating.toString(),
-                      price: item.price.toString(),
-                    }}
-                  />
-                ))
-              )}
-            </div>
-          </div>
-        </section>
+        <EquipmentRow
+          title="You may Also Like"
+          data={recommendedData?.data}
+          isLoading={isRecommendedLoading}
+        />
 
         <section className="mt-12 md:mt-16 xl:mt-20 pb-4">
           <button className="flex justify-center items-center space-x-1 border border-[#333333] hover:bg-[#333333] hover:text-white active:scale-95 transition-all w-32 h-9 md:w-36 md:h-10 mx-auto rounded-full cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-[#333333]" onClick={() => router.push('/equipments')}>

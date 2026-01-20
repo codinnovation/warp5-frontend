@@ -177,21 +177,39 @@ function Page() {
                   </p>
                 </div>
 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={(e) => {
+                  e.preventDefault();
+                  // Simulate submission logic
+                  const form = e.target as HTMLFormElement;
+                  const button = form.querySelector('button[type="submit"]');
+                  if (button) {
+                    const originalText = button.textContent;
+                    button.textContent = 'Sending...';
+                    (button as HTMLButtonElement).disabled = true;
+                    setTimeout(() => {
+                      button.textContent = 'Message Sent!';
+                      (button as HTMLButtonElement).disabled = false;
+                      setTimeout(() => {
+                        if (originalText) button.textContent = originalText;
+                        form.reset();
+                      }, 2000);
+                    }, 1500);
+                  }
+                }}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-gray-700">First Name</label>
-                      <input type="text" placeholder="John" className="w-full h-12 px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all" />
+                      <input required type="text" placeholder="John" className="w-full h-12 px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-gray-700">Last Name</label>
-                      <input type="text" placeholder="Doe" className="w-full h-12 px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all" />
+                      <input required type="text" placeholder="Doe" className="w-full h-12 px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700">Email Address</label>
-                    <input type="email" placeholder="john@example.com" className="w-full h-12 px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all" />
+                    <input required type="email" placeholder="john@example.com" className="w-full h-12 px-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all" />
                   </div>
 
                   <div className="space-y-2">
@@ -206,10 +224,10 @@ function Page() {
 
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700">Message</label>
-                    <textarea placeholder="How can we help you?" className="w-full h-32 p-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all resize-none"></textarea>
+                    <textarea required placeholder="How can we help you?" className="w-full h-32 p-4 rounded-xl bg-gray-50 border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 focus:outline-none transition-all resize-none"></textarea>
                   </div>
 
-                  <button className="w-full h-14 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-green-600/20 active:scale-95 text-lg">
+                  <button type="submit" className="w-full h-14 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-green-600/20 active:scale-95 text-lg disabled:opacity-70 disabled:cursor-not-allowed">
                     Send Message
                   </button>
                 </form>
